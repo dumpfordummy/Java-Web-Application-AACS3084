@@ -12,7 +12,8 @@
         <title>Index</title>
     </head>
     <body>
-        <jsp:include page="login.jsp" />
+        <a href="/login">Login</a><br>
+        This is the home page
         
        
     </body>

@@ -26,7 +26,7 @@ public class LoginController extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        req.getRequestDispatcher(LOGINPG);
+        req.getRequestDispatcher(LOGINPG).forward(req, res);
     }
     
     @Override
