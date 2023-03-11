@@ -9,7 +9,8 @@
 
 # # Package Files #
 # *.jar
-# *.war
+ *.war
+ *.dpf
 # *.nar
 # *.ear
 # *.zip
@@ -32,7 +33,7 @@
 # *.bak
 # *.swp
 # *~.nib
-# local.properties
+ local.properties
 # .settings/
 # .loadpath
 
@@ -157,8 +158,8 @@
 # atlassian-ide-plugin.xml
 
 # # Crashlytics plugin (for Android Studio and IntelliJ)
-# com_crashlytics_export_strings.xml
-# crashlytics.properties
-# crashlytics-build.properties
-# /888Bags/nbproject/private/
-/888Bags/dist/
+ com_crashlytics_export_strings.xml
+ crashlytics.properties
+ crashlytics-build.properties
+ /LouisJ/nbproject/private/
+ /LouisJ/dist/
