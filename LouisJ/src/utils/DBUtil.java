@@ -20,11 +20,11 @@ public class DBUtil {
         if (conn == null) 
         {
             try {
-                String url = "jdbc:derby://localhost:1527/888Bags";
+                String url = "";
 
-                String driver = "org.apache.derby.jdbc.ClientDriver";
-                String username = "nbuser";
-                String password = "nbuser";
+                String driver = "";
+                String username = "";
+                String password = "";
                 Class.forName(driver);
                 conn = DriverManager.getConnection(url, username, password);
             } catch (ClassNotFoundException | SQLException e) {
