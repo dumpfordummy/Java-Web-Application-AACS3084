@@ -12,6 +12,7 @@
         <title>Index</title>
     </head>
     <body>
+        <jsp:include page="navigation.jsp" />  
         <a href="/login">Login</a><br>
         This is the home page
         
