@@ -19,7 +19,7 @@ public class DBUtil {
 
     public static Connection getConnection() {
         if (conn == null) 
-        {
+        { 
             try {
                 String url = "jdbc:sqlserver://dumpfordummy.database.windows.net:1433;database=LouisJ;user=LouisJ@dumpfordummy;password=Louis@2023;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 
