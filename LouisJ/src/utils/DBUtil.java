@@ -8,6 +8,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+
 /**
  *
  * @author CY
@@ -20,14 +21,11 @@ public class DBUtil {
         if (conn == null) 
         {
             try {
-                String url = "";
+                String url = "jdbc:sqlserver://dumpfordummy.database.windows.net:1433;database=LouisJ;user=LouisJ@dumpfordummy;password=Louis@2023;encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;";
 
-                String driver = "";
-                String username = "";
-                String password = "";
-                Class.forName(driver);
-                conn = DriverManager.getConnection(url, username, password);
-            } catch (ClassNotFoundException | SQLException e) {
+                DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
+                conn = DriverManager.getConnection(url);
+            } catch (SQLException e) {
                 e.printStackTrace();
             }
         }

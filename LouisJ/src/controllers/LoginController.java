@@ -21,7 +21,7 @@ public class LoginController extends HttpServlet {
     public CustomerDao dao;
     
     public LoginController() {
-        
+        dao = new CustomerDao();
     }
     
     @Override
