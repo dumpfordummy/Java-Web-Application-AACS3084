@@ -6,6 +6,7 @@ package dao;
 
 import utils.DBUtil;
 import java.sql.Connection;
+import models.Customer;
 
 /**
  *
@@ -18,5 +19,9 @@ public class CustomerDao {
         conn = DBUtil.getConnection();
     }
     
+    
+    public Customer getCustomerByName(String name) {
+        return new Customer("id", "username", "passwordHash");
+    }
     
 }
