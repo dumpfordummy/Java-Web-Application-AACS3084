@@ -4,38 +4,35 @@
  */
 package controllers;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
+import model.Item;
+import model.ItemService;
+import java.io.*;
+import java.util.logging.*;
+import javax.annotation.Resource;
+import javax.persistence.*;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
+import javax.transaction.UserTransaction;
 import models.Product;
 import dao.ProductDao;
-import javax.servlet.http.Part;
-import utils.DBUtil;
 
 /**
  *
  * @author Asus
  */
 
-@WebServlet("/addProduct")
 public class AddProductController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
     private Connection connection;
     private ProductDao productDao;
 
+    @Override
     public void init() throws ServletException {
-        connection = DBUtil.getConnection();
-        productDao = new ProductDao(connection);
+        productDao = new ProductDao();
     }
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            int productId = Integer.parseInt(request.getParameter("productId"));
             byte[] image = null;
             String name = request.getParameter("name");
             String description = request.getParameter("description");
@@ -50,6 +47,7 @@ public class AddProductController extends HttpServlet {
 
             // Create a new Product object with the submitted data
             Product product = new Product();
+            product.setProductID(productId);
             product.setImage(image);
             product.setName(name);
             product.setDescription(description);

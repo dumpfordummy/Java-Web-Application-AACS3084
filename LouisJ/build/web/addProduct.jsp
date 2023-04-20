@@ -13,7 +13,9 @@
 </head>
 <body>
     <h1>Add Product</h1>
-    <form method="post" action="AddProductController">
+    <form action="AddProduct">
+        <label for="productId">Product ID:</label>
+        <input type="number" name="productId"><br>
         <label for="name">Name:</label>
         <input type="text" name="name"><br>
         <label for="description">Description:</label>
@@ -24,6 +26,7 @@
         <input type="file" name="image"><br>
         <input type="hidden" name="action" value="add">
         <input type="submit" value="Add Product">
+        <input type="reset" value="Reset">
     </form>
 </body>
 </html>

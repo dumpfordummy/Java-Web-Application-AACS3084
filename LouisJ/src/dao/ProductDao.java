@@ -22,34 +22,35 @@ public class ProductDao {
     private PreparedStatement stmt;
 
     public ProductDao(Connection connection) {
-      this.connection = connection;
+        this.connection = connection;
     }
 
     public void addProduct(Product product) throws SQLException {
-      stmt = connection.prepareStatement("INSERT INTO " + tableName + " (image, name, description, price) VALUES (?, ?, ?, ?)");
-      stmt.setBytes(1, product.getImage());
-      stmt.setString(2, product.getName());
-      stmt.setString(3, product.getDescription());
-      stmt.setDouble(4, product.getPrice());
-      stmt.executeUpdate();
+        stmt = connection.prepareStatement("INSERT INTO " + tableName + " VALUES (?, ?, ?, ?, ?)");
+        stmt.setInt(1, product.getProductID());
+        stmt.setBytes(2, product.getImage());
+        stmt.setString(3, product.getName());
+        stmt.setDouble(4, product.getPrice());        
+        stmt.setString(5, product.getDescription());
+        stmt.executeUpdate();
     }
 
     public Product getProduct(int productID) throws SQLException {
-      stmt = connection.prepareStatement("SELECT * FROM " + tableName + " WHERE productID = ?");
-      stmt.setInt(1, productID);
-      ResultSet result = stmt.executeQuery();
+        stmt = connection.prepareStatement("SELECT * FROM " + tableName + " WHERE productID = ?");
+        stmt.setInt(1, productID);
+        ResultSet result = stmt.executeQuery();
 
-      if (result.next()) {
-        Product product = new Product();
-        product.setProductID(result.getInt("productID"));
-        product.setImage(result.getBytes("image"));
-        product.setName(result.getString("name"));
-        product.setDescription(result.getString("description"));
-        product.setPrice(result.getDouble("price"));
-        return product;
-      } else {
-        return null;
-      }
+        if (result.next()) {
+            Product product = new Product();
+            product.setProductID(result.getInt("productID"));
+            product.setImage(result.getBytes("image"));
+            product.setName(result.getString("name"));
+            product.setDescription(result.getString("description"));
+            product.setPrice(result.getDouble("price"));
+            return product;
+        } else {
+            return null;
+        }
     }
 
     public List<Product> getAllProducts() throws SQLException {
