@@ -4,8 +4,6 @@
  */
 package controllers;
 
-import model.Item;
-import model.ItemService;
 import java.io.*;
 import java.util.logging.*;
 import javax.annotation.Resource;
@@ -13,7 +11,9 @@ import javax.persistence.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.transaction.UserTransaction;
+
 import models.Product;
+import models.ProductService;
 import dao.ProductDao;
 
 /**
@@ -22,14 +22,13 @@ import dao.ProductDao;
  */
 
 public class AddProductController extends HttpServlet {
-    private Connection connection;
-    private ProductDao productDao;
-
+    
+    @PersistenceContext
+    EntityManager em;
+    @Resource
+    UserTransaction utx;
+    
     @Override
-    public void init() throws ServletException {
-        productDao = new ProductDao();
-    }
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int productId = Integer.parseInt(request.getParameter("productId"));
@@ -52,23 +51,16 @@ public class AddProductController extends HttpServlet {
             product.setName(name);
             product.setDescription(description);
             product.setPrice(price);
-
-            // Add the new Product to the database
-            productDao.addProduct(product);
-
-            // Redirect to the view all products page
-            response.sendRedirect("viewAllProducts.jsp");
-        } catch (SQLException | NumberFormatException ex) {
-            ex.printStackTrace();
-            response.sendRedirect("error.jsp");
-        }
-    }
-
-    public void destroy() {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+            
+            ProductService productService = new ProductService(em);
+            utx.begin();
+            boolean success = productService.addProduct(product);
+            utx.commit();
+            HttpSession session = request.getSession();
+            session.setAttribute("success", success);
+            response.sendRedirect("secureStaff\\AddConfirm.jsp");
+        } catch (Exception ex) {
+            Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 }
