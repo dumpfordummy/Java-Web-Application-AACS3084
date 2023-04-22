@@ -13,9 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import models.Product;
-import dao.ProductDao;
+
 import javax.servlet.http.Part;
-import utils.DBUtil;
 
 /**
  *
@@ -25,12 +24,9 @@ import utils.DBUtil;
 @WebServlet("/addProduct")
 public class AddProductController extends HttpServlet {
     private static final long serialVersionUID = 1L;
-    private Connection connection;
-    private ProductDao productDao;
 
     public void init() throws ServletException {
-        connection = DBUtil.getConnection();
-        productDao = new ProductDao(connection);
+
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -55,22 +51,11 @@ public class AddProductController extends HttpServlet {
             product.setDescription(description);
             product.setPrice(price);
 
-            // Add the new Product to the database
-            productDao.addProduct(product);
-
             // Redirect to the view all products page
             response.sendRedirect("viewAllProducts.jsp");
-        } catch (SQLException | NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
             ex.printStackTrace();
             response.sendRedirect("error.jsp");
-        }
-    }
-
-    public void destroy() {
-        try {
-            connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
     }
 }
