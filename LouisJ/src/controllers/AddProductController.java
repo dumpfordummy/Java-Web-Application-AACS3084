@@ -11,11 +11,8 @@ import javax.persistence.*;
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.transaction.UserTransaction;
-
 import models.Product;
-
-import javax.servlet.http.Part;
-import models.ProductService;
+import dao.ProductDao;
 
 /**
  *
@@ -23,13 +20,12 @@ import models.ProductService;
  */
 
 public class AddProductController extends HttpServlet {
-    
-    @PersistenceContext
-    EntityManager em;
-    @Resource
-    UserTransaction utx;
-    
+    private ProductDao productDao;
+
     @Override
+    public void init() throws ServletException {
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
             int productId = Integer.parseInt(request.getParameter("productId"));
@@ -52,16 +48,14 @@ public class AddProductController extends HttpServlet {
             product.setName(name);
             product.setDescription(description);
             product.setPrice(price);
-            
-            ProductService productService = new ProductService(em);
-            utx.begin();
-            boolean success = productService.addProduct(product);
-            utx.commit();
-            HttpSession session = request.getSession();
-            session.setAttribute("success", success);
-            response.sendRedirect("secureStaff\\AddConfirm.jsp");
-        } catch (Exception ex) {
-            Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+
+            // Add the new Product to the database
+
+            // Redirect to the view all products page
+            response.sendRedirect("viewAllProducts.jsp");
+        } catch (NumberFormatException ex) {
+            ex.printStackTrace();
+            response.sendRedirect("error.jsp");
+        }
     }
 }

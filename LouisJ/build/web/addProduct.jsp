@@ -13,7 +13,7 @@
 </head>
 <body>
     <h1>Add Product</h1>
-    <form method="POST" action="AddProduct">
+    <form action="AddProduct">
         <label for="productId">Product ID:</label>
         <input type="number" name="productId"><br>
         <label for="name">Name:</label>
