@@ -4,34 +4,35 @@
  */
 package controllers;
 
-import java.io.IOException;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.io.*;
+import java.util.logging.*;
+import javax.annotation.Resource;
+import javax.persistence.*;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.*;
+import javax.transaction.UserTransaction;
+
 import models.Product;
 
 import javax.servlet.http.Part;
+import models.ProductService;
 
 /**
  *
  * @author Asus
  */
 
-@WebServlet("/addProduct")
 public class AddProductController extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-
-    public void init() throws ServletException {
-
-    }
-
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    
+    @PersistenceContext
+    EntityManager em;
+    @Resource
+    UserTransaction utx;
+    
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            int productId = Integer.parseInt(request.getParameter("productId"));
             byte[] image = null;
             String name = request.getParameter("name");
             String description = request.getParameter("description");
@@ -46,16 +47,21 @@ public class AddProductController extends HttpServlet {
 
             // Create a new Product object with the submitted data
             Product product = new Product();
+            product.setProductID(productId);
             product.setImage(image);
             product.setName(name);
             product.setDescription(description);
             product.setPrice(price);
-
-            // Redirect to the view all products page
-            response.sendRedirect("viewAllProducts.jsp");
-        } catch (NumberFormatException ex) {
-            ex.printStackTrace();
-            response.sendRedirect("error.jsp");
-        }
+            
+            ProductService productService = new ProductService(em);
+            utx.begin();
+            boolean success = productService.addProduct(product);
+            utx.commit();
+            HttpSession session = request.getSession();
+            session.setAttribute("success", success);
+            response.sendRedirect("secureStaff\\AddConfirm.jsp");
+        } catch (Exception ex) {
+            Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);
+        } 
     }
 }

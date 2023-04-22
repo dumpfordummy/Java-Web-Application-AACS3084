@@ -45,7 +45,7 @@ body{
 }
 
 .headercontainer-account-icon {
-    top: 0px;
+    top: 10px;
     left: 0px;
     width: 50px;
     position: absolute;
@@ -61,7 +61,7 @@ body{
 }
 
 .headercontainer-cart-icon {
-    top: -5px;
+    top: 5px;
     width: 40px;
     position: absolute;
 }
@@ -98,11 +98,11 @@ body{
 }
 
 .headercontainer-header-account-wrapper span{
-    top: 15px;
+    top: 25px;
 }
 
 .headercontainer-header-cart-wrapper span{
-    top: 5px;
+    top: 15px;
 }
 
 .homecontent-title-div {
