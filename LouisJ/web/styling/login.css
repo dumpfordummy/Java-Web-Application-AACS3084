@@ -1,0 +1,35 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : Mar 13, 2023, 5:21:03 PM
+    Author     : CY
+*/
+
+body {
+    background-color: #E8D4B2;
+}
+
+.login-container {
+    width: 35%;
+    height: 75%;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.login-title {
+    text-align: center;
+}
+
+#loginForm label {
+    
+}
+
+.login-form {
+    
+}
