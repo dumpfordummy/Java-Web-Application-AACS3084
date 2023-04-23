@@ -43,6 +43,17 @@ public class CustomerService {
         return customer;
     }
     
+    public Customer findCustomerByUsername(String username) {
+         try {
+            return (Customer) mgr.createNamedQuery("Customer.findByUsername").setParameter("username", username).getSingleResult();
+        } catch (EntityExistsException ex) {
+            Logger.getLogger(CustomerService.class.getName()).log(Level.SEVERE, "No record found!", ex);
+        } catch (Exception ex) {
+            Logger.getLogger(CustomerService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
+    
     public boolean deletecustomer(String id) {
         Customer customer = findCustomerById(id );
         if (customer != null) {

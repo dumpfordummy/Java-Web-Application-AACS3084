@@ -53,12 +53,12 @@ public class AddProductController extends HttpServlet {
             product.setDescription(description);
             product.setPrice(price);
             
-            //ProductService productService = new ProductService(em);
-            //utx.begin();
-            //boolean success = productService.addProduct(product);
-            //utx.commit();
+            ProductService productService = new ProductService(em);
+            utx.begin();
+            boolean success = productService.addProduct(product);
+            utx.commit();
             HttpSession session = request.getSession();
-            //session.setAttribute("success", success);
+            session.setAttribute("success", success);
             response.sendRedirect("secureStaff\\AddConfirm.jsp");
         } catch (Exception ex) {
             Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);

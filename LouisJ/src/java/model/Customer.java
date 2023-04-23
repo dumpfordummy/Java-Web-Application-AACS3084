@@ -31,10 +31,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class Customer implements Serializable {
 
     @Size(max = 100)
-    @Column(name = "USERNAME")
+    @Column(name = "USERNAME", unique=true)
     private String username;
     @Size(max = 100)
-    @Column(name = "PASSWORDHASH")
+    @Column(name = "PASSWORDHASH", unique=true)
     private String passwordhash;
 
     private static final long serialVersionUID = 1L;
