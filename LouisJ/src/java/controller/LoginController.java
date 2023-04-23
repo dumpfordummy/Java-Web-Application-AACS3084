@@ -1,18 +1,17 @@
-package java.controllers;
+package controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.NoSuchAlgorithmException;
 import java.util.UUID;
 import javax.servlet.http.*;
 import javax.servlet.*;
-import java.security.MessageDigest;  
-import java.utils.hashUtil;
+import util.hashUtil;
 
 /**
  *
  * @author CY
  */
+
 public class LoginController extends HttpServlet {
     
     private static final String LOGINPG = "/login.jsp";

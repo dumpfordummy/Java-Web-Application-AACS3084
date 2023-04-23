@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package java.controllers;
+package controller;
 
 import java.io.*;
 import java.util.logging.*;
@@ -12,16 +12,16 @@ import javax.servlet.ServletException;
 import javax.servlet.http.*;
 import javax.transaction.UserTransaction;
 
-import java.models.Product;
+import model.Product;
 
 import javax.servlet.http.Part;
-import java.models.ProductService;
+import model.ProductService;
+import javax.servlet.annotation.WebServlet;
 
 /**
  *
  * @author Asus
  */
-
 public class AddProductController extends HttpServlet {
     
     @PersistenceContext
