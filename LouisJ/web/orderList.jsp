@@ -1,7 +1,7 @@
 <%-- 
     Document   : orderList
     Created on : Apr 17, 2023, 11:05:29 PM
-    Author     : frost
+    Author     : Wai Loc
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -11,8 +11,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Louis J - Order List</title>
         <link rel="stylesheet" href="styling/index.css" type="text/css">
+        <link rel="stylesheet" href="styling/listPages.css" text="text/css">
     </head>
-<body>
+    <body>
         <div class="headercontainer-headercontainer">
             <img src="/image/logo.png" alt="LOUIS J" class="headercontainer-logo" />
             <div class="headercontainer-header-outer-wrapper">
@@ -31,24 +32,23 @@
             </div>
         </div>
 
-        <div>
-            <div>
-                <div>Order number: XXXXXX</div>
-                <div>Date: dd/MM/YYYY</div>
-                <div><p></p></div>
-                <div>Items:</div>
-                <div>1.</div>
-                <div>2.</div>
-                <div>3.</div>
-                <div><p></p></div>
-                <div>Subtotal: RM XXX</div>
-                    
+        <div class="orderBox">
+            <div class="orderDetails">
+                Order number: XXXXXX<br />
+                Date: dd/MM/YYYY<br />
+                <br />
+                Items:<br />
+                1.<br />
+                2.<br />
+                3.<br /><br />
+                Subtotal: RM XXX<br />
             </div>
-            <div>
+            <div class="orderStatus">
                 <p>
                     <span>STATUS: </span>
                     <span>DELIVERED</span><span>/ </span><span>PENDING</span>
                 </p>
             </div>
         </div>
-    </body></html>
+    </body>
+</html>
