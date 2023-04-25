@@ -16,15 +16,12 @@ import javax.transaction.UserTransaction;
 
 import model.Product;
 
-import javax.servlet.http.Part;
 import model.ProductService;
-import javax.servlet.annotation.WebServlet;
 
 /**
  *
  * @author Asus
  */
-@MultipartConfig
 public class AddProductController extends HttpServlet {
     
     @PersistenceContext
