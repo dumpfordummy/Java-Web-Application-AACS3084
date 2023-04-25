@@ -41,14 +41,12 @@ public class AddProductController extends HttpServlet {
             double price = Double.parseDouble(request.getParameter("price"));
 
             // Read the uploaded image data and store it as a byte array
-            Part filePart = request.getPart("file");
-            InputStream fileContent = filePart.getInputStream();
+
 
 
             // Create a new Product object with the submitted data
             Product product = new Product();
             product.setProductid(productId);
-            product.setImage(fileContent);
             product.setName(name);
             product.setDescription(description);
             product.setPrice(price);
