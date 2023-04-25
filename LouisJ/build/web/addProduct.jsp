@@ -26,8 +26,6 @@
         <input type="text" name="category"><br>
         <label for="price">Price:</label>
         <input type="number" step="0.01" name="price"><br>
-        <label for="image">Image:</label>
-        <input type="file" name="image"><br>
         <input type="hidden" name="action" value="add">
         <input type="submit" value="Add Product">
         <input type="reset" value="Reset">

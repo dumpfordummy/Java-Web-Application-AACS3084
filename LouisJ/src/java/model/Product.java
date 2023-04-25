@@ -28,8 +28,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
     @NamedQuery(name = "Product.findByProductid", query = "SELECT p FROM Product p WHERE p.productid = :productid"),
     @NamedQuery(name = "Product.findByName", query = "SELECT p FROM Product p WHERE p.name = :name"),
+    @NamedQuery(name = "Product.findByDescription", query = "SELECT p FROM Product p WHERE p.description = :description"),
+    @NamedQuery(name = "Product.findByType", query = "SELECT p FROM Product p WHERE p.type = :type"),
+    @NamedQuery(name = "Product.findByCategory", query = "SELECT p FROM Product p WHERE p.category = :category"),
     @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price"),
-    @NamedQuery(name = "Product.findByDescription", query = "SELECT p FROM Product p WHERE p.description = :description")})
+    @NamedQuery(name = "Product.findByStockqty", query = "SELECT p FROM Product p WHERE p.stockqty = :stockqty")})
 public class Product implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -38,18 +41,26 @@ public class Product implements Serializable {
     @NotNull
     @Column(name = "PRODUCTID")
     private Integer productid;
-    @Lob
-    @Column(name = "IMAGE")
-    private byte[] image;
-    @Size(max = 100)
+    @Size(max = 256)
     @Column(name = "NAME")
     private String name;
+    @Size(max = 256)
+    @Column(name = "DESCRIPTION")
+    private String description;
+    @Size(max = 256)
+    @Column(name = "TYPE")
+    private String type;
+    @Size(max = 256)
+    @Column(name = "CATEGORY")
+    private String category;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "PRICE")
     private Double price;
-    @Size(max = 100)
-    @Column(name = "DESCRIPTION")
-    private String description;
+    @Column(name = "STOCKQTY")
+    private Integer stockqty;
+    @Lob
+    @Column(name = "IMAGE")
+    private Serializable image;
 
     public Product() {
     }
@@ -66,20 +77,36 @@ public class Product implements Serializable {
         this.productid = productid;
     }
 
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 
     public Double getPrice() {
@@ -90,12 +117,20 @@ public class Product implements Serializable {
         this.price = price;
     }
 
-    public String getDescription() {
-        return description;
+    public Integer getStockqty() {
+        return stockqty;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setStockqty(Integer stockqty) {
+        this.stockqty = stockqty;
+    }
+
+    public Serializable getImage() {
+        return image;
+    }
+
+    public void setImage(Serializable image) {
+        this.image = image;
     }
 
     @Override
@@ -120,7 +155,7 @@ public class Product implements Serializable {
 
     @Override
     public String toString() {
-        return "util.Product[ productid=" + productid + " ]";
+        return "model.Product[ productid=" + productid + " ]";
     }
     
 }
