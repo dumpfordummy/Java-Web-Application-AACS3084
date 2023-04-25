@@ -12,17 +12,25 @@
         <servlet-name>RegisterController</servlet-name>
         <servlet-class>controller.RegisterController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>GetProduct</servlet-name>
+        <servlet-class>controller.GetProductController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AddProductController</servlet-name>
-        <url-pattern>/AddProduct</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductController</servlet-name>
+        <url-pattern>/addProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GetProduct</servlet-name>
+        <url-pattern>/getProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
