@@ -63,6 +63,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     border: 1px solid #000;
     height: 40px;
     border-radius: 7px;
+    
+    &:hover{
+        background: lightgrey;
+    }
 }
 @media only screen and (max-width: 553px) {
     .card{
@@ -75,7 +79,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     box-shadow: 5px 10px #888888;
 }
 
-.card:hover {
+.prodCategory:hover {
     background: lightgrey;
 }
 

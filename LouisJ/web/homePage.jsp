@@ -18,10 +18,10 @@
     <body>
         <h3 class="heading">Cave of Wonders</h3>
         <div class="container text-center">
-            <div class="row prodCategory">
+            <div class="row">
                 <div class="col">
                     <a href="belt_bag.html">
-                        <div class="card">
+                        <div class="card prodCategory">
                             <img src="image/belt_bag_home.png" class="card-img-top">
                             <h5 class="card-title">
                                 Belt Bag
@@ -31,7 +31,7 @@
                 </div>
                 <div class="col">
                     <a href="clutch_bag.html">
-                        <div class="card">
+                        <div class="card prodCategory">
                             <img src="image/clutch_bag_home.png" class="card-img-top">
                             <h5 class="card-title">
                                 Clutch Bag
@@ -41,7 +41,7 @@
                 </div>
                 <div class="col">
                     <a href="backpack.html">
-                        <div class="card">
+                        <div class="card prodCategory">
                             <img src="image/backpack_home.png" class="card-img-top">
                             <h5 class="card-title">
                                 Backpack
