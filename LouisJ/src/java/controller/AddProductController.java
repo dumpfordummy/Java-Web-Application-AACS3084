@@ -32,9 +32,11 @@ public class AddProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            int productId = Integer.parseInt(request.getParameter("productId"));
+            int productid = Integer.parseInt(request.getParameter("productid"));
             String name = request.getParameter("name");
             String description = request.getParameter("description");
+            String type = request.getParameter("type");
+            String category = request.getParameter("category");
             double price = Double.parseDouble(request.getParameter("price"));
 
             // Read the uploaded image data and store it as a byte array
@@ -43,9 +45,11 @@ public class AddProductController extends HttpServlet {
 
             // Create a new Product object with the submitted data
             Product product = new Product();
-            product.setProductid(productId);
+            product.setProductid(productid);
             product.setName(name);
             product.setDescription(description);
+            product.setType(type);
+            product.setCategory(category);
             product.setPrice(price);
             
             ProductService productService = new ProductService(em);
@@ -55,7 +59,7 @@ public class AddProductController extends HttpServlet {
             
             HttpSession session = request.getSession();
             session.setAttribute("success", success);
-            response.sendRedirect("/getProduct");
+            response.sendRedirect("/index.jsp");
         } catch (Exception ex) {
             Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);
         } 
