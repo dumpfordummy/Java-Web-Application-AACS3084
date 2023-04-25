@@ -59,7 +59,7 @@ public class AddProductController extends HttpServlet {
             
             HttpSession session = request.getSession();
             session.setAttribute("success", success);
-            response.sendRedirect("/index.jsp");
+            response.sendRedirect("index.jsp");
         } catch (Exception ex) {
             Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);
         } 
