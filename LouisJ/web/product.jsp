@@ -18,10 +18,12 @@
             <thead>
                 <tr>
                     <th>Product ID</th>
-                    <th>Image</th>
                     <th>Name</th>
-                    <th>Price</th>
                     <th>Description</th>
+                    <th>Type</th>
+                    <th>Category</th>
+                    <th>Price</th>
+                    <th>Button To Product Detail</th>
                 </tr>
             </thead>
             <tbody>
@@ -31,10 +33,17 @@
                 %>
                     <tr>
                         <td><%=product.getProductid()%></td>
-                        <td><img src="data:image/png;base64,<%=product.getImage()%>" alt="Product Image" /></td>
                         <td><%=product.getName()%></td>
-                        <td><%=product.getPrice()%></td>
                         <td><%=product.getDescription()%></td>
+                        <td><%=product.getType()%></td>
+                        <td><%=product.getCategory()%></td>
+                        <td><%=product.getPrice()%></td>
+                        <td>
+                            <form method="POST" action="productDetail">
+                                <input type="hidden" name="productid" value="<%=product.getProductid()%>">
+                                <input type="submit" value="Detail">
+                            </form>
+                        </td>
                     </tr>
                 <%
                     }

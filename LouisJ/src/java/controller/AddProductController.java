@@ -5,17 +5,14 @@
 package controller;
 
 import java.io.*;
-import java.util.Base64;
 import java.util.logging.*;
 import javax.annotation.Resource;
 import javax.persistence.*;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.*;
 import javax.transaction.UserTransaction;
 
 import model.Product;
-
 import model.ProductService;
 
 /**
@@ -39,11 +36,6 @@ public class AddProductController extends HttpServlet {
             String category = request.getParameter("category");
             double price = Double.parseDouble(request.getParameter("price"));
 
-            // Read the uploaded image data and store it as a byte array
-
-
-
-            // Create a new Product object with the submitted data
             Product product = new Product();
             product.setProductid(productid);
             product.setName(name);
@@ -59,9 +51,14 @@ public class AddProductController extends HttpServlet {
             
             HttpSession session = request.getSession();
             session.setAttribute("success", success);
-            response.sendRedirect("index.jsp");
+            response.sendRedirect(request.getContextPath() + "/product");
         } catch (Exception ex) {
             Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
+    }
+    
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.sendRedirect(request.getContextPath() + "/addProduct.jsp");
     }
 }

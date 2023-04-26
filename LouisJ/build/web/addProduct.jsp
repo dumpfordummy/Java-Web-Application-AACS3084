@@ -7,28 +7,27 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Add Product</title>
-</head>
-<body>
-    <h1>Add Product</h1>
-    <form method="POST" action="addProduct">
-        <label for="productid">Product ID:</label>
-        <input type="number" name="productid"><br>
-        <label for="name">Name:</label>
-        <input type="text" name="name"><br>
-        <label for="description">Description:</label>
-        <input type="text" name="description"><br>
-        <label for="type">Type</label>
-        <input type="text" name="type"><br>
-        <label for="category">Category</label>
-        <input type="text" name="category"><br>
-        <label for="price">Price:</label>
-        <input type="number" step="0.01" name="price"><br>
-        <input type="hidden" name="action" value="add">
-        <input type="submit" value="Add Product">
-        <input type="reset" value="Reset">
-    </form>
-</body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Add Product</title>
+    </head>
+    <body>
+        <h1>Add Product</h1>
+        <form method="POST" action="addProduct">
+            <label for="productid">Product ID:</label>
+            <input type="number" name="productid"><br>
+            <label for="name">Name:</label>
+            <input type="text" name="name"><br>
+            <label for="description">Description:</label>
+            <input type="text" name="description"><br>
+            <label for="type">Type</label>
+            <input type="text" name="type"><br>
+            <label for="category">Category</label>
+            <input type="text" name="category"><br>
+            <label for="price">Price:</label>
+            <input type="number" step="0.01" name="price"><br>
+            <input type="submit" value="Add Product">
+            <input type="reset" value="Reset">
+        </form>
+    </body>
 </html>
