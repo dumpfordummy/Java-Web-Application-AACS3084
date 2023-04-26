@@ -1,0 +1,28 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Apr 24, 2023, 4:42:24 PM
+    Author     : Wai Loc
+*/
+
+.orderBox {
+    display: flex;
+    background-color: #f6b26b;
+    margin: 1rem;
+    
+}
+
+.orderDetails {
+    margin-left: 0;
+    margin-right: auto;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.orderStatus {
+    margin-left: auto;
+    margin-right: 1rem;
+    padding: 10px;
+}
