@@ -22,22 +22,22 @@ import model.ProductService;
  * @author Asus
  */
 public class ProductDetailController extends HttpServlet {
-    @PersistenceContext
-    EntityManager em;
-    
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            int productid = Integer.parseInt(request.getParameter("productid"));
-            
-            ProductService productService = new ProductService(em);
-            Product product = productService.findProductByProductId(productid);
-            
-            HttpSession session = request.getSession();
-            session.setAttribute("product", product);
-            response.sendRedirect(request.getContextPath() + "/productDetail.jsp");
-        } catch (Exception ex) {
-            Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+//    @PersistenceContext
+//    EntityManager em;
+//    
+//    @Override
+//    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+//        try {
+//            int productid = Integer.parseInt(request.getParameter("productid"));
+//            
+//            ProductService productService = new ProductService(em);
+//            Product product = productService.findProductByProductId(productid);
+//            
+//            HttpSession session = request.getSession();
+//            session.setAttribute("product", product);
+//            response.sendRedirect(request.getContextPath() + "/productDetail.jsp");
+//        } catch (Exception ex) {
+//            Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//    }
 }
