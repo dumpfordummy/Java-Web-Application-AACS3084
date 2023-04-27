@@ -26,3 +26,17 @@ body{
 .copyright{
     text-align: center;
 }
+
+.footerLink{
+    color: #2B231C;
+
+    &:hover{
+        color:gray;
+        text-decoration: underline;
+    }
+}
+
+a{
+    text-decoration: none;
+}
+
