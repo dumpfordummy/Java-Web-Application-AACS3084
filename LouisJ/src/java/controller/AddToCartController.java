@@ -55,13 +55,13 @@ public class AddToCartController extends HttpServlet {
             
             
             
-            utx.begin();
-            boolean success = productService.addProduct(product);
-            utx.commit();
-
-            HttpSession session = request.getSession();
-            session.setAttribute("success", success);
-            response.sendRedirect("/product");
+//            utx.begin();
+//            boolean success = productService.addProduct(product);
+//            utx.commit();
+//
+//            HttpSession session = request.getSession();
+//            session.setAttribute("success", success);
+//            response.sendRedirect("/product");
         } catch (Exception ex) {
             Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);
         }
