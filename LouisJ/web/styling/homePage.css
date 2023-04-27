@@ -1,0 +1,97 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : Apr 25, 2023, 9:14:23 AM
+    Author     : Pua
+*/
+
+.heading{
+    text-align: center;
+    margin-top: 20px;
+    text-decoration: underline;
+}
+.imw{
+    width: 65%;
+    position: relative;
+}
+.product, .prodCategory{
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+.image {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.overlay {
+    position: absolute;
+    top: 9;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #000;
+}
+
+.ccc:hover .overlay {
+    opacity: 0.7;
+}
+
+.text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+.cc1{
+    width: 82%;
+    background: #fff;
+    color: #000;
+    padding: 4px 8px;
+    border: 1px solid #000;
+    height: 40px;
+    border-radius: 7px;
+    
+    &:hover{
+        background: lightgrey;
+    }
+}
+@media only screen and (max-width: 553px) {
+    .card{
+        margin-top: 25px;
+    }
+}
+.card{
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 10px #888888;
+}
+
+.prodCategory:hover {
+    background: lightgrey;
+}
+
+a{
+    text-decoration: none;
+}
+
+.footerLink{
+    color: #2B231C;
+
+    &:hover{
+        color:gray;
+        text-decoration: underline;
+    }
+}
