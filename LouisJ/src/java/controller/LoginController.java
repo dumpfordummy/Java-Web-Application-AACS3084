@@ -3,8 +3,6 @@ package controller;
 import interfaces.UserRole;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
-import java.util.UUID;
 import javax.annotation.Resource;
 import javax.persistence.*;
 import javax.servlet.http.*;
