@@ -47,13 +47,14 @@ public class AddToCartController extends HttpServlet {
             UserSessionUtil userSession = new UserSessionUtil(session);
             UserRole user = userSession.getUserSession(request.getCookies());
 
-            if(user.getUserRole() == null ? UserRole.CUSTOMER == null : user.getUserRole().equals(UserRole.CUSTOMER)) {
-                user = (Customer) user;
-            } else {
+            if(user.getUserRole() == null || !user.getUserRole().equals(UserRole.CUSTOMER)) {
                 response.sendRedirect("/login");
             }
             
+            user = (Customer) user;
+            String customerid = user.getUserId();
             
+//            int productid = Integer.parseInt(request.getAttribute("productid"));
             
 //            utx.begin();
 //            boolean success = productService.addProduct(product);

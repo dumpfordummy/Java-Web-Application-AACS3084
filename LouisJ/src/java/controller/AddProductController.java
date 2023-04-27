@@ -49,7 +49,7 @@ public class AddProductController extends HttpServlet {
             boolean success = productService.addProduct(product);
             utx.commit();
             
-            response.sendRedirect("/product");
+            response.sendRedirect(request.getContextPath() + "/product");
         } catch (Exception ex) {
             Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -57,6 +57,6 @@ public class AddProductController extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect("/addProduct.jsp");
+        response.sendRedirect(request.getContextPath() + "/addProduct.jsp");
     }
 }
