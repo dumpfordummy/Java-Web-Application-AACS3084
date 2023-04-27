@@ -31,6 +31,7 @@
                                     <th>Type</th>
                                     <th>Category</th>
                                     <th>Price</th>
+                                    <th>Add To Cart</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -44,6 +45,12 @@
                                     <td><%=product.getType()%></td>
                                     <td><%=product.getCategory()%></td>
                                     <td><%=product.getPrice()%></td>
+                                    <td>
+                                        <form method="POST" action="addToCart">
+                                            <input type="hidden" name="productid" value="<%=product.getProductid()%>">
+                                            <input type="submit" value="Add To Cart">
+                                        </form>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

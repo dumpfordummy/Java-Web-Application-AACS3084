@@ -27,11 +27,11 @@ public class RegisterController extends HttpServlet {
     @Resource
     UserTransaction utx;
     
-    private static final String REGISTERPG = "/register.jsp";
+    private static final String REGISTERPAGE = "/register.jsp";
     
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        req.getRequestDispatcher(REGISTERPG).forward(req, res);
+        req.getRequestDispatcher(REGISTERPAGE).forward(req, res);
     }
     
     @Override

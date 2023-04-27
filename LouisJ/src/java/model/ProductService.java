@@ -5,7 +5,6 @@
 package model;
 
 import java.util.List;
-import javax.annotation.Resource;
 import javax.persistence.*;
 
 /**
@@ -26,13 +25,13 @@ public class ProductService {
         return true;
     }
 
-    public Product findProductByProductId(int productId) {
-        Product product = mgr.find(Product.class, productId);
+    public Product findProductByProductid(int productid) {
+        Product product = mgr.find(Product.class, productid);
         return product;
     }
 
-    public boolean deleteProduct(int productId) {
-        Product product = findProductByProductId(productId);
+    public boolean deleteProduct(int productid) {
+        Product product = findProductByProductid(productid);
         if (product != null) {
             mgr.remove(product);
             return true;
@@ -58,7 +57,7 @@ public class ProductService {
     }
 
     public boolean updateProduct(Product product) {
-        Product tempProduct = findProductByProductId(product.getProductid());
+        Product tempProduct = findProductByProductid(product.getProductid());
         if (tempProduct != null) {
             tempProduct.setName(product.getName());
             tempProduct.setImage(product.getImage());

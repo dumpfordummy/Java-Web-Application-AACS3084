@@ -9,8 +9,28 @@ package interfaces;
  * @author CY
  */
 public abstract class UserRole {
-    static final String CUSTOMER = "customer";
-    static final String STAFF = "staff";
-    static final String MANAGER = "manager";
-    String role;
+    public static final String CUSTOMER = "customer";
+    public static final String STAFF = "staff";
+    public static final String MANAGER = "manager";
+    private String userRole;
+    private String username;
+
+    public String getUserRole() {
+        return userRole;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUserRole(String userRole) {
+        this.userRole = userRole;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+    
+    
+    
 }

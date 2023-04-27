@@ -26,9 +26,9 @@ public class ProfileController extends HttpServlet {
     private static final String PROFILEPAGE = "/profile.jsp";
     
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        System.out.println(req.getContextPath());
-        req.getRequestDispatcher(PROFILEPAGE).forward(req, res);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println(request.getContextPath());
+        request.getRequestDispatcher(PROFILEPAGE).forward(request, response);
     }
 
     @Override
