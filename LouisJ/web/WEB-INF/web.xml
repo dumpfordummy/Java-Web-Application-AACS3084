@@ -23,6 +23,8 @@
     <servlet>
         <servlet-name>ProfileController</servlet-name>
         <servlet-class>controller.ProfileController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>CartPaymentController</servlet-name>
         <servlet-class>controller.CartPaymentController</servlet-class>
     </servlet>
@@ -53,6 +55,8 @@
     <servlet-mapping>
         <servlet-name>ProfileController</servlet-name>
         <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>CartPaymentController</servlet-name>
         <url-pattern>/cartPayment</url-pattern>
     </servlet-mapping>
