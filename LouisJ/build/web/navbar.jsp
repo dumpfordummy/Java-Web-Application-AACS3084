@@ -17,7 +17,10 @@
         <nav class="navbar navbar-expand-md">
             <a class="navbar-brand" href="#">
                 <div class="d-flex align-items-center">
-                    <img src="image/menu.png" width="30" height="30" class="mr-2" alt="MENU.PNG">
+                    <div id="main">
+                        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+                    </div>
+
                     <form class="form-inline">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search">
                     </form>
@@ -37,5 +40,25 @@
                 </a>
             </div>
         </nav>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            <a href="#" target="_blank">Home</a>
+            <a href="#" target="_blank">Products</a>
+            <a href="addProduct.jsp" target="_blank">Add Product</a>
+        </div>
+        
+        <script>
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+                document.getElementById("main").style.marginLeft = "250px";
+                
+            }
+
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+                document.getElementById("main").style.marginLeft = "0";
+                
+            }
+        </script>
     </body>
 </html>
