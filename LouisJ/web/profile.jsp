@@ -24,8 +24,11 @@
 <!--        under construction-->
         <% 
             userSession = new UserSessionUtil(request.getSession());
+            UserRole user = userSession.getUserSession(request.getCookies());
             
-        
+            if(user.getUserRole() == UserRole.CUSTOMER) {
+                user = (Customer) user;                 
+            }
         %>
         <% if (request.getRequestURI().contains("edit")) { %>
         <form>

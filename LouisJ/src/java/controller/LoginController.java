@@ -37,6 +37,7 @@ public class LoginController extends HttpServlet {
         UserSessionUtil userSession = new UserSessionUtil(request.getSession());
         UserRole user = userSession.getUserSession(request.getCookies());
         if (user != null) {
+            System.out.println("Username:" + user.getUsername());
             response.sendRedirect(HOMEPAGE);
 
         }
