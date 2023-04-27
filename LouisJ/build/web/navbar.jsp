@@ -15,17 +15,18 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-md">
-            <a class="navbar-brand" href="#">
+            <div class="navbar-brand">
                 <div class="d-flex align-items-center">
                     <div id="main">
                         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
                     </div>
 
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search..." aria-label="Search">
+                    <form class="form-inline" method="get" action="search">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search Product" aria-label="Search" name="searchTerm">
+                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </div>
-            </a>
+            </div>
             <a class="navbar-brand mx-auto">
                 <img src="image/logo.png" height="50" width="150" class="d-inline-block align-top" alt="LOGO.PNG">
             </a>
@@ -42,8 +43,8 @@
         </nav>
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="#" target="_blank">Home</a>
-            <a href="#" target="_blank">Products</a>
+            <a href="homePage.jsp" target="_blank">Home</a>
+            <a href="product" target="_blank">Products</a>
             <a href="addProduct.jsp" target="_blank">Add Product</a>
         </div>
         

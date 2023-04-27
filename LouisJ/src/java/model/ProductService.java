@@ -13,10 +13,10 @@ import javax.persistence.*;
  * @author Asus
  */
 public class ProductService {
-    
+
     @PersistenceContext
     EntityManager mgr;
-    
+
     public ProductService(EntityManager mgr) {
         this.mgr = mgr;
     }
@@ -45,6 +45,18 @@ public class ProductService {
         return productList;
     }
 
+    public List<Product> findByName(String name) {
+        TypedQuery<Product> query = mgr.createNamedQuery("Product.findByName", Product.class);
+        query.setParameter("name", name);
+        return query.getResultList();
+    }
+
+    public List<Product> findByNamePattern(String namePattern) {
+        TypedQuery<Product> query = mgr.createNamedQuery("Product.findByNamePattern", Product.class);
+        query.setParameter("namePattern", "%" + namePattern + "%");
+        return query.getResultList();
+    }
+
     public boolean updateProduct(Product product) {
         Product tempProduct = findProductByProductId(product.getProductid());
         if (tempProduct != null) {
@@ -56,5 +68,5 @@ public class ProductService {
         }
         return false;
     }
-    
+
 }

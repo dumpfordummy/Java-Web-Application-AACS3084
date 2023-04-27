@@ -16,7 +16,7 @@
         <title>Product</title>
     </head>
     <body>
-        
+
         <table>
             <thead>
                 <tr>
@@ -31,27 +31,27 @@
             </thead>
             <tbody>
                 <%
-                    List<Product> productList = (List<Product>)request.getAttribute("productList");
-                    for(Product product : productList){
+                    List<Product> productList = (List<Product>) request.getAttribute("productList");
+                    for (Product product : productList) {
                 %>
-                    <tr>
-                        <td><%=product.getProductid()%></td>
-                        <td><%=product.getName()%></td>
-                        <td><%=product.getDescription()%></td>
-                        <td><%=product.getType()%></td>
-                        <td><%=product.getCategory()%></td>
-                        <td><%=product.getPrice()%></td>
-                        <td>
-                            <form method="POST" action="productDetail">
-                                <input type="hidden" name="productid" value="<%=product.getProductid()%>">
-                                <input type="submit" value="Detail">
-                            </form>
-                        </td>
-                    </tr>
+                <tr>
+                    <td><%=product.getProductid()%></td>
+                    <td><%=product.getName()%></td>
+                    <td><%=product.getDescription()%></td>
+                    <td><%=product.getType()%></td>
+                    <td><%=product.getCategory()%></td>
+                    <td><%=product.getPrice()%></td>
+                    <td>
+                        <form method="POST" action="productDetail">
+                            <input type="hidden" name="productid" value="<%=product.getProductid()%>">
+                            <input type="submit" value="Detail">
+                        </form>
+                    </td>
+                </tr>
                 <%
                     }
                 %>
             </tbody>
         </table>
-    </body>
+</body>
 </html>
