@@ -172,6 +172,6 @@ LouisJ/nbproject/private/private.xml
 /PracticalWeb/nbproject/private/
 LouisJ/nbproject/private/private.xml
 *.rapt
-/LouisJ/build/ -f
+LouisJ/build/ -f
 LouisJ/build/web/WEB-INF/lib/mssql-jdbc-12.2.0.jre8.jar
 LouisJ/build/web/WEB-INF/classes/controller/AddProductController.rapt
