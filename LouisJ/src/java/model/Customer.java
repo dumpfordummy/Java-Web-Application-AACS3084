@@ -47,6 +47,7 @@ public class Customer extends UserRole implements Serializable {
     private String id;
 
     public Customer() {
+        setUserRole(UserRole.CUSTOMER);
     }
 
     public Customer(String id) {

@@ -176,3 +176,4 @@ LouisJ/nbproject/private/private.xml
 LouisJ/build/web/WEB-INF/lib/mssql-jdbc-12.2.0.jre8.jar
 LouisJ/build/web/WEB-INF/classes/controller/AddProductController.rapt
 *.rapt
+LouisJ/build/web/WEB-INF/classes/controller/AddProductController.rapt

@@ -1,5 +1,6 @@
 package controller;
 
+import interfaces.UserRole;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -11,6 +12,7 @@ import javax.servlet.*;
 import javax.transaction.UserTransaction;
 import model.Customer;
 import model.CustomerService;
+import util.UserSessionUtil;
 import util.hashUtil;
 
 /**
@@ -24,26 +26,36 @@ public class LoginController extends HttpServlet {
     @Resource
     UserTransaction utx;
 
-    private static final String LOGINPG = "/login.jsp";
+    private static final String LOGINPAGE = "/login.jsp";
+    private static final String HOMEPAGE = "/homePage.jsp";
 
     public LoginController() {
     }
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        req.getRequestDispatcher(LOGINPG).forward(req, res);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        UserSessionUtil userSession = new UserSessionUtil(request.getSession());
+        UserRole user = userSession.getUserSession(request.getCookies());
+        if (user != null) {
+            response.sendRedirect(HOMEPAGE);
+
+        }
+        request.getRequestDispatcher(LOGINPAGE).forward(request, response);
+
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        res.setContentType("text/html");
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html");
 
-        PrintWriter out = res.getWriter();
-        String username = req.getParameter("uname");
-        String password = req.getParameter("upass");
+        PrintWriter out = response.getWriter();
+        String username = request.getParameter("uname");
+        String password = request.getParameter("upass");
         CustomerService customerService = new CustomerService(em);
 
         Customer customer = customerService.findCustomerByUsername(username);
+        UserSessionUtil userSession = new UserSessionUtil(request.getSession());
+
         if (customer != null) {
             String id = customer.getId();
             String passwordHash = hashUtil.getHashed(password, id);
@@ -51,14 +63,11 @@ public class LoginController extends HttpServlet {
             System.out.println(passwordHash);
             System.out.println(customer.getPasswordhash());
             if (username.equals(customer.getUsername()) && passwordHash.equals(customer.getPasswordhash())) {
-                out.print("Login Successful!");
-                return;
+                Cookie userCookie = userSession.setUserSession(customer);
+                response.addCookie(userCookie);
+                response.sendRedirect(HOMEPAGE);
             }
         }
-        String uid=UUID.randomUUID().toString();
-        out.print("Invalid Username or Password <br>");
-        out.print("id=" + uid + "<br>");
-        out.print("password hash:" + hashUtil.getHashed(password, uid));
     }
 
 }
