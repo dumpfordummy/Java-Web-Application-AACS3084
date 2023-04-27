@@ -15,38 +15,6 @@
         <title>Product Detail</title>
     </head>
     <body>
-        <table>
-            <thead>
-                <tr>
-                    <th>Product ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Type</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Add To Cart</th>
-                </tr>
-            </thead>
-            <tbody>
-                <%
-                    Product product = (Product)session.getAttribute("product");
-                %>
-                <tr>
-                    <td><%=product.getProductid()%></td>
-                    <td><%=product.getName()%></td>
-                    <td><%=product.getDescription()%></td>
-                    <td><%=product.getType()%></td>
-                    <td><%=product.getCategory()%></td>
-                    <td><%=product.getPrice()%></td>
-                    <td>
-                        <form method="POST" action="addToCart">
-                            <input type="hidden" name="productid" value="<%=product.getProductid()%>">
-                            <input type="submit" value="Add To Cart">
-                        </form>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
         <div class="container px-4 text-center">
             <div class="row gx-5">
                 <div class="col">
