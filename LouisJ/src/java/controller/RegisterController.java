@@ -12,10 +12,6 @@ import javax.annotation.Resource;
 import javax.persistence.*;
 import javax.servlet.http.*;
 import javax.servlet.*;
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
-import javax.transaction.NotSupportedException;
-import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 import model.Customer;
 import model.CustomerService;
@@ -26,51 +22,42 @@ import util.hashUtil;
  * @author CY
  */
 public class RegisterController extends HttpServlet {
-
     @PersistenceContext
     EntityManager em;
     @Resource
     UserTransaction utx;
-
+    
     private static final String REGISTERPG = "/register.jsp";
-
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         req.getRequestDispatcher(REGISTERPG).forward(req, res);
     }
-
+    
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        try {
-            res.setContentType("text/html");
+        res.setContentType("text/html");
 
-            PrintWriter out = res.getWriter();
-            String username = req.getParameter("uname");
-            String password = req.getParameter("upass");
-            CustomerService customerService = new CustomerService(em);
-
-            Customer customer = customerService.findCustomerByUsername(username);
-
-            if (customer == null) {
-                customer = new Customer();
-                String id = UUID.randomUUID().toString();
-                String passwordHash = hashUtil.getHashed(password, id);
-                customer.setId(id);
-                customer.setUsername(username);
-                customer.setPasswordhash(passwordHash);
-                utx.begin();
-                boolean isRegisterSuccess = customerService.addCustomer(customer);
-                utx.commit();
-                if (isRegisterSuccess) {
-                    out.print("RegisterSuccessfully");
-                    return;
-                }
+        PrintWriter out = res.getWriter();
+        String username = req.getParameter("uname");
+        String password = req.getParameter("upass");
+        CustomerService customerService = new CustomerService(em);
+        
+        Customer customer = customerService.findCustomerByUsername(username);
+        
+        if(customer == null) {
+            customer = new Customer();
+            String id = UUID.randomUUID().toString();
+            String passwordHash = hashUtil.getHashed(password, id);
+            customer.setId(id);
+            customer.setUsername(username);
+            customer.setPasswordhash(passwordHash);
+            if(customerService.addCustomer(customer)) {
+                out.print("RegisterSuccessfully");
+                return;
             }
-
-            out.print("Failed to register");
-        } catch (IOException | IllegalStateException | SecurityException | HeuristicMixedException | HeuristicRollbackException | NotSupportedException | javax.transaction.RollbackException | SystemException ex) {
-
         }
-
+        
+        out.print("Failed to register");
     }
 }

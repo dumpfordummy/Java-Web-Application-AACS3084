@@ -16,8 +16,6 @@ public class ProductService {
     
     @PersistenceContext
     EntityManager mgr;
-    @Resource
-    Query query;
     
     public ProductService(EntityManager mgr) {
         this.mgr = mgr;
@@ -43,12 +41,12 @@ public class ProductService {
     }
 
     public List<Product> findAll() {
-        List productList = mgr.createNamedQuery("Product.findAll").getResultList();
+        List<Product> productList = mgr.createNamedQuery("Product.findAll", Product.class).getResultList();
         return productList;
     }
 
     public boolean updateProduct(Product product) {
-        Product tempProduct = findProductByProductId(product.getProductID());
+        Product tempProduct = findProductByProductId(product.getProductid());
         if (tempProduct != null) {
             tempProduct.setName(product.getName());
             tempProduct.setImage(product.getImage());
