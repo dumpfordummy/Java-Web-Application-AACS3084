@@ -14,6 +14,7 @@ public abstract class UserRole {
     public static final String MANAGER = "manager";
     private String userRole;
     private String username;
+    private String userId;
 
     public String getUserRole() {
         return userRole;
@@ -29,6 +30,14 @@ public abstract class UserRole {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
     
     

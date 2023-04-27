@@ -39,7 +39,7 @@ public class LoginController extends HttpServlet {
         if (user != null) {
             System.out.println("Username:" + user.getUsername());
             response.sendRedirect(HOMEPAGE);
-
+            return;
         }
         request.getRequestDispatcher(LOGINPAGE).forward(request, response);
 
