@@ -87,11 +87,3 @@ a{
     text-decoration: none;
 }
 
-.footerLink{
-    color: #2B231C;
-
-    &:hover{
-        color:gray;
-        text-decoration: underline;
-    }
-}

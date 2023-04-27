@@ -4,6 +4,7 @@
  */
 package model;
 
+import interfaces.UserRole;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -28,7 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Customer.findById", query = "SELECT c FROM Customer c WHERE c.id = :id"),
     @NamedQuery(name = "Customer.findByUsername", query = "SELECT c FROM Customer c WHERE c.username = :username"),
     @NamedQuery(name = "Customer.findByPasswordhash", query = "SELECT c FROM Customer c WHERE c.passwordhash = :passwordhash")})
-public class Customer implements Serializable {
+public class Customer extends UserRole implements Serializable {
 
     @Size(max = 100)
     @Column(name = "USERNAME", unique=true)
