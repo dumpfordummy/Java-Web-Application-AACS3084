@@ -4,6 +4,7 @@
     Author     : CY
 --%>
 
+<%@page import="model.Employee"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="util.UserSessionUtil"%>
 <%@page import="interfaces.UserRole"%>
@@ -11,7 +12,7 @@
 <%@page import="model.CustomerService"%>
 
 <%! UserRole user;    %>
-<%! UserSessionUtil userSession;    %>
+<%! UserSessionUtil userSession;%>
 
 <!DOCTYPE html>
 <html>
@@ -21,14 +22,17 @@
 
     </head>
     <body>
-<!--        under construction-->
-        <% 
+        <%
             userSession = new UserSessionUtil(request.getSession());
             UserRole user = userSession.getUserSession(request.getCookies());
-            
-            if(user.getUserRole() == UserRole.CUSTOMER) {
-                user = (Customer) user;                 
+            if (user != null) {
+                if (user.getUserRole() == UserRole.CUSTOMER) {
+                    user = (Customer) user;
+                } else {
+                    user = (Employee) user;
+                }
             }
+
         %>
         <% if (request.getRequestURI().contains("edit")) { %>
         <form>
@@ -44,6 +48,7 @@
         <% } else {%>
 
         <form>
+            
             <input type="text" id="name" name="name" readonly><br>
             <input type="text" id="email" name="email" readonly><br>
             <input type="text" id="contact" name="contact" readonly><br>
@@ -52,9 +57,9 @@
         </form>
         <button onclick="location.href += '/edit'">Edit</button>
         <% }%>
-        <h2>Username: </h2> <br/>
-        <h2>Role: </h2> <br/>
-        <h2>Date Joined: </h2> <br/>
+        <h2>Username: <%= user.getUsername() %> </h2> <br/>
+        <h2>Role: <%= user.getUserRole()%> </h2> <br/>
+        <h2>Date Joined: N/A     </h2> <br/>
 
     </body>
 </html>
