@@ -55,9 +55,9 @@ public class CartService {
         return null;
     }
     
-    public Cart findLastCart() {
-        Cart cart = mgr.createNamedQuery("Cart.findAllDesc", Cart.class).setMaxResults(1).getSingleResult();
-        return cart;
+    public List<Cart> findAllDesc() {
+        List cartList = mgr.createNamedQuery("Cart.findAllDesc").getResultList();
+        return cartList;
     }
 
     public boolean deleteCart(int cartid) {
