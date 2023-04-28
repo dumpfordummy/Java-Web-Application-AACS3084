@@ -8,7 +8,7 @@ package interfaces;
  *
  * @author CY
  */
-public abstract class UserRole {
+public abstract class User {
     public static final String CUSTOMER = "customer";
     public static final String STAFF = "staff";
     public static final String MANAGER = "manager";
@@ -32,11 +32,11 @@ public abstract class UserRole {
         this.username = username;
     }
 
-    public String getUserId() {
+    public String getId() {
         return id;
     }
 
-    public void setUserId(String userId) {
+    public void setId(String userId) {
         this.id = userId;
     }
     

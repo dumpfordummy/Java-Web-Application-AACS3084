@@ -1,6 +1,6 @@
 package controller;
 
-import interfaces.UserRole;
+import interfaces.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.annotation.Resource;
@@ -33,9 +33,8 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserSessionUtil userSession = new UserSessionUtil(request.getSession());
-        UserRole user = userSession.getUserSession(request.getCookies());
+        User user = userSession.getUserSession(request.getCookies());
         if (user != null) {
-            System.out.println("Username:" + user.getUsername());
             response.sendRedirect(HOMEPAGE);
             return;
         }
@@ -58,9 +57,6 @@ public class LoginController extends HttpServlet {
         if (customer != null) {
             String id = customer.getId();
             String passwordHash = hashUtil.getHashed(password, id);
-            System.out.println(id);
-            System.out.println(passwordHash);
-            System.out.println(customer.getPasswordhash());
             if (username.equals(customer.getUsername()) && passwordHash.equals(customer.getPasswordhash())) {
                 Cookie userCookie = userSession.setUserSession(customer);
                 response.addCookie(userCookie);

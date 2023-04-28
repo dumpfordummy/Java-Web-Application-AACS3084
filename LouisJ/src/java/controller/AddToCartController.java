@@ -4,7 +4,7 @@
  */
 package controller;
 
-import interfaces.UserRole;
+import interfaces.User;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Level;
@@ -45,14 +45,14 @@ public class AddToCartController extends HttpServlet {
 
             HttpSession session = request.getSession();
             UserSessionUtil userSession = new UserSessionUtil(session);
-            UserRole user = userSession.getUserSession(request.getCookies());
+            User user = userSession.getUserSession(request.getCookies());
 
-            if(user.getUserRole() == null || !user.getUserRole().equals(UserRole.CUSTOMER)) {
+            if(user.getUserRole() == null || !user.getUserRole().equals(User.CUSTOMER)) {
                 response.sendRedirect("/login");
             }
             
             user = (Customer) user;
-            String customerid = user.getUserId();
+            String customerid = user.getId();
             
 //            int productid = Integer.parseInt(request.getAttribute("productid"));
             

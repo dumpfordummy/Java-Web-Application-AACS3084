@@ -48,6 +48,7 @@
         <% } else {%>
 
         <form>
+            
             <input type="text" id="name" name="name" readonly><br>
             <input type="text" id="email" name="email" readonly><br>
             <input type="text" id="contact" name="contact" readonly><br>
@@ -58,7 +59,7 @@
         <% }%>
         <h2>Username: <%= user.getUsername() %> </h2> <br/>
         <h2>Role: <%= user.getUserRole()%> </h2> <br/>
-        <h2>Date Joined: N/A </h2> <br/>
+        <h2>Date Joined: N/A     </h2> <br/>
 
     </body>
 </html>

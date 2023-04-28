@@ -4,7 +4,7 @@
  */
 package model;
 
-import interfaces.UserRole;
+import interfaces.User;
 import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
@@ -30,7 +30,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Employee.findByUsername", query = "SELECT e FROM Employee e WHERE e.username = :username"),
     @NamedQuery(name = "Employee.findByPasswordhash", query = "SELECT e FROM Employee e WHERE e.passwordhash = :passwordhash"),
     @NamedQuery(name = "Employee.findByUsertype", query = "SELECT e FROM Employee e WHERE e.usertype = :usertype")})
-public class Employee extends UserRole implements Serializable {
+public class Employee extends User implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
