@@ -83,12 +83,15 @@ public class RegisterController extends HttpServlet {
                     try (
                             InputStream imageContent = imagePart.getInputStream()) {
                         targetFile = new File(rootPath + File.separator +  customer.getUsername() + ".jpg");
+                        System.out.println(rootPath);
                         if(!targetFile.exists()) targetFile.mkdirs();
                         Files.copy(imageContent, targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                     }
                     
                     customer.setProfileimg(targetFile);
                     customer.setProfileimgtype(imagePart.getContentType());
+                    
+                    targetFile.delete();
                 }
 
                 utx.begin();
