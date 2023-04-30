@@ -75,23 +75,7 @@ public class RegisterController extends HttpServlet {
                 customer.setContact(contact);
                 customer.setAddress(address);
 
-                Part imagePart = request.getPart("profileImg");
-
-                if (imagePart != null) {
-                    File targetFile;
-                    String rootPath = System.getProperty("catalina.home");
-                    try (
-                            InputStream imageContent = imagePart.getInputStream()) {
-                        targetFile = new File(rootPath + File.separator +  customer.getUsername() + getImageFormat(imagePart.getContentType()));
-                        if(!targetFile.exists()) targetFile.mkdirs();
-                        Files.copy(imageContent, targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-                    }
-                    
-                    customer.setProfileimg(targetFile);
-                    customer.setProfileimgtype(imagePart.getContentType());
-                    
-                    targetFile.delete();
-                }
+                processImage(request.getPart("profileImg"), customer);
 
                 utx.begin();
                 boolean isRegisterSuccess = customerService.addCustomer(customer);
@@ -107,7 +91,29 @@ public class RegisterController extends HttpServlet {
 
         out.print("Failed to register");
     }
-    
+
+    private void processImage(Part image, User user) throws IOException {
+        Part imagePart = image;
+
+        if (imagePart != null) {
+            File targetFile;
+            String rootPath = System.getProperty("catalina.home");
+            try (
+                    InputStream imageContent = imagePart.getInputStream()) {
+                targetFile = new File(rootPath + File.separator + user.getUsername() + getImageFormat(imagePart.getContentType()));
+                if (!targetFile.exists()) {
+                    targetFile.mkdirs();
+                }
+                Files.copy(imageContent, targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+            }
+
+            user.setProfileimg(targetFile);
+            user.setProfileimgtype(imagePart.getContentType());
+
+            targetFile.delete();
+        }
+    }
+
     private String getImageFormat(String a) {
         return a.substring(0).split("/")[1];
     }
