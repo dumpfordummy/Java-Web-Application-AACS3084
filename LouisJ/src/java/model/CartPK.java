@@ -23,15 +23,14 @@ public class CartPK {
     public CartPK() {
     }
 
-    public CartPK(Integer cartid) {
+    public CartPK(Integer cartid, String customerid, Integer productid, Integer qty) {
         this.cartid = cartid;
-        CartService cartService = new CartService(mgr);
-        Cart cart = cartService.findCartByCartid(cartid);
         CustomerService customerService = new CustomerService(mgr);
-        this.customer = customerService.findCustomerById(cart.getCustomerid());
+        System.out.print("customerid = " + customerid);
+        this.customer = customerService.findCustomerById(customerid);
         ProductService productService = new ProductService(mgr);
-        this.product = productService.findProductByProductid(cart.getProductid());
-        this.qty = cart.getQty();
+        this.product = productService.findProductByProductid(productid);
+        this.qty = qty;
     }
 
     public Integer getCartid() {

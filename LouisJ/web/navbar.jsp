@@ -27,15 +27,15 @@
                 </div>
             </div>
             <a class="navbar-brand mx-auto">
-                <img src="image/logo.png" height="50" width="150" class="d-inline-block align-top" alt="LOGO.PNG">
+                <img src="images/logo.png" height="50" width="150" class="d-inline-block align-top" alt="LOGO.PNG">
             </a>
             <div class="navbar-nav ml-auto">
                 <a class="nav-item nav-link" href="#">
-                    <img src="image/account.png" height="30" class="d-inline-block align-top" alt="ACCOUNT.PNG">
+                    <img src="images/account.png" height="30" class="d-inline-block align-top" alt="ACCOUNT.PNG">
                     <span class="ml-2">ACCOUNT</span>
                 </a>
                 <a class="nav-item nav-link" href="cartPayment">
-                    <img src="image/cart.png" height="30" class="d-inline-block align-top" alt="CART.PNG">
+                    <img src="images/cart.png" height="30" class="d-inline-block align-top" alt="CART.PNG">
                     <span class="ml-2">CART</span>
                 </a>
             </div>

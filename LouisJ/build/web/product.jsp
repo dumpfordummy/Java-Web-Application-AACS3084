@@ -53,22 +53,30 @@
 
                 <div class="col-md-9">
                     <div class="row product">
-                        <%List<Product> productList = (List<Product>) request.getAttribute("productList");
+                        <%
+                            List<Product> productList = (List<Product>) request.getAttribute("productList");
                             for (Product product : productList) {
                         %>
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="ccc">
-                                    <p class="text-center"><img src="image/<%=product.getImage()%>" class="imw"/></p> 
+                                    <p class="text-center"><img src="images/<%=product.getImage()%>" class="imw"/></p> 
                                 </div>
                                 <div class="card-body">
                                     <h5 class="text-center"><%=product.getName()%></h5> 
                                     <p class="text-center">Price: RM <%=product.getPrice()%></p>
-                                    <p class="text-center"><input type="submit" name="Save" value="Buy" class="cc1"></p>
+                                    <p class="text-center">
+                                        <form method="POST" action="productDetail">
+                                            <input type="hidden" name="productid" value="<%=product.getProductid()%>">
+                                            <input type="submit" value="Learn Detail" class="cc1">
+                                        </form>
+                                    </p>
                                 </div>
                             </div>
                         </div>
-                        <% }%> 
+                        <%
+                            }
+                        %> 
                     </div>
                 </div>
             </div>
