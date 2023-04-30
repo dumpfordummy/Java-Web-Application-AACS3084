@@ -82,7 +82,7 @@ public class RegisterController extends HttpServlet {
                     String rootPath = System.getProperty("catalina.home");
                     try (
                             InputStream imageContent = imagePart.getInputStream()) {
-                        targetFile = new File(rootPath + File.separator +  customer.getUsername() + ".jpg");
+                        targetFile = new File(rootPath + File.separator +  customer.getUsername() + getImageFormat(imagePart.getContentType()));
                         if(!targetFile.exists()) targetFile.mkdirs();
                         Files.copy(imageContent, targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
                     }
@@ -106,5 +106,9 @@ public class RegisterController extends HttpServlet {
         }
 
         out.print("Failed to register");
+    }
+    
+    private String getImageFormat(String a) {
+        return a.substring(0).split("/")[1];
     }
 }
