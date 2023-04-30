@@ -17,7 +17,9 @@
         <script src="https://kit.fontawesome.com/a293bfc92d.js" crossorigin="anonymous"></script>
     </head>
     <body>
-       <div class="row">
+        <a class="btn btn-primary" href="addStaff.jsp" style="width: 120px; margin: 2rem 2rem 0 2rem">Add Staff</a>
+        
+        <div class="row">
             <div class="col-5 p-3 m-3">
                 <div class="card-header border-bottom-0 mt-2 p-3">
                     <h2 class="lead"><b>StaffName</b></h2>
