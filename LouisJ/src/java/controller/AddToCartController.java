@@ -45,42 +45,37 @@ public class AddToCartController extends HttpServlet {
             } else {
                 lastCartid = cartList.get(0).getCartid();
             }
-
             HttpSession session = request.getSession();
             UserSessionUtil userSession = new UserSessionUtil(session);
-            User user = userSession.getUserSession(request.getCookies());
-            if(user == null || !user.getUserRole().equals(User.CUSTOMER)) {
+            User user = userSession.getCurrentLoginUser(request.getCookies());
+            if(user == null || !user.getUsertype().equals(User.CUSTOMER)) {
                 response.sendRedirect("/login");
                 return;
             }
             user = (Customer) user;
-//            String customerid = user.getUserId();
-//            System.out.print(user.getUserId());
-//            System.out.print(user.getUserRole());
-//            System.out.print(user.getUsername());
+            String customerid = user.getId();
             
+            int productid = Integer.parseInt(request.getParameter("productid"));
             
-//            int productid = Integer.parseInt(request.getParameter("productid"));
-//            
-//            List<Cart> customerCartList = cartService.findCartByCustomerid(customerid);
-//            for(Cart customerCart : customerCartList){
-//                if(customerCart.getProductid().equals(productid)){
-//                    response.sendRedirect("/product");
-//                    return;
-//                }
-//            }
-//            
-//            Cart cart = new Cart();
-//            cart.setCartid(lastCartid + 1);
-//            cart.setCustomerid(customerid);
-//            cart.setProductid(productid);
-//            cart.setQty(1);
-//            
-//            utx.begin();
-//            boolean success = cartService.addCart(cart);
-//            utx.commit();
-//            
-//            response.sendRedirect("/product");
+            List<Cart> customerCartList = cartService.findByCustomerid(customerid);
+            for(Cart customerCart : customerCartList){
+                if(customerCart.getProductid().equals(productid)){
+                    response.sendRedirect("/product");
+                    return;
+                }
+            }
+            
+            Cart cart = new Cart();
+            cart.setCartid(lastCartid + 1);
+            cart.setCustomerid(customerid);
+            cart.setProductid(productid);
+            cart.setQty(1);
+            
+            utx.begin();
+            boolean success = cartService.addCart(cart);
+            utx.commit();
+            
+            response.sendRedirect("/product");
         } catch (Exception ex) {
             Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);
         }

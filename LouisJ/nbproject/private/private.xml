@@ -3,20 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/src/java/controller/FilterCategoryController.java</file>
-            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/src/java/controller/ProductController.java</file>
-            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/web/product.jsp</file>
-            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/web/navbar.jsp</file>
-            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/src/java/controller/SearchController.java</file>
-            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/src/java/controller/ProductDetailController.java</file>
-            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/src/java/model/Product.java</file>
-            <file>file:/C:/Users/frost/Documents/GitHub/Java-Web-Application-AMIT3084/LouisJ/web/salesReport.jsp</file>
-            <file>file:/C:/Users/frost/Documents/GitHub/Java-Web-Application-AMIT3084/LouisJ/web/styling/index.css</file>
-            <file>file:/C:/Users/frost/Documents/GitHub/Java-Web-Application-AMIT3084/LouisJ/web/customerList.jsp</file>
-            <file>file:/C:/Users/frost/Documents/GitHub/Java-Web-Application-AMIT3084/LouisJ/web/orderList.jsp</file>
-            <file>file:/C:/Users/frost/Documents/GitHub/Java-Web-Application-AMIT3084/LouisJ/web/staffList.jsp</file>
-            <file>file:/C:/Users/frost/Documents/GitHub/Java-Web-Application-AMIT3084/LouisJ/web/styling/listPages.css</file>
+            <file>file:/C:/Users/Asus/Desktop/Java-Web-Application-AMIT3084/LouisJ/web/cartPayment.jsp</file>
+            <file>file:/C:/Users/Asus/Desktop/Java-Web-Application-AMIT3084/LouisJ/web/WEB-INF/glassfish-resources.xml</file>
+            <file>file:/C:/Users/Asus/Desktop/Java-Web-Application-AMIT3084/LouisJ/web/addProduct.jsp</file>
+            <file>file:/C:/Users/Asus/Desktop/Java-Web-Application-AMIT3084/LouisJ/web/productDetail.jsp</file>
+            <file>file:/C:/Users/Asus/Desktop/Java-Web-Application-AMIT3084/LouisJ/web/WEB-INF/beans.xml</file>
+            <file>file:/C:/Users/Asus/Desktop/Java-Web-Application-AMIT3084/LouisJ/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Asus/Desktop/Java-Web-Application-AMIT3084/LouisJ/web/homePage.jsp</file>
+            <file>file:/C:/Users/Asus/Desktop/Java-Web-Application-AMIT3084/LouisJ/web/WEB-INF/glassfish-web.xml</file>
         </group>
     </open-files>
 </project-private>

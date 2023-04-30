@@ -7,11 +7,9 @@ package model;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.Resource;
 import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
 import javax.persistence.TransactionRequiredException;
 
 /**
@@ -44,7 +42,7 @@ public class CartService {
         return cart;
     }
 
-    public List<Cart> findCartByCustomerid(String customerid) {
+    public List<Cart> findByCustomerid(String customerid) {
         try {
             return (List<Cart>) mgr.createNamedQuery("Cart.findByCustomerid").setParameter("customerid", customerid).getResultList();
         } catch (EntityExistsException ex) {

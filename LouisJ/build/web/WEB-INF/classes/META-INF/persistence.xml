@@ -3,6 +3,8 @@
   <persistence-unit name="Louis_JPU" transaction-type="JTA">
     <jta-data-source>java:app/jdbc/louisj</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
-    <properties/>
+    <properties>
+      <property name="javax.persistence.validation.group.pre-persist" value="none"/>
+    </properties>
   </persistence-unit>
 </persistence>

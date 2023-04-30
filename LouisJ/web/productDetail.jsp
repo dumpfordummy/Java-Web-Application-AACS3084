@@ -13,12 +13,17 @@
         <%@include file="components/common_css_js.jsp" %>
         <%@include file="navbar.jsp" %>    
         <title>Product Detail</title>
+        <%
+            Product product = (Product) session.getAttribute("product");
+        %>
     </head>
     <body>
         <div class="container px-4 text-center">
             <div class="row gx-5">
                 <div class="col">
-                    <div class="p-3"><img src="image/belt_bag_home.png" class="card-img-top"></div>
+                    <div class="p-3">
+                        <img src="images/<%=product.getImage()%>" class="card-img-top"/>
+                    </div>
                 </div>
                 <div class="col">
                     <div class="p-3">
@@ -28,21 +33,16 @@
                                     <th>Product ID</th>
                                     <th>Name</th>
                                     <th>Description</th>
-                                    <th>Type</th>
                                     <th>Category</th>
                                     <th>Price</th>
                                     <th>Add To Cart</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <%
-                                    Product product = (Product) session.getAttribute("product");
-                                %>
                                 <tr>
                                     <td><%=product.getProductid()%></td>
                                     <td><%=product.getName()%></td>
                                     <td><%=product.getDescription()%></td>
-                                    <td><%=product.getType()%></td>
                                     <td><%=product.getCategory()%></td>
                                     <td><%=product.getPrice()%></td>
                                     <td>

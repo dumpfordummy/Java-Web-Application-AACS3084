@@ -33,7 +33,7 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         UserSessionUtil userSession = new UserSessionUtil(request.getSession());
-        User user = userSession.getUserSession(request.getCookies());
+        User    user = userSession.getCurrentLoginUser(request.getCookies());
         if (user != null) {
             response.sendRedirect(HOMEPAGE);
             return;

@@ -32,15 +32,16 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Cart.findByQty", query = "SELECT c FROM Cart c WHERE c.qty = :qty")})
 public class Cart implements Serializable {
 
+    @Size(max = 36)
+    @Column(name = "CUSTOMERID")
+    private String customerid;
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
     @NotNull
     @Column(name = "CARTID")
     private Integer cartid;
-    @Size(max = 36)
-    @Column(name = "CUSTOMERID")
-    private String customerid;
     @Column(name = "PRODUCTID")
     private Integer productid;
     @Column(name = "QTY")
@@ -61,13 +62,6 @@ public class Cart implements Serializable {
         this.cartid = cartid;
     }
 
-    public String getCustomerid() {
-        return customerid;
-    }
-
-    public void setCustomerid(String customerid) {
-        this.customerid = customerid;
-    }
 
     public Integer getProductid() {
         return productid;
@@ -108,6 +102,14 @@ public class Cart implements Serializable {
     @Override
     public String toString() {
         return "model.Cart[ cartid=" + cartid + " ]";
+    }
+
+    public String getCustomerid() {
+        return customerid;
+    }
+
+    public void setCustomerid(String customerid) {
+        this.customerid = customerid;
     }
     
 }
