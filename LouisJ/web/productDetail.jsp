@@ -21,7 +21,9 @@
         <div class="container px-4 text-center">
             <div class="row gx-5">
                 <div class="col">
-                    <div class="p-3"><img src="image/<%=product.getImage()%>"" class="card-img-top"></div>
+                    <div class="p-3">
+                        <img src="images/<%=product.getImage()%>" class="card-img-top"/>
+                    </div>
                 </div>
                 <div class="col">
                     <div class="p-3">

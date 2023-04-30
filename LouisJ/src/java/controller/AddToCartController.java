@@ -57,7 +57,7 @@ public class AddToCartController extends HttpServlet {
             
             int productid = Integer.parseInt(request.getParameter("productid"));
             
-            List<Cart> customerCartList = cartService.findCartByCustomerid(customerid);
+            List<Cart> customerCartList = cartService.findByCustomerid(customerid);
             for(Cart customerCart : customerCartList){
                 if(customerCart.getProductid().equals(productid)){
                     response.sendRedirect("/product");

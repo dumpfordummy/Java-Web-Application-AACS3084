@@ -42,7 +42,7 @@ public class CartService {
         return cart;
     }
 
-    public List<Cart> findCartByCustomerid(String customerid) {
+    public List<Cart> findByCustomerid(String customerid) {
         try {
             return (List<Cart>) mgr.createNamedQuery("Cart.findByCustomerid").setParameter("customerid", customerid).getResultList();
         } catch (EntityExistsException ex) {

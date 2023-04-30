@@ -22,7 +22,7 @@
                 <div class="col">
                     <a href="belt_bag.html">
                         <div class="card prodCategory">
-                            <img src="image/belt_bag_home.png" class="card-img-top">
+                            <img src="images/belt_bag_home.png" class="card-img-top">
                             <h5 class="card-title">
                                 Belt Bag
                             </h5>
@@ -32,7 +32,7 @@
                 <div class="col">
                     <a href="clutch_bag.html">
                         <div class="card prodCategory">
-                            <img src="image/clutch_bag_home.png" class="card-img-top">
+                            <img src="images/clutch_bag_home.png" class="card-img-top">
                             <h5 class="card-title">
                                 Clutch Bag
                             </h5>
@@ -42,7 +42,7 @@
                 <div class="col">
                     <a href="backpack.html">
                         <div class="card prodCategory">
-                            <img src="image/backpack_home.png" class="card-img-top">
+                            <img src="images/backpack_home.png" class="card-img-top">
                             <h5 class="card-title">
                                 Backpack
                             </h5>
