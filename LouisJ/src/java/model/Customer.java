@@ -52,6 +52,8 @@ public class Customer extends User implements Serializable {
     private String passwordhash;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -59,16 +61,11 @@ public class Customer extends User implements Serializable {
     private String email;
     @Basic(optional = false)
     @NotNull
-    @Lob()
-    @Column(name = "PROFILEIMG")
-    private Serializable profileimg;
-    @Basic(optional=false)//if the field contains email address consider using this annotation to enforce field validation
-    @NotNull()
     @Size(min = 1, max = 50)
     @Column(name = "FULLNAME")
     private String fullname;
-    @Basic(optional = false)
-    @NotNull
+    @Basic(optional=false)//if the field contains email address consider using this annotation to enforce field validation
+    @NotNull()
     @Size(min = 1, max = 50)
     @Column(name = "CONTACT")
     private String contact;
@@ -80,6 +77,10 @@ public class Customer extends User implements Serializable {
     @Size(max = 20)
     @Column(name = "PROFILEIMGTYPE")
     private String profileimgtype;
+    @Lob()
+    @Size(max = 32700)
+    @Column(name = "PROFILEIMG")
+    private String profileimg;
     @Column(name = "DATEJOIN")
     @Temporal(TemporalType.DATE)
     private Date datejoin;
@@ -101,7 +102,7 @@ public class Customer extends User implements Serializable {
         this.id = id;
     }
 
-    public Customer(String id, String username, String passwordhash, String email, Serializable profileimg, String fullname, String contact, String address) {
+    public Customer(String id, String username, String passwordhash, String email, String profileimg, String fullname, String contact, String address) {
         this();
         this.id = id;
         this.username = username;
@@ -173,14 +174,6 @@ public class Customer extends User implements Serializable {
         this.email = email;
     }
 
-    public Serializable getProfileimg() {
-        return profileimg;
-    }
-
-    public void setProfileimg(Serializable profileimg) {
-        this.profileimg = profileimg;
-    }
-
     public String getFullname() {
         return fullname;
     }
@@ -211,6 +204,14 @@ public class Customer extends User implements Serializable {
 
     public void setProfileimgtype(String profileimgtype) {
         this.profileimgtype = profileimgtype;
+    }
+
+    public String getProfileimg() {
+        return profileimg;
+    }
+
+    public void setProfileimg(String profileimg) {
+        this.profileimg = profileimg;
     }
     
 }

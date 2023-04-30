@@ -20,7 +20,7 @@ public abstract class User {
     private String id;
     private String passwordhash;
     private String email;
-    private Serializable profileimg;
+    private String profileimg;
     private String fullname;
     private String contact;
     private String address;
@@ -67,11 +67,11 @@ public abstract class User {
         this.email = email;
     }
 
-    public Serializable getProfileimg() {
+    public String getProfileimg() {
         return profileimg;
     }
 
-    public void setProfileimg(Serializable profileimg) {
+    public void setProfileimg(String profileimg) {
         this.profileimg = profileimg;
     }
 

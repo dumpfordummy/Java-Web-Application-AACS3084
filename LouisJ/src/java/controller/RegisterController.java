@@ -5,12 +5,16 @@
 package controller;
 
 import interfaces.User;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
+import java.util.Base64;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -75,7 +79,31 @@ public class RegisterController extends HttpServlet {
                 customer.setContact(contact);
                 customer.setAddress(address);
 
-                processImage(request.getPart("profileImg"), customer);
+                Part imagePart = request.getPart("profileImg");
+
+                if (imagePart != null) {
+                    File targetFile;
+                    String rootPath = System.getProperty("catalina.home");
+                    try (
+                            InputStream imageContent = imagePart.getInputStream()) {
+                        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+                        int nRead;
+                        byte[] data = new byte[1024];
+                        while ((nRead = imageContent.read(data, 0, data.length)) != -1) {
+                            buffer.write(data, 0, nRead);
+                        }
+                        buffer.flush();
+                        byte[] imageBytes = buffer.toByteArray();
+                        String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+                        customer.setProfileimg(base64Image);
+                        customer.setProfileimgtype(imagePart.getContentType());
+//                        targetFile = new File(rootPath + File.separator +  customer.getUsername() + ".jpg");
+//                        if(!targetFile.exists()) targetFile.mkdirs();
+//                        Files.copy(imageContent, targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
+                    }
+
+                    //targetFile.delete();
+                }
 
                 utx.begin();
                 boolean isRegisterSuccess = customerService.addCustomer(customer);
@@ -90,31 +118,5 @@ public class RegisterController extends HttpServlet {
         }
 
         out.print("Failed to register");
-    }
-
-    private void processImage(Part image, User user) throws IOException {
-        Part imagePart = image;
-
-        if (imagePart != null) {
-            File targetFile;
-            String rootPath = System.getProperty("catalina.home");
-            try (
-                    InputStream imageContent = imagePart.getInputStream()) {
-                targetFile = new File(rootPath + File.separator + user.getUsername() + getImageFormat(imagePart.getContentType()));
-                if (!targetFile.exists()) {
-                    targetFile.mkdirs();
-                }
-                Files.copy(imageContent, targetFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            }
-
-            user.setProfileimg(targetFile);
-            user.setProfileimgtype(imagePart.getContentType());
-
-            targetFile.delete();
-        }
-    }
-
-    private String getImageFormat(String a) {
-        return a.substring(0).split("/")[1];
     }
 }

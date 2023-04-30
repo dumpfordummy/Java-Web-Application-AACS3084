@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Base64;
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -50,13 +51,9 @@ public class ImageController extends HttpServlet {
         }
         response.setContentType(user.getProfileimgtype());
 
-        File profileImage = (File) user.getProfileimg();
+        String profileImage = user.getProfileimg();
 
-        byte[] profileImageByteArray = new byte[(int) profileImage.length()];
-
-        try (FileInputStream fis = new FileInputStream(profileImage)) {
-            fis.read(profileImageByteArray);
-        }
+        byte[] profileImageByteArray = Base64.getDecoder().decode(profileImage);
 
         response.getOutputStream().write(profileImageByteArray);
         
