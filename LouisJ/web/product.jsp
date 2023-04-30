@@ -59,7 +59,7 @@
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="ccc">
-                                    <p class="text-center"><img src="https://raw.githubusercontent.com/rxhack/productImage/main/1.jpg" class="imw"></p> 
+                                    <p class="text-center"><img src="image/<%=product.getImage()%>" class="imw"/></p> 
                                 </div>
                                 <div class="card-body">
                                     <h5 class="text-center"><%=product.getName()%></h5> 

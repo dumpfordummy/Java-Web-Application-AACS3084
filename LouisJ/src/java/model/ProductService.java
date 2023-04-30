@@ -75,9 +75,10 @@ public class ProductService {
         Product tempProduct = findProductByProductid(product.getProductid());
         if (tempProduct != null) {
             tempProduct.setName(product.getName());
-            tempProduct.setImage(product.getImage());
             tempProduct.setDescription(product.getDescription());
+            tempProduct.setCategory(product.getCategory());
             tempProduct.setPrice(product.getPrice());
+            tempProduct.setImage(product.getImage());
             return true;
         }
         return false;
