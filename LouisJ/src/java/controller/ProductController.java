@@ -29,10 +29,16 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductService productService = new ProductService(em);
+        
+        // Find all product
         List<Product> productList = productService.findAll();
-
+        double maxPrice = productService.findMaxPrice();
         request.setAttribute("productList", productList);
+        request.setAttribute("maxPrice", maxPrice);
+        request.setAttribute("priceRangeInput", maxPrice);
+        
         RequestDispatcher dispatcher = request.getRequestDispatcher("/product.jsp");
         dispatcher.forward(request, response);
+        
     }
 }

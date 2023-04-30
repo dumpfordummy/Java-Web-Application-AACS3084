@@ -29,18 +29,36 @@ public class FilterCategoryController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
         ProductService productService = new ProductService(em);
         String category = request.getParameter("category");
         category = category.toUpperCase();
-        if (category.equals("ALL")) {
-            List<Product> productList = productService.findAll();
-            request.setAttribute("productList", productList);
-            request.setAttribute("category", category);
-        } else {
-            List<Product> productList = productService.findByCategory(category);
-            request.setAttribute("productList", productList);
-            request.setAttribute("category", category);
+        String priceRangeString = request.getParameter("priceRangeInput");
+        Double priceRangeDouble;
+
+        // Find the max price for filter range
+        Double maxPrice = productService.findMaxPrice();
+        request.setAttribute("maxPrice", maxPrice);
+
+        if (priceRangeString == "") {
+            priceRangeDouble = maxPrice;
+        }else{
+            priceRangeDouble = Double.parseDouble(priceRangeString);
         }
+
+        // Find product based on category and price
+        if (category.equals("ALL")) {
+            List<Product> productList = productService.findByPriceRange(priceRangeDouble);
+            request.setAttribute("productList", productList);
+            request.setAttribute("category", category);
+            request.setAttribute("priceRangeInput", priceRangeDouble);
+        } else {
+            List<Product> productList = productService.findByCategoryAndPriceRange(category, priceRangeDouble);
+            request.setAttribute("productList", productList);
+            request.setAttribute("category", category);
+            request.setAttribute("priceRangeInput", priceRangeDouble);
+        }
+
         RequestDispatcher dispatcher = request.getRequestDispatcher("/product.jsp");
         dispatcher.forward(request, response);
     }

@@ -4,6 +4,7 @@
     Author     : Asus
 --%>
 
+<%@page import="model.ProductService"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -39,8 +40,8 @@
                                 <br>
                                 <label for="customRange2" class="form-label">Price range</label>
                                 <div class="d-flex align-items-center">
-                                    <input type="range" class="form-range me-2" min="0" max="5" id="customRange2">
-                                    <input type="number" class="form-control" id="rangeValue" style="width: 60px;" min="0" max="5">
+                                    <input type="range" class="form-range me-2" value="<%=request.getAttribute("priceRangeInput")%>" style="width: 150px;" min="0" max="<%=request.getAttribute("maxPrice")%>" id="customRange2" name="priceRange">
+                                    <input type="number" class="form-control" value="<%=request.getAttribute("priceRangeInput")%>" id="rangeValue" style="width: 80px;" min="0" max="<%=request.getAttribute("maxPrice")%>" name="priceRangeInput">
                                 </div>
                                 <br>
                                 <div class="d-grid gap-2">
@@ -53,7 +54,8 @@
 
                 <div class="col-md-9">
                     <div class="row product">
-                        <%List<Product> productList = (List<Product>) request.getAttribute("productList");
+                        <%
+                            List<Product> productList = (List<Product>) request.getAttribute("productList");
                             for (Product product : productList) {
                         %>
                         <div class="col-md-4">
@@ -64,7 +66,7 @@
                                 <div class="card-body">
                                     <h5 class="text-center"><%=product.getName()%></h5> 
                                     <p class="text-center">Price: RM <%=product.getPrice()%></p>
-                                    <p class="text-center"><input type="submit" name="Save" value="Buy" class="cc1"></p>
+                                    <p class="text-center"><input type="submit" name="Save" value="Learn More" class="cc1"></p>
                                 </div>
                             </div>
                         </div>

@@ -18,8 +18,9 @@ public class ProductService {
     @PersistenceContext
     EntityManager mgr;
 
-    public ProductService() {}
-    
+    public ProductService() {
+    }
+
     public ProductService(EntityManager mgr) {
         this.mgr = mgr;
     }
@@ -66,11 +67,28 @@ public class ProductService {
         return query.getResultList();
     }
 
+    public List<Product> findByCategoryAndPriceRange(String category, Double priceRange) {
+        TypedQuery<Product> query = mgr.createNamedQuery("Product.findByCategoryAndPriceRange", Product.class);
+        query.setParameter("category", category);
+        query.setParameter("priceRange", priceRange);
+        return query.getResultList();
+    }
+
+    public Double findMaxPrice() {
+        TypedQuery<Double> query = mgr.createNamedQuery("Product.findMaxPrice", Double.class);
+        return query.getSingleResult();
+    }
+
+    public List<Product> findByPriceRange(Double priceRange) {
+        TypedQuery<Product> query = mgr.createNamedQuery("Product.findByPriceRange", Product.class);
+        query.setParameter("priceRange", priceRange);
+        return query.getResultList();
+    }
+
 //    public List<String> findAllCategories() {
 //        TypedQuery<String> query = mgr.createNamedQuery("Product.findAllCategory", String.class);
 //        return query.getResultList();
 //    }
-
     public boolean updateProduct(Product product) {
         Product tempProduct = findProductByProductid(product.getProductid());
         if (tempProduct != null) {

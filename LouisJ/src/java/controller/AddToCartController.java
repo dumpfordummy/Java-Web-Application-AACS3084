@@ -54,10 +54,10 @@ public class AddToCartController extends HttpServlet {
                 return;
             }
             user = (Customer) user;
-            String customerid = user.getUserId();
-            System.out.print(user.getUserId());
-            System.out.print(user.getUserRole());
-            System.out.print(user.getUsername());
+//            String customerid = user.getUserId();
+//            System.out.print(user.getUserId());
+//            System.out.print(user.getUserRole());
+//            System.out.print(user.getUsername());
             
             
 //            int productid = Integer.parseInt(request.getParameter("productid"));

@@ -34,6 +34,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Product.findByCategory", query = "SELECT p FROM Product p WHERE p.category = :category"),
 //    @NamedQuery(name = "Product.findAllCategory", query = "SELECT DISTINCT p.category FROM Product p"),
     @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price"),
+    @NamedQuery(name = "Product.findByPriceRange", query = "SELECT p FROM Product p WHERE p.price <= :priceRange"),
+    @NamedQuery(name = "Product.findByCategoryAndPriceRange", query = "SELECT p FROM Product p WHERE p.category = :category AND p.price <= :priceRange"),
+    @NamedQuery(name = "Product.findMaxPrice", query = "SELECT MAX(p.price) FROM Product p"),
     @NamedQuery(name = "Product.findByStockqty", query = "SELECT p FROM Product p WHERE p.stockqty = :stockqty")})
 public class Product implements Serializable {
 
