@@ -45,18 +45,17 @@ public class AddToCartController extends HttpServlet {
             } else {
                 lastCartid = cartList.get(0).getCartid();
             }
-
             HttpSession session = request.getSession();
             UserSessionUtil userSession = new UserSessionUtil(session);
-            User user = userSession.getUserSession(request.getCookies());
-            if(user == null || !user.getUserRole().equals(User.CUSTOMER)) {
+            User user = userSession.getCurrentLoginUser(request.getCookies());
+            if(user == null || !user.getUsertype().equals(User.CUSTOMER)) {
                 response.sendRedirect("/login");
                 return;
             }
             user = (Customer) user;
-            String customerid = user.getUserId();
-            System.out.print(user.getUserId());
-            System.out.print(user.getUserRole());
+            String customerid = user.getId();
+            System.out.print(user.getId());
+            System.out.print(user.getUsertype());
             System.out.print(user.getUsername());
             
             

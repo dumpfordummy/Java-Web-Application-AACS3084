@@ -6,13 +6,17 @@ package model;
 
 import interfaces.User;
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -29,9 +33,58 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Employee.findById", query = "SELECT e FROM Employee e WHERE e.id = :id"),
     @NamedQuery(name = "Employee.findByUsername", query = "SELECT e FROM Employee e WHERE e.username = :username"),
     @NamedQuery(name = "Employee.findByPasswordhash", query = "SELECT e FROM Employee e WHERE e.passwordhash = :passwordhash"),
+    @NamedQuery(name = "Employee.findByEmail", query = "SELECT e FROM Employee e WHERE e.email = :email"),
+    @NamedQuery(name = "Employee.findByFullname", query = "SELECT e FROM Employee e WHERE e.fullname = :fullname"),
+    @NamedQuery(name = "Employee.findByContact", query = "SELECT e FROM Employee e WHERE e.contact = :contact"),
+    @NamedQuery(name = "Employee.findByAddress", query = "SELECT e FROM Employee e WHERE e.address = :address"),
     @NamedQuery(name = "Employee.findByUsertype", query = "SELECT e FROM Employee e WHERE e.usertype = :usertype")})
 public class Employee extends User implements Serializable {
 
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "USERNAME")
+    private String username;
+    @Basic(optional = false)
+    @NotNull()
+    @Size(min = 1, max = 50)
+    @Column(name = "PASSWORDHASH")
+    private String passwordhash;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "EMAIL")
+    private String email;
+    @Basic(optional = false)
+    @NotNull
+    @Lob()
+    @Column(name = "PROFILEIMG")
+    private Serializable profileimg;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "FULLNAME")
+    private String fullname;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "CONTACT")
+    private String contact;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 50)
+    @Column(name = "ADDRESS")
+    private String address;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 10)
+    @Column(name = "USERTYPE")
+    private String usertype;
+    @Column(name = "DATEJOIN")
+    @Temporal(TemporalType.DATE)
+    private Date datejoin;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -39,21 +92,6 @@ public class Employee extends User implements Serializable {
     @Size(min = 1, max = 36)
     @Column(name = "ID")
     private String id;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "USERNAME")
-    private String username;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 100)
-    @Column(name = "PASSWORDHASH")
-    private String passwordhash;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 10)
-    @Column(name = "USERTYPE")
-    private String usertype;
 
     public Employee() {
     }
@@ -62,10 +100,15 @@ public class Employee extends User implements Serializable {
         this.id = id;
     }
 
-    public Employee(String id, String username, String passwordhash, String usertype) {
+    public Employee(String id, String username, String passwordhash, String email, Serializable profileimg, String fullname, String contact, String address, String usertype) {
         this.id = id;
         this.username = username;
         this.passwordhash = passwordhash;
+        this.email = email;
+        this.profileimg = profileimg;
+        this.fullname = fullname;
+        this.contact = contact;
+        this.address = address;
         this.usertype = usertype;
     }
 
@@ -75,6 +118,28 @@ public class Employee extends User implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (id != null ? id.hashCode() : 0);
+        return hash;
+    }
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Employee)) {
+            return false;
+        }
+        Employee other = (Employee) object;
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+            return false;
+        }
+        return true;
+    }
+    @Override
+    public String toString() {
+        return "model.Employee[ id=" + id + " ]";
     }
 
     public String getUsername() {
@@ -93,6 +158,46 @@ public class Employee extends User implements Serializable {
         this.passwordhash = passwordhash;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Serializable getProfileimg() {
+        return profileimg;
+    }
+
+    public void setProfileimg(Serializable profileimg) {
+        this.profileimg = profileimg;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public String getContact() {
+        return contact;
+    }
+
+    public void setContact(String contact) {
+        this.contact = contact;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     public String getUsertype() {
         return usertype;
     }
@@ -101,29 +206,12 @@ public class Employee extends User implements Serializable {
         this.usertype = usertype;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
-        return hash;
+    public Date getDatejoin() {
+        return datejoin;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Employee)) {
-            return false;
-        }
-        Employee other = (Employee) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "model.Employee[ id=" + id + " ]";
+    public void setDatejoin(Date datejoin) {
+        this.datejoin = datejoin;
     }
     
 }

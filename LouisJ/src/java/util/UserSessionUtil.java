@@ -28,7 +28,7 @@ public class UserSessionUtil {
         return new Cookie(SESSION_ID,sessionId);
     }
     
-    public User getUserSession(Cookie[] userCookies) {
+    public User getCurrentLoginUser(Cookie[] userCookies) {
         for(Cookie cookie : userCookies) {
             if(cookie.getName().equals(SESSION_ID)) {
                 return (User)session.getAttribute(cookie.getValue());
@@ -37,7 +37,4 @@ public class UserSessionUtil {
         //Whenever user logged in, session and cookie will be set, null indicates that it is not logged in.
         return null;
     }
-    
-            
-    
 }

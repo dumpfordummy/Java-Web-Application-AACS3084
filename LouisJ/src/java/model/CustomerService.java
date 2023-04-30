@@ -54,7 +54,7 @@ public class CustomerService {
         return null;
     }
     
-    public boolean deletecustomer(String id) {
+    public boolean deleteCustomer(String id) {
         Customer customer = findCustomerById(id );
         if (customer != null) {
             mgr.remove(customer);
@@ -68,7 +68,7 @@ public class CustomerService {
         return customerList;
     }
     
-    public boolean updateItem(Customer customer) {
+    public boolean updateCustomer(Customer customer) {
         Customer tempCustomer = findCustomerById(customer.getId());
         if (tempCustomer != null) {
             tempCustomer.setUsername(customer.getUsername());
