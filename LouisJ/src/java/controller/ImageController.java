@@ -6,6 +6,7 @@ package controller;
 
 import interfaces.User;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.annotation.Resource;
@@ -25,20 +26,17 @@ import model.EmployeeService;
  */
 // handle path of /image/{userrole}/{userid}
 public class ImageController extends HttpServlet {
-    
+
     @PersistenceContext
     EntityManager em;
     @Resource
     UserTransaction utx;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("");
-        
-        
         String[] paths = request.getRequestURI().substring(1).split("/");
         String userRole = paths[1];
         String userId = paths[2];
-        User user;  
+        User user;
         if (paths.length != 3) {
             return;
         }
@@ -50,10 +48,18 @@ public class ImageController extends HttpServlet {
             EmployeeService employeeService = new EmployeeService(em);
             user = employeeService.findEmployeeById(userId);
         }
-    
-        File profileImage = (File)user.getProfileimg();
-        
+        response.setContentType(user.getProfileimgtype());
 
+        File profileImage = (File) user.getProfileimg();
+
+        byte[] profileImageByteArray = new byte[(int) profileImage.length()];
+
+        try (FileInputStream fis = new FileInputStream(profileImage)) {
+            fis.read(profileImageByteArray);
+        }
+
+        response.getOutputStream().write(profileImageByteArray);
+        
     }
 
     @Override

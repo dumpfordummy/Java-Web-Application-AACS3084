@@ -26,7 +26,7 @@
             User user = userSession.getCurrentLoginUser(request.getCookies());
 
         %>
-        
+        <img src="/image/<%= user.getUsertype()%>/<%= user.getId()%>">
         <h2>Username: <%= user.getUsername()%> </h2> <br/>
         <h2>Role: <%= user.getUsertype()%> </h2> <br/>
         <h2>Date Joined: N/A     </h2> <br/>
