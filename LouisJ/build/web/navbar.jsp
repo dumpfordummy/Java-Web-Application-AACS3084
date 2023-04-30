@@ -21,9 +21,8 @@
                         <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
                     </div>
 
-                    <form class="form-inline" method="get" action="search">
+                    <form class="form-inline" method="get" action="search" id="searchBar">
                         <input class="form-control mr-sm-2" type="search" placeholder="Search Product" aria-label="Search" name="searchTerm">
-                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </div>
             </div>
@@ -47,19 +46,32 @@
             <a href="product" target="_blank">Products</a>
             <a href="addProduct.jsp" target="_blank">Add Product</a>
         </div>
-        
+
         <script>
             function openNav() {
                 document.getElementById("mySidenav").style.width = "250px";
                 document.getElementById("main").style.marginLeft = "250px";
-                
+
             }
 
             function closeNav() {
                 document.getElementById("mySidenav").style.width = "0";
                 document.getElementById("main").style.marginLeft = "0";
-                
+
             }
+            // get the search form and input elements
+            const form = document.getElementById('searchBar');
+            const input = form.querySelector('input');
+
+            // listen for keypress events on the input element
+            input.addEventListener('keypress', function (e) {
+                if (e.key === 'Enter') {
+                    // if Enter key is pressed, prevent the default form submission
+                    e.preventDefault();
+                    // submit the form using JavaScript
+                    form.submit();
+                }
+            });
         </script>
     </body>
 </html>
