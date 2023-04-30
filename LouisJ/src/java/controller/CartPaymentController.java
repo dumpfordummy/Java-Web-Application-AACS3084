@@ -36,8 +36,8 @@ public class CartPaymentController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         UserSessionUtil userSession = new UserSessionUtil(session);
-        User user = userSession.getUserSession(request.getCookies());
-        if (user == null || !user.getUserRole().equals(User.CUSTOMER)) {
+        User user = userSession.getCurrentLoginUser(request.getCookies());
+        if (user == null || !user.getUsertype().equals(User.CUSTOMER)) {
             response.sendRedirect("/login");
             return;
         }

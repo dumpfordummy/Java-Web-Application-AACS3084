@@ -47,9 +47,10 @@ public class Customer extends User implements Serializable {
     private String username;
     @Basic(optional = false)
     @NotNull()
-    @Size(min = 1, max = 50)
+    @Size(min = 1, max = 100)
     @Column(name = "PASSWORDHASH")
     private String passwordhash;
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
@@ -76,6 +77,9 @@ public class Customer extends User implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "ADDRESS")
     private String address;
+    @Size(max = 20)
+    @Column(name = "PROFILEIMGTYPE")
+    private String profileimgtype;
     @Column(name = "DATEJOIN")
     @Temporal(TemporalType.DATE)
     private Date datejoin;
@@ -138,6 +142,12 @@ public class Customer extends User implements Serializable {
     public String toString() {
         return "model.Customer[ id=" + id + " ]";
     }
+    public Date getDatejoin() {
+        return datejoin;
+    }
+    public void setDatejoin(Date datejoin) {
+        this.datejoin = datejoin;
+    }
 
     public String getUsername() {
         return username;
@@ -195,12 +205,12 @@ public class Customer extends User implements Serializable {
         this.address = address;
     }
 
-    public Date getDatejoin() {
-        return datejoin;
+    public String getProfileimgtype() {
+        return profileimgtype;
     }
 
-    public void setDatejoin(Date datejoin) {
-        this.datejoin = datejoin;
+    public void setProfileimgtype(String profileimgtype) {
+        this.profileimgtype = profileimgtype;
     }
     
 }

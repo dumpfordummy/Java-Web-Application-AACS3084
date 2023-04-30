@@ -75,18 +75,12 @@ public class RegisterController extends HttpServlet {
                 customer.setContact(contact);
                 customer.setAddress(address);
 
-                //handle file upload
                 Part imagePart = request.getPart("profileImg");
 
                 if (imagePart != null) {
-                    // prints out some information for debugging
-                    System.out.println(imagePart.getName());
-                    System.out.println(imagePart.getSize());
-                    System.out.println(imagePart.getContentType());
-
                     File targetFile;
                     String rootPath = System.getProperty("catalina.home");
-                    try ( // obtains input stream of the upload file
+                    try (
                             InputStream imageContent = imagePart.getInputStream()) {
                         targetFile = new File(rootPath + File.separator +  customer.getUsername() + ".jpg");
                         if(!targetFile.exists()) targetFile.mkdirs();
@@ -94,6 +88,7 @@ public class RegisterController extends HttpServlet {
                     }
                     
                     customer.setProfileimg(targetFile);
+                    customer.setProfileimgtype(imagePart.getContentType());
                 }
 
                 utx.begin();

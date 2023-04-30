@@ -51,6 +51,7 @@ public class Employee extends User implements Serializable {
     @Column(name = "PASSWORDHASH")
     private String passwordhash;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -82,6 +83,9 @@ public class Employee extends User implements Serializable {
     @Size(min = 1, max = 10)
     @Column(name = "USERTYPE")
     private String usertype;
+    @Size(max = 20)
+    @Column(name = "PROFILEIMGTYPE")
+    private String profileimgtype;
     @Column(name = "DATEJOIN")
     @Temporal(TemporalType.DATE)
     private Date datejoin;
@@ -140,6 +144,12 @@ public class Employee extends User implements Serializable {
     @Override
     public String toString() {
         return "model.Employee[ id=" + id + " ]";
+    }
+    public Date getDatejoin() {
+        return datejoin;
+    }
+    public void setDatejoin(Date datejoin) {
+        this.datejoin = datejoin;
     }
 
     public String getUsername() {
@@ -206,12 +216,12 @@ public class Employee extends User implements Serializable {
         this.usertype = usertype;
     }
 
-    public Date getDatejoin() {
-        return datejoin;
+    public String getProfileimgtype() {
+        return profileimgtype;
     }
 
-    public void setDatejoin(Date datejoin) {
-        this.datejoin = datejoin;
+    public void setProfileimgtype(String profileimgtype) {
+        this.profileimgtype = profileimgtype;
     }
     
 }

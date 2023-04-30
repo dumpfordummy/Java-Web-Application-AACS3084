@@ -25,6 +25,7 @@ public abstract class User {
     private String contact;
     private String address;
     private Date datejoin;
+    private String profileimgtype;
 
     public String getUsertype() {
         return usertype;
@@ -104,6 +105,14 @@ public abstract class User {
 
     public void setDatejoin(Date datejoin) {
         this.datejoin = datejoin;
+    }
+    
+    public String getProfileimgtype() {
+        return profileimgtype;
+    }
+
+    public void setProfileimgtype(String profileimgtype) {
+        this.profileimgtype = profileimgtype;
     }
     
 }
