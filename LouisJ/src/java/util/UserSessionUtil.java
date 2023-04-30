@@ -4,7 +4,7 @@
  */
 package util;
 
-import interfaces.UserRole;
+import interfaces.User;
 import javax.servlet.http.*;
 import model.Customer;
 
@@ -22,20 +22,22 @@ public class UserSessionUtil {
     }
     
     // need to set this cookie returned to user's cookie
-    public Cookie setUserSession(UserRole user) {
+    public Cookie setUserSession(User user) {
         String sessionId = session.getId();
         session.setAttribute(sessionId, user);
         return new Cookie(SESSION_ID,sessionId);
     }
     
-    public UserRole getUserSession(Cookie[] userCookies) {
+    public User getUserSession(Cookie[] userCookies) {
         for(Cookie cookie : userCookies) {
             if(cookie.getName().equals(SESSION_ID)) {
-                return (UserRole)session.getAttribute(cookie.getValue());
+                return (User)session.getAttribute(cookie.getValue());
             }
         }
         //Whenever user logged in, session and cookie will be set, null indicates that it is not logged in.
         return null;
     }
+    
+            
     
 }
