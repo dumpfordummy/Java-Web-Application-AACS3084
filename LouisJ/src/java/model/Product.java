@@ -35,12 +35,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Product.findByStockqty", query = "SELECT p FROM Product p WHERE p.stockqty = :stockqty")})
 public class Product implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "PRODUCTID")
-    private Integer productid;
     @Size(max = 256)
     @Column(name = "NAME")
     private String name;
@@ -50,14 +44,21 @@ public class Product implements Serializable {
     @Size(max = 256)
     @Column(name = "CATEGORY")
     private String category;
+    @Size(max = 256)
+    @Column(name = "IMAGE")
+    private String image;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "PRODUCTID")
+    private Integer productid;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "PRICE")
     private Double price;
     @Column(name = "STOCKQTY")
     private Integer stockqty;
-    @Size(max = 256)
-    @Column(name = "IMAGE")
-    private String image;
 
     public Product() {
     }
@@ -68,6 +69,49 @@ public class Product implements Serializable {
 
     public void setProductid(Integer productid) {
         this.productid = productid;
+    }
+
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Integer getStockqty() {
+        return stockqty;
+    }
+
+    public void setStockqty(Integer stockqty) {
+        this.stockqty = stockqty;
+    }
+
+
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (productid != null ? productid.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Product)) {
+            return false;
+        }
+        Product other = (Product) object;
+        if ((this.productid == null && other.productid != null) || (this.productid != null && !this.productid.equals(other.productid))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "model.Product[ productid=" + productid + " ]";
     }
 
     public String getName() {
@@ -94,53 +138,12 @@ public class Product implements Serializable {
         this.category = category;
     }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public Integer getStockqty() {
-        return stockqty;
-    }
-
-    public void setStockqty(Integer stockqty) {
-        this.stockqty = stockqty;
-    }
-
     public String getImage() {
         return image;
     }
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (productid != null ? productid.hashCode() : 0);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Product)) {
-            return false;
-        }
-        Product other = (Product) object;
-        if ((this.productid == null && other.productid != null) || (this.productid != null && !this.productid.equals(other.productid))) {
-            return false;
-        }
-        return true;
-    }
-
-    @Override
-    public String toString() {
-        return "model.Product[ productid=" + productid + " ]";
     }
 
 }

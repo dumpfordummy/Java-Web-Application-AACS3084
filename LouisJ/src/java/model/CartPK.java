@@ -11,10 +11,7 @@ import javax.persistence.PersistenceContext;
  *
  * @author Asus
  */
-public class CartPK {
-    @PersistenceContext
-    EntityManager mgr;
-    
+public class CartPK {    
     private Integer cartid;
     private Customer customer;
     private Product product;
@@ -23,13 +20,10 @@ public class CartPK {
     public CartPK() {
     }
 
-    public CartPK(Integer cartid, String customerid, Integer productid, Integer qty) {
+    public CartPK(Integer cartid, Customer customer, Product product, Integer qty) {
         this.cartid = cartid;
-        CustomerService customerService = new CustomerService(mgr);
-        System.out.print("customerid = " + customerid);
-        this.customer = customerService.findCustomerById(customerid);
-        ProductService productService = new ProductService(mgr);
-        this.product = productService.findProductByProductid(productid);
+        this.customer = customer;
+        this.product = product;
         this.qty = qty;
     }
 

@@ -20,6 +20,8 @@ import model.Cart;
 import model.CartPK;
 import model.CartService;
 import model.Customer;
+import model.CustomerService;
+import model.Product;
 import model.ProductService;
 import util.UserSessionUtil;
 
@@ -47,9 +49,14 @@ public class CartPaymentController extends HttpServlet {
         CartService cartService = new CartService(em);
         List<Cart> customerCartList = cartService.findByCustomerid(customerid);
         List<CartPK> cartPKList = new ArrayList<>();
+        CustomerService customerService = new CustomerService(em);
+        ProductService productService = new ProductService(em);
+        Customer customer;
+        Product product;
         for(Cart cart : customerCartList){
-            System.out.print("customerid = " + cart.getCustomerid());
-            cartPKList.add(new CartPK(cart.getCartid(), cart.getCustomerid(), cart.getProductid(),cart.getQty()));
+            customer = customerService.findCustomerById(cart.getCustomerid());
+            product = productService.findProductByProductid(cart.getProductid());
+            cartPKList.add(new CartPK(cart.getCartid(), customer, product,cart.getQty()));
         }
         
 
