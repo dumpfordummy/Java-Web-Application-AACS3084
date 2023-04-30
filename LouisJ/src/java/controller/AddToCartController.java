@@ -54,32 +54,28 @@ public class AddToCartController extends HttpServlet {
             }
             user = (Customer) user;
             String customerid = user.getId();
-            System.out.print(user.getId());
-            System.out.print(user.getUsertype());
-            System.out.print(user.getUsername());
             
+            int productid = Integer.parseInt(request.getParameter("productid"));
             
-//            int productid = Integer.parseInt(request.getParameter("productid"));
-//            
-//            List<Cart> customerCartList = cartService.findCartByCustomerid(customerid);
-//            for(Cart customerCart : customerCartList){
-//                if(customerCart.getProductid().equals(productid)){
-//                    response.sendRedirect("/product");
-//                    return;
-//                }
-//            }
-//            
-//            Cart cart = new Cart();
-//            cart.setCartid(lastCartid + 1);
-//            cart.setCustomerid(customerid);
-//            cart.setProductid(productid);
-//            cart.setQty(1);
-//            
-//            utx.begin();
-//            boolean success = cartService.addCart(cart);
-//            utx.commit();
-//            
-//            response.sendRedirect("/product");
+            List<Cart> customerCartList = cartService.findCartByCustomerid(customerid);
+            for(Cart customerCart : customerCartList){
+                if(customerCart.getProductid().equals(productid)){
+                    response.sendRedirect("/product");
+                    return;
+                }
+            }
+            
+            Cart cart = new Cart();
+            cart.setCartid(lastCartid + 1);
+            cart.setCustomerid(customerid);
+            cart.setProductid(productid);
+            cart.setQty(1);
+            
+            utx.begin();
+            boolean success = cartService.addCart(cart);
+            utx.commit();
+            
+            response.sendRedirect("/product");
         } catch (Exception ex) {
             Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);
         }

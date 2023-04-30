@@ -12,46 +12,85 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%@include file="components/common_css_js.jsp" %>
-        <%@include file="navbar.jsp" %>        
-        <title>Product</title>
+        <%@include file="navbar.jsp" %>
+        <link rel="stylesheet" type="text/css" href="styling/product.css">
+        <title>Louis J - Product</title>
     </head>
     <body>
 
-        <table>
-            <thead>
-                <tr>
-                    <th>Product ID</th>
-                    <th>Name</th>
-                    <th>Description</th>
-                    <th>Type</th>
-                    <th>Category</th>
-                    <th>Price</th>
-                    <th>Button To Product Detail</th>
-                </tr>
-            </thead>
-            <tbody>
-                <%
-                    List<Product> productList = (List<Product>) request.getAttribute("productList");
-                    for (Product product : productList) {
-                %>
-                <tr>
-                    <td><%=product.getProductid()%></td>
-                    <td><%=product.getName()%></td>
-                    <td><%=product.getDescription()%></td>
-                    <td><%=product.getType()%></td>
-                    <td><%=product.getCategory()%></td>
-                    <td><%=product.getPrice()%></td>
-                    <td>
-                        <form method="POST" action="productDetail">
-                            <input type="hidden" name="productid" value="<%=product.getProductid()%>">
-                            <input type="submit" value="Detail">
-                        </form>
-                    </td>
-                </tr>
-                <%
-                    }
-                %>
-            </tbody>
-        </table>
-</body>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="filter-sidebar">
+                        <div class="card-header">
+                            <h5 class="mb-3 pb-2" style="border-bottom: 1px solid #111">Filter</h5>
+                        </div>
+                        <div class="card-body">
+                            <form action="filterCategory" method="get">
+                                <div class="form-group">
+                                    <label for="category">Category</label>
+                                    <select class="form-control" id="category" name="category">
+                                        <option value="all">ALL</option>
+                                        <option value="beltBag" id="beltBag">Belt Bag</option>
+                                        <option value="clutchBag" id="clutchBag">Clutch Bag</option>
+                                        <option value="backpack" id="backpack">Backpack</option>
+                                    </select>
+                                </div>
+                                <br>
+                                <label for="customRange2" class="form-label">Price range</label>
+                                <div class="d-flex align-items-center">
+                                    <input type="range" class="form-range me-2" min="0" max="5" id="customRange2">
+                                    <input type="number" class="form-control" id="rangeValue" style="width: 60px;" min="0" max="5">
+                                </div>
+                                <br>
+                                <div class="d-grid gap-2">
+                                    <input type="submit" class="btnFilter" value="Apply Filter"></input>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-9">
+                    <div class="row product">
+                        <%List<Product> productList = (List<Product>) request.getAttribute("productList");
+                            for (Product product : productList) {
+                        %>
+                        <div class="col-md-4">
+                            <div class="card">
+                                <div class="ccc">
+                                    <p class="text-center"><img src="image/<%=product.getImage()%>" class="imw"/></p> 
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="text-center"><%=product.getName()%></h5> 
+                                    <p class="text-center">Price: RM <%=product.getPrice()%></p>
+                                    <p class="text-center"><input type="submit" name="Save" value="Buy" class="cc1"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <% }%> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            const range = document.getElementById('customRange2');
+            const rangeValue = document.getElementById('rangeValue');
+
+            range.addEventListener('input', () => {
+                rangeValue.value = range.value;
+            });
+
+            rangeValue.addEventListener('input', () => {
+                range.value = rangeValue.value;
+            });
+
+            const params = new Proxy(new URLSearchParams(window.location.search), {
+                get: (searchParams, prop) => searchParams.get(prop),
+            });
+
+            let value = params.category;
+            document.getElementById(value).selected = true;
+        </script>
+    </body>
 </html>

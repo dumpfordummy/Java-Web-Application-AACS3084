@@ -40,6 +40,14 @@
         <servlet-name>ImageController</servlet-name>
         <servlet-class>controller.ImageController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FilterCategoryController</servlet-name>
+        <servlet-class>controller.FilterCategoryController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckoutController</servlet-name>
+        <servlet-class>controller.CheckoutController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -72,6 +80,11 @@
         <servlet-name>ProductController</servlet-name>
         <url-pattern>/product</url-pattern>
     </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>FilterCategoryController</servlet-name>
+        <url-pattern>/filterCategory</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ProfileController</servlet-name>
         <url-pattern>/profile/*</url-pattern>
@@ -80,6 +93,10 @@
     <servlet-mapping>
         <servlet-name>ImageController</servlet-name>
         <url-pattern>/image/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckoutController</servlet-name>
+        <url-pattern>/checkout</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

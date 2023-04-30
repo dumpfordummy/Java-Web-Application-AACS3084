@@ -35,14 +35,15 @@ public class AddProductController extends HttpServlet {
             String type = request.getParameter("type");
             String category = request.getParameter("category");
             double price = Double.parseDouble(request.getParameter("price"));
+            String image = request.getParameter("image");
 
             Product product = new Product();
             product.setProductid(productid);
             product.setName(name);
             product.setDescription(description);
-            product.setType(type);
             product.setCategory(category);
             product.setPrice(price);
+            product.setImage(image);
             
             ProductService productService = new ProductService(em);
             utx.begin();

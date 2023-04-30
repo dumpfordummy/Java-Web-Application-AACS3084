@@ -6,6 +6,8 @@ package model;
 
 import java.util.List;
 import javax.persistence.*;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 /**
  *
@@ -16,6 +18,8 @@ public class ProductService {
     @PersistenceContext
     EntityManager mgr;
 
+    public ProductService() {}
+    
     public ProductService(EntityManager mgr) {
         this.mgr = mgr;
     }
@@ -56,13 +60,25 @@ public class ProductService {
         return query.getResultList();
     }
 
+    public List<Product> findByCategory(String category) {
+        TypedQuery<Product> query = mgr.createNamedQuery("Product.findByCategory", Product.class);
+        query.setParameter("category", category);
+        return query.getResultList();
+    }
+
+//    public List<String> findAllCategories() {
+//        TypedQuery<String> query = mgr.createNamedQuery("Product.findAllCategory", String.class);
+//        return query.getResultList();
+//    }
+
     public boolean updateProduct(Product product) {
         Product tempProduct = findProductByProductid(product.getProductid());
         if (tempProduct != null) {
             tempProduct.setName(product.getName());
-            tempProduct.setImage(product.getImage());
             tempProduct.setDescription(product.getDescription());
+            tempProduct.setCategory(product.getCategory());
             tempProduct.setPrice(product.getPrice());
+            tempProduct.setImage(product.getImage());
             return true;
         }
         return false;

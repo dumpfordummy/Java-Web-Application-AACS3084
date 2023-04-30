@@ -9,7 +9,6 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.Lob;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -30,8 +29,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Product.findByName", query = "SELECT p FROM Product p WHERE p.name = :name"),
     @NamedQuery(name = "Product.findByNamePattern", query = "SELECT p FROM Product p WHERE p.name LIKE :namePattern"),
     @NamedQuery(name = "Product.findByDescription", query = "SELECT p FROM Product p WHERE p.description = :description"),
-    @NamedQuery(name = "Product.findByType", query = "SELECT p FROM Product p WHERE p.type = :type"),
     @NamedQuery(name = "Product.findByCategory", query = "SELECT p FROM Product p WHERE p.category = :category"),
+//    @NamedQuery(name = "Product.findAllCategory", query = "SELECT DISTINCT p.category FROM Product p"),
     @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price"),
     @NamedQuery(name = "Product.findByStockqty", query = "SELECT p FROM Product p WHERE p.stockqty = :stockqty")})
 public class Product implements Serializable {
@@ -49,9 +48,6 @@ public class Product implements Serializable {
     @Column(name = "DESCRIPTION")
     private String description;
     @Size(max = 256)
-    @Column(name = "TYPE")
-    private String type;
-    @Size(max = 256)
     @Column(name = "CATEGORY")
     private String category;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
@@ -59,15 +55,11 @@ public class Product implements Serializable {
     private Double price;
     @Column(name = "STOCKQTY")
     private Integer stockqty;
-    @Lob
+    @Size(max = 256)
     @Column(name = "IMAGE")
-    private Serializable image;
+    private String image;
 
     public Product() {
-    }
-
-    public Product(Integer productid) {
-        this.productid = productid;
     }
 
     public Integer getProductid() {
@@ -94,14 +86,6 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
     public String getCategory() {
         return category;
     }
@@ -126,11 +110,11 @@ public class Product implements Serializable {
         this.stockqty = stockqty;
     }
 
-    public Serializable getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Serializable image) {
+    public void setImage(String image) {
         this.image = image;
     }
 
@@ -158,5 +142,5 @@ public class Product implements Serializable {
     public String toString() {
         return "model.Product[ productid=" + productid + " ]";
     }
-    
+
 }

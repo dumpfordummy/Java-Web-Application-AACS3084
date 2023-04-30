@@ -21,7 +21,7 @@ import model.ProductService;
  *
  * @author Pua
  */
-public class SearchController extends HttpServlet {
+public class FilterCategoryController extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
@@ -30,10 +30,17 @@ public class SearchController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProductService productService = new ProductService(em);
-        String searchTerm = request.getParameter("searchTerm");
-        searchTerm = searchTerm.toUpperCase();
-        List<Product> productList = productService.findByNamePattern(searchTerm);
-        request.setAttribute("productList", productList);
+        String category = request.getParameter("category");
+        category = category.toUpperCase();
+        if (category.equals("ALL")) {
+            List<Product> productList = productService.findAll();
+            request.setAttribute("productList", productList);
+            request.setAttribute("category", category);
+        } else {
+            List<Product> productList = productService.findByCategory(category);
+            request.setAttribute("productList", productList);
+            request.setAttribute("category", category);
+        }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/product.jsp");
         dispatcher.forward(request, response);
     }

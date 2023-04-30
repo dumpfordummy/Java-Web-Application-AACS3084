@@ -20,12 +20,12 @@
             <input type="text" name="name"><br>
             <label for="description">Description:</label>
             <input type="text" name="description"><br>
-            <label for="type">Type</label>
-            <input type="text" name="type"><br>
             <label for="category">Category</label>
             <input type="text" name="category"><br>
             <label for="price">Price:</label>
             <input type="number" step="0.01" name="price"><br>
+            <label for="image">Select image:</label>
+            <input type="file" name="image">
             <input type="submit" value="Add Product">
             <input type="reset" value="Reset">
         </form>
