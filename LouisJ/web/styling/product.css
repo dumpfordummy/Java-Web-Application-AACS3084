@@ -17,7 +17,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     position: relative;
 }
 .product, .prodCategory{
-    margin-top: 30px;
     margin-bottom: 40px;
 }
 
@@ -75,6 +74,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 .card{
+    margin-top: 25px;
     border: 1px solid;
     padding: 10px;
     box-shadow: 5px 10px #888888;

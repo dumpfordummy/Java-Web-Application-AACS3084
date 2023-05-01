@@ -25,13 +25,17 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
+    @NamedQuery(name = "Product.findAllDesc", query = "SELECT p FROM Product p ORDER BY p.productid DESC"),
+    @NamedQuery(name = "Product.findAllCategory", query = "SELECT DISTINCT p.category FROM Product p"),
     @NamedQuery(name = "Product.findByProductid", query = "SELECT p FROM Product p WHERE p.productid = :productid"),
     @NamedQuery(name = "Product.findByName", query = "SELECT p FROM Product p WHERE p.name = :name"),
     @NamedQuery(name = "Product.findByNamePattern", query = "SELECT p FROM Product p WHERE p.name LIKE :namePattern"),
     @NamedQuery(name = "Product.findByDescription", query = "SELECT p FROM Product p WHERE p.description = :description"),
     @NamedQuery(name = "Product.findByCategory", query = "SELECT p FROM Product p WHERE p.category = :category"),
-//    @NamedQuery(name = "Product.findAllCategory", query = "SELECT DISTINCT p.category FROM Product p"),
     @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price"),
+    @NamedQuery(name = "Product.findByPriceRange", query = "SELECT p FROM Product p WHERE p.price <= :priceRange"),
+    @NamedQuery(name = "Product.findByCategoryAndPriceRange", query = "SELECT p FROM Product p WHERE p.category = :category AND p.price <= :priceRange"),
+    @NamedQuery(name = "Product.findMaxPrice", query = "SELECT MAX(p.price) FROM Product p"),
     @NamedQuery(name = "Product.findByStockqty", query = "SELECT p FROM Product p WHERE p.stockqty = :stockqty")})
 public class Product implements Serializable {
 
@@ -63,6 +67,16 @@ public class Product implements Serializable {
     public Product() {
     }
 
+    public Product(String name, String description, String category, String image, Integer productid, Double price, Integer stockqty) {
+        this.name = name.toUpperCase();
+        this.description = description.toUpperCase();
+        this.category = category.toUpperCase();
+        this.image = image;
+        this.productid = productid;
+        this.price = price;
+        this.stockqty = stockqty;
+    }
+
     public Integer getProductid() {
         return productid;
     }
@@ -73,11 +87,11 @@ public class Product implements Serializable {
 
 
     public Double getPrice() {
-        return price;
+        return (double) Math.round(price * 100) / 100;
     }
 
     public void setPrice(Double price) {
-        this.price = price;
+        this.price = (double) Math.round(price * 100) / 100;
     }
 
     public Integer getStockqty() {
@@ -115,27 +129,27 @@ public class Product implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return name.toUpperCase();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name.toUpperCase();
     }
 
     public String getDescription() {
-        return description;
+        return description.toUpperCase();
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description.toUpperCase();
     }
 
     public String getCategory() {
-        return category;
+        return category.toUpperCase();
     }
 
     public void setCategory(String category) {
-        this.category = category;
+        this.category = category.toUpperCase();
     }
 
     public String getImage() {
