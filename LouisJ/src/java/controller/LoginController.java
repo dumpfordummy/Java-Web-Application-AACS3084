@@ -1,8 +1,6 @@
 package controller;
 
-import interfaces.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.annotation.Resource;
 import javax.persistence.*;
 import javax.servlet.http.*;
@@ -40,7 +38,6 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        PrintWriter out = response.getWriter();
         String username = request.getParameter("uname");
         String password = request.getParameter("upass");
         CustomerService customerService = new CustomerService(em);
