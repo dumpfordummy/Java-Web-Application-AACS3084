@@ -48,10 +48,6 @@
         <servlet-name>CheckoutController</servlet-name>
         <servlet-class>controller.CheckoutController</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>AddStaffController</servlet-name>
-        <servlet-class>controller.AddStaffController</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -100,10 +96,6 @@
     <servlet-mapping>
         <servlet-name>CheckoutController</servlet-name>
         <url-pattern>/checkout</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>AddStaffController</servlet-name>
-        <url-pattern>/AddStaffController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
