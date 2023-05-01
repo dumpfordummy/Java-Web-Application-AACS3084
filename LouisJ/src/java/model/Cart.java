@@ -35,6 +35,8 @@ public class Cart implements Serializable {
     @Size(max = 36)
     @Column(name = "CUSTOMERID")
     private String customerid;
+    @Column(name = "ORDERID")
+    private Integer orderid;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -110,6 +112,14 @@ public class Cart implements Serializable {
 
     public void setCustomerid(String customerid) {
         this.customerid = customerid;
+    }
+
+    public Integer getOrderid() {
+        return orderid;
+    }
+
+    public void setOrderid(Integer orderid) {
+        this.orderid = orderid;
     }
     
 }

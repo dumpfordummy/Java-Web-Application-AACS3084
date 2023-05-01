@@ -67,6 +67,16 @@ public class Product implements Serializable {
     public Product() {
     }
 
+    public Product(String name, String description, String category, String image, Integer productid, Double price, Integer stockqty) {
+        this.name = name.toUpperCase();
+        this.description = description.toUpperCase();
+        this.category = category.toUpperCase();
+        this.image = image;
+        this.productid = productid;
+        this.price = price;
+        this.stockqty = stockqty;
+    }
+
     public Integer getProductid() {
         return productid;
     }
@@ -77,11 +87,11 @@ public class Product implements Serializable {
 
 
     public Double getPrice() {
-        return price;
+        return (double) Math.round(price * 100) / 100;
     }
 
     public void setPrice(Double price) {
-        this.price = price;
+        this.price = (double) Math.round(price * 100) / 100;
     }
 
     public Integer getStockqty() {
@@ -119,27 +129,27 @@ public class Product implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return name.toUpperCase();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name.toUpperCase();
     }
 
     public String getDescription() {
-        return description;
+        return description.toUpperCase();
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description.toUpperCase();
     }
 
     public String getCategory() {
-        return category;
+        return category.toUpperCase();
     }
 
     public void setCategory(String category) {
-        this.category = category;
+        this.category = category.toUpperCase();
     }
 
     public String getImage() {
