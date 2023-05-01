@@ -48,6 +48,14 @@
         <servlet-name>CheckoutController</servlet-name>
         <servlet-class>controller.CheckoutController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>StaffLoginController</servlet-name>
+        <servlet-class>controller.StaffLoginController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>StaffRegisterController</servlet-name>
+        <servlet-class>controller.StaffRegisterController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -80,7 +88,6 @@
         <servlet-name>ProductController</servlet-name>
         <url-pattern>/product</url-pattern>
     </servlet-mapping>
-
     <servlet-mapping>
         <servlet-name>FilterCategoryController</servlet-name>
         <url-pattern>/filterCategory</url-pattern>
@@ -97,6 +104,14 @@
     <servlet-mapping>
         <servlet-name>CheckoutController</servlet-name>
         <url-pattern>/checkout</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StaffLoginController</servlet-name>
+        <url-pattern>/loginStaff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StaffRegisterController</servlet-name>
+        <url-pattern>/registerStaff</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
