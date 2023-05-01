@@ -7,8 +7,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List" %>
 <%@page import="model.Customer" %>
-<jsp:useBean id="sessionUtil" class="util.UserSessionUtil" />
-<jsp:useBean id="user" class="interfaces.User" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,7 +19,10 @@
         <script src="https://kit.fontawesome.com/a293bfc92d.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <% if (sessionUtil.getCurrentLoginUser(request.getCookies()).equals("manager")){ %>
+        <%  
+            util.UserSessionUtil sessionUtil = new util.UserSessionUtil(request.getSession());
+            if (sessionUtil.getCurrentLoginUser(request.getCookies()).equals("manager")){ 
+        %>
             <a class="btn btn-primary" href="" style="width: 120px; margin: 2rem 2rem 0 2rem">Add Customer</a>
         <% } %>
         

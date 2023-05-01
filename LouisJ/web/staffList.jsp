@@ -7,8 +7,6 @@
 <%@page import="java.util.List"%>
 <%@page import="model.Employee"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="sessionUtil" class="util.UserSessionUtil" />
-<jsp:useBean id="user" class="interfaces.User" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,14 +19,17 @@
         <script src="https://kit.fontawesome.com/a293bfc92d.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <% if (sessionUtil.getCurrentLoginUser(request.getCookies()).equals("manager")){ %>
+        <%
+            util.UserSessionUtil sessionUtil = new util.UserSessionUtil(request.getSession());
+            if (sessionUtil.getCurrentLoginUser(request.getCookies()).equals("manager")){ 
+        %>
             <a class="btn btn-primary" href="" style="width: 120px; margin: 2rem 2rem 0 2rem">Add Staff</a>
         <% } %>
         
         <div class="row">
-            <% 
+            <%-- <% 
                 List<Employee> employeeList = (List<Employee>)request.getAttribute("employeeList"); 
-            %>
+            %> --%>
             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column m-3">
                 <div class="card bg-light d-flex flex-fill">
                     <div class="card-header border-bottom-0 p-3">
