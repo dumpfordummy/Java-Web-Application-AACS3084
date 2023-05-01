@@ -33,23 +33,25 @@
                 <%
                     List<CartPK> cartPKList = (List<CartPK>) request.getAttribute("cartPKList");
                     double subTotal = 0;
+                    double tax;
                     double deliveryCharge = 5;
                     double discount = 5;
-                    double tax;
                     double totalPayment;
+                    double totalProductPrice;
                     for (CartPK cartPK : cartPKList) {
+                        totalProductPrice = cartPK.getProduct().getPrice() * cartPK.getQty();
                 %>
                 <tr>
                     <td>
-                        <img src="image/<%=cartPK.getProduct().getImage()%>" width="100px" alt="alt"/>
+                        <img src="images/<%=cartPK.getProduct().getImage()%>" width="100px" alt="alt"/>
                     </td>
                     <td><%=cartPK.getProduct().getName()%></td>
-                    <td><%=cartPK.getProduct().getPrice()%></td>
+                    <td><%=String.format("%.2f", cartPK.getProduct().getPrice())%></td>
                     <td><%=cartPK.getQty()%></td>
-                    <td><%=cartPK.getProduct().getPrice() * cartPK.getQty()%></td>
+                    <td><%=String.format("%.2f", totalProductPrice)%></td>
                 </tr>
                 <%
-                    subTotal += cartPK.getProduct().getPrice() * cartPK.getQty();
+                        subTotal += totalProductPrice;
                     }
                     tax = subTotal * 0.06;
                     totalPayment = subTotal + tax + deliveryCharge - discount;
@@ -65,21 +67,20 @@
                     <th>Delivery Charge</th>
                     <th>Discount</th>
                     <th>Total Payment</th>
-                    <
                     <th>Checkout Button</th>
                 </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td><%=cartPKList.get(0).getCustomer().getUsername()%></td>
-                    <td><%=subTotal%></td>
-                    <td><%=tax%></td>
-                    <td><%=deliveryCharge%></td>
-                    <td><%=discount%></td>
-                    <td><%=totalPayment%></td>
+                    <td><%=cartPKList.get(0).getCustomer().getAddress()%></td>
+                    <td><%=String.format("%.2f", subTotal)%></td>
+                    <td><%=String.format("%.2f", tax)%></td>
+                    <td><%=String.format("%.2f", deliveryCharge)%></td>
+                    <td><%=String.format("%.2f", discount)%></td>
+                    <td><%=String.format("%.2f", totalPayment)%></td>
                     <td>
                         <form method="POST" action="checkout">
-                            <input type="hiddent" name="" value="">
+                            <input type="hidden" name="" value="">
                             <input type="submit" value="Checkout">
                         </form>
                     </td>

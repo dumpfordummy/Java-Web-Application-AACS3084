@@ -14,7 +14,7 @@
     </head>
     <body>
         <div class="overlay">
-            <form method="POST" action="register" enctype="multipart/form-data">
+            <form method="POST" action="registerStaff" enctype="multipart/form-data">
                 <!--   con = Container  for items in the form-->
                 <div class="con">
                     <!--     Start  header Content  -->
@@ -32,7 +32,7 @@
                             <i class="fa fa-user-circle"></i>
                         </span>
                         <!--   user name Input-->
-                        <input class="form-input" id="txt-input" name="username" type="text" placeholder="UserName" required>
+                        <input class="form-input" id="txt-input" name="username" type="text" placeholder="Username" required>
 
                         <br>
                         
@@ -42,7 +42,7 @@
                             <i class="fa fa-key"></i>
                         </span>
                         <!--   Password Input-->
-                        <input class="form-input" type="password" placeholder="Password" id="pwd" name="password" required>
+                        <input class="form-input" type="password" name="password" placeholder="Password" id="pwd" required>
 
                         <!--      Show/hide password  -->
                         <span>
@@ -101,7 +101,7 @@
                     <!--   other buttons -->
                     <div class="other">
                         <!--     Sign Up button -->
-                        <button class="btn submits sign-up" onclick="location.pathname='login'" style="width:280px;margin:0;">Login
+                        <button class="btn submits sign-up" onclick="location.pathname='loginStaff'" style="width:280px;margin:0;">Login
                             <!--         Sign Up font icon -->
                             <i class="fa fa-user-plus" aria-hidden="true"></i>
                         </button>

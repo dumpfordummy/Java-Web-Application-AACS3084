@@ -16,14 +16,14 @@
     </head>
     <body>
         <div class="overlay">
-            <form method="POST" action="login">
+            <form method="POST" action="loginStaff">
                 <!--   con = Container  for items in the form-->
                 <div class="con">
                     <!--     Start  header Content  -->
                     <header class="head-form">
-                        <h2>Log In</h2>
+                        <h2>Staff Log In</h2>
                         <!--     A welcome message or an explanation of the login form -->
-                        <p>login here using your username and password</p>
+                        <p>login here using your staff username and password</p>
                     </header>
                     <!--     End  header Content  -->
                     <br>
