@@ -56,6 +56,10 @@
         <servlet-name>StaffRegisterController</servlet-name>
         <servlet-class>controller.StaffRegisterController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>StaffListingController</servlet-name>
+        <servlet-class>controller.StaffListingController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -112,6 +116,10 @@
     <servlet-mapping>
         <servlet-name>StaffRegisterController</servlet-name>
         <url-pattern>/registerStaff</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>StaffListingController</servlet-name>
+        <url-pattern>/StaffListingController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
