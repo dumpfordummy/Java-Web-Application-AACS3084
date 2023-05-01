@@ -32,9 +32,9 @@
                                     <label for="category">Category</label>
                                     <select class="form-control" id="category" name="category">
                                         <option value="all">ALL</option>
-                                        <option value="beltBag" id="beltBag">Belt Bag</option>
-                                        <option value="clutchBag" id="clutchBag">Clutch Bag</option>
-                                        <option value="backpack" id="backpack">Backpack</option>
+                                        <% for (String category : (List<String>) request.getAttribute("categories")) {%>
+                                        <option value="<%= category%>" id="<%= category%>"><%= category%></option>
+                                        <% }%>
                                     </select>
                                 </div>
                                 <br>
@@ -66,12 +66,10 @@
                                 <div class="card-body">
                                     <h5 class="text-center"><%=product.getName()%></h5> 
                                     <p class="text-center">Price: RM <%=product.getPrice()%></p>
-                                    <p class="text-center">
-                                        <form method="POST" action="productDetail">
-                                            <input type="hidden" name="productid" value="<%=product.getProductid()%>">
-                                            <input type="submit" value="Learn Detail" class="cc1">
-                                        </form>
-                                    </p>
+                                    <form class="text-center" method="POST" action="productDetail">
+                                        <input type="hidden" name="productid" value="<%=product.getProductid()%>">
+                                        <input type="submit" value="Learn Detail" class="cc1">
+                                    </form>
                                 </div>
                             </div>
                         </div>

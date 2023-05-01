@@ -36,13 +36,16 @@ public class FilterCategoryController extends HttpServlet {
         String priceRangeString = request.getParameter("priceRangeInput");
         Double priceRangeDouble;
 
+        List<String> categories = productService.findAllCategory();
+        request.setAttribute("categories", categories);
+
         // Find the max price for filter range
         Double maxPrice = productService.findMaxPrice();
         request.setAttribute("maxPrice", maxPrice);
 
         if (priceRangeString == "") {
             priceRangeDouble = maxPrice;
-        }else{
+        } else {
             priceRangeDouble = Double.parseDouble(priceRangeString);
         }
 

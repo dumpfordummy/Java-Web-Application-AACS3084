@@ -25,12 +25,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
+    @NamedQuery(name = "Product.findAllDesc", query = "SELECT p FROM Product p ORDER BY p.productid DESC"),
+    @NamedQuery(name = "Product.findAllCategory", query = "SELECT DISTINCT p.category FROM Product p"),
     @NamedQuery(name = "Product.findByProductid", query = "SELECT p FROM Product p WHERE p.productid = :productid"),
     @NamedQuery(name = "Product.findByName", query = "SELECT p FROM Product p WHERE p.name = :name"),
     @NamedQuery(name = "Product.findByNamePattern", query = "SELECT p FROM Product p WHERE p.name LIKE :namePattern"),
     @NamedQuery(name = "Product.findByDescription", query = "SELECT p FROM Product p WHERE p.description = :description"),
     @NamedQuery(name = "Product.findByCategory", query = "SELECT p FROM Product p WHERE p.category = :category"),
-//    @NamedQuery(name = "Product.findAllCategory", query = "SELECT DISTINCT p.category FROM Product p"),
     @NamedQuery(name = "Product.findByPrice", query = "SELECT p FROM Product p WHERE p.price = :price"),
     @NamedQuery(name = "Product.findByPriceRange", query = "SELECT p FROM Product p WHERE p.price <= :priceRange"),
     @NamedQuery(name = "Product.findByCategoryAndPriceRange", query = "SELECT p FROM Product p WHERE p.category = :category AND p.price <= :priceRange"),
