@@ -45,6 +45,9 @@
             <a href="homePage.jsp" target="_blank">Home</a>
             <a href="product" target="_blank">Products</a>
             <a href="addProduct.jsp" target="_blank">Add Product</a>
+            <a href="customerList.jsp" target="_blank">Customer List</a>
+            <a href="staffList.jsp" target="_blank">Staff List</a>
+            <a href="orderList.jsp" target="_blank">Order List</a>
         </div>
 
         <script>

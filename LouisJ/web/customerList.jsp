@@ -4,6 +4,7 @@
     Author     : Wai Loc
 --%>
 
+<%@page import="interfaces.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List" %>
 <%@page import="model.Customer" %>
@@ -19,12 +20,16 @@
         <script src="https://kit.fontawesome.com/a293bfc92d.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <%  
-            util.UserSessionUtil sessionUtil = new util.UserSessionUtil(request.getSession());
-            if (sessionUtil.getCurrentLoginUser(request.getCookies()).equals("manager")){ 
-        %>
-            <a class="btn btn-primary" href="" style="width: 120px; margin: 2rem 2rem 0 2rem">Add Customer</a>
-        <% } %>
+        <%
+            util.UserSessionUtil userSession = new util.UserSessionUtil(request.getSession());
+            //Customer customer = new Customer("1001", "test", "056823974923", "test@cust.com", "", "Test Customer", "0137416287", "123, Jln Bunga, 50300 KL");
+            //Cookie userCookie = userSession.setUserSession(customer);
+            //response.addCookie(userCookie);
+            User user = userSession.getCurrentLoginUser(request.getCookies());
+            if (user != null){
+                if (user.getUsertype().equals(User.MANAGER)){ %>
+                    <a class="btn btn-primary" href="" style="width: 120px; margin: 2rem 2rem 0 2rem">Add Customer</a>
+        <%  }} %>
         
         <div class="row">
             <% 
@@ -51,14 +56,15 @@
                         </div>
                     </div>
                     <div class="card-footer p-3">
-                        <% if (sessionUtil.getCurrentLoginUser(request.getCookies()).equals("manager")){ %>
+                        <%  if (user != null){
+                                if (user.getUsertype().equals(User.MANAGER)){  %>
                             <a href="" style="text-decoration: none;">
                                 <i class="fa-regular fa-pen-to-square fa-2xl"></i>
                             </a>
                             <a id="deleteItem" style="cursor: pointer;" class="deleteItem" data-target="#basic" data-toggle="modal">
                                 <i class="fa fa-trash fa-2xl"></i>
                             </a>
-                        <% } %>
+                        <%  }} %>
                     </div>
                 </div>
             </div>

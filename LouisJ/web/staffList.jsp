@@ -4,6 +4,8 @@
     Author     : Wai Loc
 --%>
 
+<%@page import="interfaces.*"%>
+<%@page import="model.Customer"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Employee"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -20,16 +22,17 @@
     </head>
     <body>
         <%
-            util.UserSessionUtil sessionUtil = new util.UserSessionUtil(request.getSession());
-            if (sessionUtil.getCurrentLoginUser(request.getCookies()).equals("manager")){ 
-        %>
-            <a class="btn btn-primary" href="" style="width: 120px; margin: 2rem 2rem 0 2rem">Add Staff</a>
-        <% } %>
+            util.UserSessionUtil userSession = new util.UserSessionUtil(request.getSession());
+            User user = userSession.getCurrentLoginUser(request.getCookies());
+            if (user != null){
+                if (user.getUsertype().equals(User.MANAGER)){ %>
+                    <a class="btn btn-primary" href="" style="width: 120px; margin: 2rem 2rem 0 2rem">Add Staff</a>
+        <%  }} %>
         
         <div class="row">
-            <%-- <% 
+            <% 
                 List<Employee> employeeList = (List<Employee>)request.getAttribute("employeeList"); 
-            %> --%>
+            %>
             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column m-3">
                 <div class="card bg-light d-flex flex-fill">
                     <div class="card-header border-bottom-0 p-3">
@@ -52,14 +55,15 @@
                     </div>
                     <div class="card-footer p-3">
                         
-                        <% if (sessionUtil.getCurrentLoginUser(request.getCookies()).equals("manager")){ %>
-                            <a href="" style="text-decoration: none;">
-                                <i class="fa-regular fa-pen-to-square fa-2xl"></i>
-                            </a>
-                            <a id="deleteItem" style="cursor: pointer;" class="deleteItem" data-target="#basic" data-toggle="modal">
-                                <i class="fa fa-trash fa-2xl"></i>
-                            </a>
-                        <% } %>
+                        <%  if (user != null){
+                                if (user.getUsertype().equals(User.MANAGER)){ %>
+                                    <a href="" style="text-decoration: none;">
+                                        <i class="fa-regular fa-pen-to-square fa-2xl"></i>
+                                    </a>
+                                    <a id="deleteItem" style="cursor: pointer;" class="deleteItem" data-target="#basic" data-toggle="modal">
+                                        <i class="fa fa-trash fa-2xl"></i>
+                                    </a>
+                        <%  }} %>
                     </div>
                 </div>
             </div>
