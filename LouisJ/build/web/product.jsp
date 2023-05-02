@@ -69,6 +69,11 @@
                                         <input type="hidden" name="productid" value="<%=product.getProductid()%>">
                                         <input type="submit" value="Learn Detail" class="cc1">
                                     </form>
+                                        <br/>
+                                    <form class="text-center" method="POST" action="deleteProduct">
+                                        <input type="hidden" name="productid" value="<%=product.getProductid()%>">
+                                        <input type="submit" value="Delete Product" class="btnDelete">
+                                    </form>
                                 </div>
                             </div>
                         </div>
