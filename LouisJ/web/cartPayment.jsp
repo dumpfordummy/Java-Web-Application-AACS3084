@@ -80,7 +80,6 @@
                     <td><%=String.format("%.2f", totalPayment)%></td>
                     <td>
                         <form method="POST" action="checkout">
-                            <input type="hidden" name="cartPKList" value="<%=cartPKList%>"
                             <input type="hidden" name="customerid" value="<%=cartPKList.get(0).getCustomer().getId()%>">
                             <input type="hidden" name="subTotal" value="<%=subTotal%>">
                             <input type="hidden" name="tax" value="<%=tax%>">

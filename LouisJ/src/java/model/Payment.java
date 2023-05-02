@@ -28,6 +28,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Payment.findAll", query = "SELECT p FROM Payment p"),
+    @NamedQuery(name = "Payment.findAllDesc", query = "SELECT p FROM Payment p ORDER BY p.paymentid DESC"),
     @NamedQuery(name = "Payment.findByPaymentid", query = "SELECT p FROM Payment p WHERE p.paymentid = :paymentid"),
     @NamedQuery(name = "Payment.findByCustomerid", query = "SELECT p FROM Payment p WHERE p.customerid = :customerid"),
     @NamedQuery(name = "Payment.findByEmployeeid", query = "SELECT p FROM Payment p WHERE p.employeeid = :employeeid"),
