@@ -23,8 +23,8 @@
                     <form runat="server" method="POST" action="addProduct" class="wrapper row">
                         <div class="preview col-md-6">
                             <div class="preview-pic tab-content">
-                                <input type='file' id="imgInp" name="image"/><br/>
-                                <img id="blah" src="#" />
+                                <img id="blah" src="#" /><br/>
+                                <input type='file' id="imgInp" name="image"/>
                             </div>
                         </div>
                         <div class="details col-md-6">
