@@ -45,6 +45,7 @@ public class AddToCartController extends HttpServlet {
             } else {
                 lastCartid = cartList.get(0).getCartid();
             }
+            
             HttpSession session = request.getSession();
             UserSessionUtil userSession = new UserSessionUtil(session);
             User user = userSession.getCurrentLoginUser(request.getCookies());

@@ -14,8 +14,6 @@
     <body>
         <h1>Add Product</h1>
         <form method="POST" action="addProduct">
-            <label for="productid">Product ID:</label>
-            <input type="number" name="productid"><br>
             <label for="name">Name:</label>
             <input type="text" name="name"><br>
             <label for="description">Description:</label>
