@@ -32,7 +32,7 @@
                             <h1 class="product-title">Description:<input class="form-control mr-sm-2" type="text" name="description"></h1>
                             <h1 class="product-title">Price:<input class="form-control mr-sm-2" type="number" step="0.01" name="price"></h1>
                             <h1 class="product-title">Category:<input class="form-control mr-sm-2" type="text" name="category"></h1>
-                            <input type="submit" class="add-product btn btn-default" value="Add To Cart">
+                            <input type="submit" class="add-product btn btn-default" value="Add Product">
                         </div>
                     </form>
                 </div>
