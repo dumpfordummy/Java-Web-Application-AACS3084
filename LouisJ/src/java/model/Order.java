@@ -27,19 +27,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "ORDER")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Order1.findAll", query = "SELECT o FROM Order o"),
-    @NamedQuery(name = "Order1.findByOrderid", query = "SELECT o FROM Order o WHERE o.orderid = :orderid"),
-    @NamedQuery(name = "Order1.findByCustomerid", query = "SELECT o FROM Order o WHERE o.customerid = :customerid"),
-    @NamedQuery(name = "Order1.findByEmployeeid", query = "SELECT o FROM Order o WHERE o.employeeid = :employeeid"),
-    @NamedQuery(name = "Order1.findBySubtotal", query = "SELECT o FROM Order o WHERE o.subtotal = :subtotal"),
-    @NamedQuery(name = "Order1.findByTax", query = "SELECT o FROM Order o WHERE o.tax = :tax"),
-    @NamedQuery(name = "Order1.findByDeliverycharge", query = "SELECT o FROM Order o WHERE o.deliverycharge = :deliverycharge"),
-    @NamedQuery(name = "Order1.findByDiscountamount", query = "SELECT o FROM Order o WHERE o.discountamount = :discountamount"),
-    @NamedQuery(name = "Order1.findByTotalpayment", query = "SELECT o FROM Order o WHERE o.totalpayment = :totalpayment"),
-    @NamedQuery(name = "Order1.findByShippingaddress", query = "SELECT o FROM Order o WHERE o.shippingaddress = :shippingaddress"),
-    @NamedQuery(name = "Order1.findByPaymentmethod", query = "SELECT o FROM Order o WHERE o.paymentmethod = :paymentmethod"),
-    @NamedQuery(name = "Order1.findByStatus", query = "SELECT o FROM Order o WHERE o.status = :status"),
-    @NamedQuery(name = "Order1.findByOrderdate", query = "SELECT o FROM Order o WHERE o.orderdate = :orderdate")})
+    @NamedQuery(name = "Order.findAll", query = "SELECT o FROM Order o"),
+    @NamedQuery(name = "Order.findByOrderid", query = "SELECT o FROM Order o WHERE o.orderid = :orderid"),
+    @NamedQuery(name = "Order.findByCustomerid", query = "SELECT o FROM Order o WHERE o.customerid = :customerid"),
+    @NamedQuery(name = "Order.findByEmployeeid", query = "SELECT o FROM Order o WHERE o.employeeid = :employeeid")})
 public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -56,27 +47,27 @@ public class Order implements Serializable {
     private String employeeid;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "SUBTOTAL")
-    private Double subtotal;
+    private Double subTotal;
     @Column(name = "TAX")
     private Double tax;
     @Column(name = "DELIVERYCHARGE")
-    private Double deliverycharge;
+    private Double deliveryCharge;
     @Column(name = "DISCOUNTAMOUNT")
-    private Double discountamount;
+    private Double discountAmount;
     @Column(name = "TOTALPAYMENT")
-    private Double totalpayment;
+    private Double totalPayment;
     @Size(max = 50)
     @Column(name = "SHIPPINGADDRESS")
-    private String shippingaddress;
+    private String shippingAddress;
     @Size(max = 256)
     @Column(name = "PAYMENTMETHOD")
-    private String paymentmethod;
+    private String paymentMethod;
     @Size(max = 256)
     @Column(name = "STATUS")
     private String status;
     @Column(name = "ORDERDATE")
     @Temporal(TemporalType.DATE)
-    private Date orderdate;
+    private Date orderDate;
 
     public Order() {
     }
@@ -109,12 +100,12 @@ public class Order implements Serializable {
         this.employeeid = employeeid;
     }
 
-    public Double getSubtotal() {
-        return subtotal;
+    public Double getSubTotal() {
+        return subTotal;
     }
 
-    public void setSubtotal(Double subtotal) {
-        this.subtotal = subtotal;
+    public void setSubtotal(Double subTotal) {
+        this.subTotal = subTotal;
     }
 
     public Double getTax() {
@@ -125,44 +116,44 @@ public class Order implements Serializable {
         this.tax = tax;
     }
 
-    public Double getDeliverycharge() {
-        return deliverycharge;
+    public Double getDeliveryCharge() {
+        return deliveryCharge;
     }
 
-    public void setDeliverycharge(Double deliverycharge) {
-        this.deliverycharge = deliverycharge;
+    public void setDeliveryCharge(Double deliveryCharge) {
+        this.deliveryCharge = deliveryCharge;
     }
 
-    public Double getDiscountamount() {
-        return discountamount;
+    public Double getDiscountAmount() {
+        return discountAmount;
     }
 
-    public void setDiscountamount(Double discountamount) {
-        this.discountamount = discountamount;
+    public void setDiscountAmount(Double discountAmount) {
+        this.discountAmount = discountAmount;
     }
 
-    public Double getTotalpayment() {
-        return totalpayment;
+    public Double getTotalPayment() {
+        return totalPayment;
     }
 
-    public void setTotalpayment(Double totalpayment) {
-        this.totalpayment = totalpayment;
+    public void setTotalPayment(Double totalPayment) {
+        this.totalPayment = totalPayment;
     }
 
-    public String getShippingaddress() {
-        return shippingaddress;
+    public String getShippingAddress() {
+        return shippingAddress;
     }
 
-    public void setShippingaddress(String shippingaddress) {
-        this.shippingaddress = shippingaddress;
+    public void setShippingAddress(String shippingAddress) {
+        this.shippingAddress = shippingAddress;
     }
 
-    public String getPaymentmethod() {
-        return paymentmethod;
+    public String getPaymentMethod() {
+        return paymentMethod;
     }
 
-    public void setPaymentmethod(String paymentmethod) {
-        this.paymentmethod = paymentmethod;
+    public void setPaymentMethod(String paymentMethod) {
+        this.paymentMethod = paymentMethod;
     }
 
     public String getStatus() {
@@ -173,12 +164,12 @@ public class Order implements Serializable {
         this.status = status;
     }
 
-    public Date getOrderdate() {
-        return orderdate;
+    public Date getOrderDate() {
+        return orderDate;
     }
 
-    public void setOrderdate(Date orderdate) {
-        this.orderdate = orderdate;
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
     }
 
     @Override
@@ -203,7 +194,7 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Order1[ orderid=" + orderid + " ]";
+        return "model.Order[ orderid=" + orderid + " ]";
     }
     
 }

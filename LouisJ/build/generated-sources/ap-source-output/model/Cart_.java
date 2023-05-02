@@ -4,11 +4,12 @@ import javax.annotation.Generated;
 import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 
-@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-05-01T16:47:38")
+@Generated(value="EclipseLink-2.7.10.v20211216-rNA", date="2023-05-02T09:02:11")
 @StaticMetamodel(Cart.class)
 public class Cart_ { 
 
     public static volatile SingularAttribute<Cart, Integer> productid;
+    public static volatile SingularAttribute<Cart, Integer> orderid;
     public static volatile SingularAttribute<Cart, Integer> cartid;
     public static volatile SingularAttribute<Cart, Integer> qty;
     public static volatile SingularAttribute<Cart, String> customerid;
