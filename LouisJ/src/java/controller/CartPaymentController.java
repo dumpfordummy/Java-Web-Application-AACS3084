@@ -54,9 +54,11 @@ public class CartPaymentController extends HttpServlet {
         Customer customer;
         Product product;
         for(Cart cart : customerCartList){
-            customer = customerService.findCustomerById(cart.getCustomerid());
-            product = productService.findProductByProductid(cart.getProductid());
-            cartPKList.add(new CartPK(cart.getCartid(), customer, product,cart.getQty()));
+            if (cart.getPaymentid() == null) {
+                customer = customerService.findCustomerById(cart.getCustomerid());
+                product = productService.findProductByProductid(cart.getProductid());
+                cartPKList.add(new CartPK(cart.getCartid(), customer, product, cart.getQty()));
+            }
         }
         
 

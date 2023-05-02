@@ -67,10 +67,12 @@ public class CheckoutController extends HttpServlet {
             CartService cartService = new CartService(em);
             List<Cart> customerCartList = cartService.findByCustomerid(customerid);
             for (Cart cart : customerCartList) {
-                cart.setPaymentid(lastPaymentid + 1);
-                utx.begin();
-                cartService.updateCart(cart);
-                utx.commit();
+                if (cart.getPaymentid() == null) {
+                    cart.setPaymentid(lastPaymentid + 1);
+                    utx.begin();
+                    cartService.updateCart(cart);
+                    utx.commit();
+                }
             }
             
             String shippingAddress = request.getParameter("shippingAddress");

@@ -59,7 +59,7 @@ public class AddToCartController extends HttpServlet {
             
             List<Cart> customerCartList = cartService.findByCustomerid(customerid);
             for(Cart customerCart : customerCartList){
-                if(customerCart.getProductid().equals(productid)){
+                if(customerCart.getProductid().equals(productid) && customerCart.getPaymentid() == null){
                     response.sendRedirect("/product");
                     return;
                 }
