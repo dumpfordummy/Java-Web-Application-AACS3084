@@ -3,31 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/src/java/controller/RegisterController.java</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/src/java/util/UserSessionUtil.java</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/web/loginStaff.jsp</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/src/java/controller/StaffLoginController.java</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/src/java/controller/AddProductController.java</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/src/java/controller/LoginController.java</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/web/register.jsp</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/src/java/model/CustomerService.java</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/nbproject/private/private.properties</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/nbproject/private/private.xml</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/web/productDetail.jsp</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/src/java/controller/ProfileController.java</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/src/java/interfaces/User.java</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/src/java/model/Customer.java</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/web/profile.jsp</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/web/WEB-INF/web.xml</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/web/login.jsp</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/web/profileEdit.jsp</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/src/java/controller/StaffRegisterController.java</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/src/conf/persistence.xml</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/src/java/util/hashUtil.java</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/src/java/model/Employee.java</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/web/registerStaff.jsp</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/src/java/model/EmployeeService.java</file>
-            <file>file:/C:/Users/CY/Desktop/DCS/Year%202%20Sem%203/Java%20Web/Assignment/Java-Web-Application-AMIT3084/LouisJ/web/styling/login.css</file>
+            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/web/WEB-INF/web.xml</file>
+            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/src/java/controller/ProductController.java</file>
+            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/db.sql</file>
+            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/web/navbar.jsp</file>
+            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/web/voucher.jsp</file>
+            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/web/WEB-INF/glassfish-web.xml</file>
+            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/src/java/controller/StaffListingController.java</file>
         </group>
     </open-files>
 </project-private>
