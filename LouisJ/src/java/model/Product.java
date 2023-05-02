@@ -129,27 +129,27 @@ public class Product implements Serializable {
     }
 
     public String getName() {
-        return name.toUpperCase();
+        return name;
     }
 
     public void setName(String name) {
-        this.name = name.toUpperCase();
+        this.name = name;
     }
 
     public String getDescription() {
-        return description.toUpperCase();
+        return description;
     }
 
     public void setDescription(String description) {
-        this.description = description.toUpperCase();
+        this.description = description;
     }
 
     public String getCategory() {
-        return category.toUpperCase();
+        return category;
     }
 
     public void setCategory(String category) {
-        this.category = category.toUpperCase();
+        this.category = category;
     }
 
     public String getImage() {

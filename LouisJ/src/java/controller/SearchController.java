@@ -30,9 +30,12 @@ public class SearchController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProductService productService = new ProductService(em);
+        List<String> categories = productService.findAllCategory();
+        request.setAttribute("categories", categories);
         String searchTerm = request.getParameter("searchTerm");
         searchTerm = searchTerm.toUpperCase();
         List<Product> productList = productService.findByNamePattern(searchTerm);
+  
         request.setAttribute("productList", productList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/product.jsp");
         dispatcher.forward(request, response);

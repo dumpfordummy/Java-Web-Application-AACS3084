@@ -29,14 +29,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Cart.findByCartid", query = "SELECT c FROM Cart c WHERE c.cartid = :cartid"),
     @NamedQuery(name = "Cart.findByCustomerid", query = "SELECT c FROM Cart c WHERE c.customerid = :customerid"),
     @NamedQuery(name = "Cart.findByProductid", query = "SELECT c FROM Cart c WHERE c.productid = :productid"),
-    @NamedQuery(name = "Cart.findByQty", query = "SELECT c FROM Cart c WHERE c.qty = :qty")})
+    @NamedQuery(name = "Cart.findByQty", query = "SELECT c FROM Cart c WHERE c.qty = :qty"),
+    @NamedQuery(name = "Cart.findByPaymentid", query = "SELECT c FROM Cart c WHERE c.paymentid = :paymentid")})
 public class Cart implements Serializable {
-
-    @Size(max = 36)
-    @Column(name = "CUSTOMERID")
-    private String customerid;
-    @Column(name = "ORDERID")
-    private Integer orderid;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -44,10 +39,15 @@ public class Cart implements Serializable {
     @NotNull
     @Column(name = "CARTID")
     private Integer cartid;
+    @Size(max = 36)
+    @Column(name = "CUSTOMERID")
+    private String customerid;
     @Column(name = "PRODUCTID")
     private Integer productid;
     @Column(name = "QTY")
     private Integer qty;
+    @Column(name = "PAYMENTID")
+    private Integer paymentid;
 
     public Cart() {
     }
@@ -64,6 +64,13 @@ public class Cart implements Serializable {
         this.cartid = cartid;
     }
 
+    public String getCustomerid() {
+        return customerid;
+    }
+
+    public void setCustomerid(String customerid) {
+        this.customerid = customerid;
+    }
 
     public Integer getProductid() {
         return productid;
@@ -79,6 +86,14 @@ public class Cart implements Serializable {
 
     public void setQty(Integer qty) {
         this.qty = qty;
+    }
+
+    public Integer getPaymentid() {
+        return paymentid;
+    }
+
+    public void setPaymentid(Integer paymentid) {
+        this.paymentid = paymentid;
     }
 
     @Override
@@ -104,22 +119,6 @@ public class Cart implements Serializable {
     @Override
     public String toString() {
         return "model.Cart[ cartid=" + cartid + " ]";
-    }
-
-    public String getCustomerid() {
-        return customerid;
-    }
-
-    public void setCustomerid(String customerid) {
-        this.customerid = customerid;
-    }
-
-    public Integer getOrderid() {
-        return orderid;
-    }
-
-    public void setOrderid(Integer orderid) {
-        this.orderid = orderid;
     }
     
 }

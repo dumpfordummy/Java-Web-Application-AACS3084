@@ -45,6 +45,7 @@ public class AddToCartController extends HttpServlet {
             } else {
                 lastCartid = cartList.get(0).getCartid();
             }
+            
             HttpSession session = request.getSession();
             UserSessionUtil userSession = new UserSessionUtil(session);
             User user = userSession.getCurrentLoginUser(request.getCookies());
@@ -59,7 +60,7 @@ public class AddToCartController extends HttpServlet {
             
             List<Cart> customerCartList = cartService.findByCustomerid(customerid);
             for(Cart customerCart : customerCartList){
-                if(customerCart.getProductid().equals(productid)){
+                if(customerCart.getProductid().equals(productid) && customerCart.getPaymentid() == null){
                     response.sendRedirect("/product");
                     return;
                 }

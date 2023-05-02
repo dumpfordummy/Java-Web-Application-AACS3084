@@ -35,7 +35,7 @@
                     double subTotal = 0;
                     double tax;
                     double deliveryCharge = 5;
-                    double discount = 5;
+                    double discountAmount = 5;
                     double totalPayment;
                     double totalProductPrice;
                     for (CartPK cartPK : cartPKList) {
@@ -54,7 +54,7 @@
                         subTotal += totalProductPrice;
                     }
                     tax = subTotal * 0.06;
-                    totalPayment = subTotal + tax + deliveryCharge - discount;
+                    totalPayment = subTotal + tax + deliveryCharge - discountAmount;
                 %>
             </tbody>
         </table>
@@ -76,11 +76,17 @@
                     <td><%=String.format("%.2f", subTotal)%></td>
                     <td><%=String.format("%.2f", tax)%></td>
                     <td><%=String.format("%.2f", deliveryCharge)%></td>
-                    <td><%=String.format("%.2f", discount)%></td>
+                    <td><%=String.format("%.2f", discountAmount)%></td>
                     <td><%=String.format("%.2f", totalPayment)%></td>
                     <td>
                         <form method="POST" action="checkout">
-                            <input type="hidden" name="" value="">
+                            <input type="hidden" name="customerid" value="<%=cartPKList.get(0).getCustomer().getId()%>">
+                            <input type="hidden" name="subTotal" value="<%=subTotal%>">
+                            <input type="hidden" name="tax" value="<%=tax%>">
+                            <input type="hidden" name="deliveryCharge" value="<%=deliveryCharge%>">
+                            <input type="hidden" name="discountAmount" value="<%=discountAmount%>">
+                            <input type="hidden" name="totalPayment" value="<%=totalPayment%>">
+                            <input type="hidden" name="shippingAddress" value="<%=cartPKList.get(0).getCustomer().getAddress()%>">
                             <input type="submit" value="Checkout">
                         </form>
                     </td>

@@ -1,0 +1,25 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
+*/
+/* 
+    Created on : May 1, 2023, 8:01:19 PM
+    Author     : Pua
+*/
+
+.vouchersSelectionTab{
+    margin-top: 25px;
+    border-bottom: 1px solid gray;
+}
+
+.nav-item button{
+    color: black;
+}
+
+.nav-link:focus, .nav-link:hover {
+    color: gray;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background-color: black;
+}

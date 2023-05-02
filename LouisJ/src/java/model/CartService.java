@@ -52,11 +52,6 @@ public class CartService {
         }
         return null;
     }
-    
-    public List<Cart> findAllDesc() {
-        List cartList = mgr.createNamedQuery("Cart.findAllDesc").getResultList();
-        return cartList;
-    }
 
     public boolean deleteCart(int cartid) {
         Cart cart = findCartByCartid(cartid);
@@ -71,13 +66,20 @@ public class CartService {
         List cartList = mgr.createNamedQuery("Cart.findAll").getResultList();
         return cartList;
     }
+    
+    public List<Cart> findAllDesc() {
+        List cartList = mgr.createNamedQuery("Cart.findAllDesc").getResultList();
+        return cartList;
+    }
 
-    public boolean updateItem(Cart cart) {
+    public boolean updateCart(Cart cart) {
         Cart tempCart = findCartByCartid(cart.getCartid());
         if (tempCart != null) {
             tempCart.setCustomerid(cart.getCustomerid());
             tempCart.setProductid(cart.getProductid());
             tempCart.setQty(cart.getQty());
+            tempCart.setPaymentid(cart.getPaymentid());
+            mgr.merge(tempCart);
             return true;
         }
         return false;

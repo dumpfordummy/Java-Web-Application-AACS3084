@@ -5,6 +5,7 @@
 package controller;
 
 import java.io.*;
+import java.util.List;
 import java.util.logging.*;
 import javax.annotation.Resource;
 import javax.persistence.*;
@@ -29,7 +30,15 @@ public class AddProductController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            int productid = Integer.parseInt(request.getParameter("productid"));
+            ProductService productService = new ProductService(em);
+            List<Product> ProductList = productService.findAllDesc();
+            int lastProductid;
+            if (ProductList.isEmpty()) {
+                lastProductid = 0;
+            } else {
+                lastProductid = ProductList.get(0).getProductid();
+            }
+            
             String name = request.getParameter("name");
             String description = request.getParameter("description");
             String type = request.getParameter("type");
@@ -38,14 +47,13 @@ public class AddProductController extends HttpServlet {
             String image = request.getParameter("image");
 
             Product product = new Product();
-            product.setProductid(productid);
+            product.setProductid(lastProductid + 1);
             product.setName(name);
             product.setDescription(description);
             product.setCategory(category);
             product.setPrice(price);
             product.setImage(image);
             
-            ProductService productService = new ProductService(em);
             utx.begin();
             boolean success = productService.addProduct(product);
             utx.commit();

@@ -31,21 +31,22 @@
         
         <div class="row">
             <% 
-                List<Employee> employeeList = (List<Employee>)request.getAttribute("employeeList"); 
+                List<Employee> employeeList = (List<Employee>)request.getAttribute("employeeList");
+                for (Employee e : employeeList) {
             %>
             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column m-3">
                 <div class="card bg-light d-flex flex-fill">
                     <div class="card-header border-bottom-0 p-3">
-                        <h2 class="lead"><b>StaffName</b></h2>
+                        <h2 class="lead"><b><%= e.getUsername() %></b></h2>
                     </div>
                     <div class="card-body pt-0">
                         <div class="row">
                             <div class="col-7">
                                 <ul class="ml-4 mb-0 fa-ul text-muted">
-                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-phone" style="font-size: 15px; color: gray; padding-right: 5px;"></i></span> StaffContactNo</li>
-                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-envelope" style="font-size: 15px; color: gray; padding-right: 5px;"></i></span> StaffEmail</li>
-                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-address-book-o" style="font-size: 20px; color: gray; padding-right: 5px;"></i></span> StaffAddress</li>
-                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa-solid fa-calendar-days" style="font-size: 20px; color: gray; padding-right: 5px;"></i></span> Joined 1 January 1999</li>
+                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-phone" style="font-size: 15px; color: gray; padding-right: 5px;"></i></span> <%=e.getContact() %></li>
+                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-envelope" style="font-size: 15px; color: gray; padding-right: 5px;"></i></span> <%=e.getEmail() %></li>
+                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-address-book-o" style="font-size: 20px; color: gray; padding-right: 5px;"></i></span> <%=e.getAddress() %></li>
+                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa-solid fa-calendar-days" style="font-size: 20px; color: gray; padding-right: 5px;"></i></span> Joined <%=e.getDatejoin() %></li>
                                 </ul>
                             </div>
                             <div class="col-5 text-center">
@@ -67,6 +68,7 @@
                     </div>
                 </div>
             </div>
+            <% } %>
         </div>
 
         <%@include file="footer.jsp" %>
