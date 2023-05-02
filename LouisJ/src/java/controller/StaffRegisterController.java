@@ -1,9 +1,10 @@
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 package controller;
 
+import interfaces.User;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,17 +14,17 @@ import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.Resource;
-import javax.persistence.*;
-import javax.servlet.http.*;
-import javax.servlet.*;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
-import javax.transaction.HeuristicMixedException;
-import javax.transaction.HeuristicRollbackException;
-import javax.transaction.NotSupportedException;
-import javax.transaction.SystemException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import javax.transaction.UserTransaction;
-import model.Customer;
-import model.CustomerService;
+import model.Employee;
+import model.EmployeeService;
 import util.hashUtil;
 
 /**
@@ -31,47 +32,52 @@ import util.hashUtil;
  * @author CY
  */
 @MultipartConfig
-public class RegisterController extends HttpServlet {
+public class StaffRegisterController extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
     @Resource
     UserTransaction utx;
 
-    private static final String REGISTERPAGE = "/register.jsp";
+    private static final String STAFFREGISTERPAGE = "/registerStaff.jsp";
 
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher(REGISTERPAGE).forward(request, response);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        request.getRequestDispatcher(STAFFREGISTERPAGE).forward(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
         response.setContentType("text/html");
 
         PrintWriter out = response.getWriter();
+
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String contact = request.getParameter("contact");
         String address = request.getParameter("address");
-        CustomerService customerService = new CustomerService(em);
 
-        Customer customer = customerService.findCustomerByUsername(username);
+        EmployeeService employeeService = new EmployeeService(em);
+        Employee employee = employeeService.findEmployeeByUsername(username);
 
-        if (customer == null) {
+        if (employee == null) {
             try {
-                customer = new Customer();
+                employee = new Employee();
                 String id = UUID.randomUUID().toString();
+                System.out.println("password: " + password + " , id: " + id);
                 String passwordHash = hashUtil.getHashed(password, id);
-                customer.setId(id);
-                customer.setUsername(username);
-                customer.setPasswordhash(passwordHash);
-                customer.setFullname(name);
-                customer.setEmail(email);
-                customer.setContact(contact);
-                customer.setAddress(address);
+                employee.setId(id);
+                employee.setUsername(username);
+                employee.setPasswordhash(passwordHash);
+                employee.setFullname(name);
+                employee.setEmail(email);
+                employee.setContact(contact);
+                employee.setAddress(address);
+                employee.setUsertype(User.STAFF);
 
                 Part imagePart = request.getPart("profileImg");
 
@@ -87,20 +93,20 @@ public class RegisterController extends HttpServlet {
                         buffer.flush();
                         byte[] imageBytes = buffer.toByteArray();
                         String base64Image = Base64.getEncoder().encodeToString(imageBytes);
-                        customer.setProfileimg(base64Image);
-                        customer.setProfileimgtype(imagePart.getContentType());
+                        employee.setProfileimg(base64Image);
+                        employee.setProfileimgtype(imagePart.getContentType());
                     }
                 }
 
                 utx.begin();
-                boolean isRegisterSuccess = customerService.addCustomer(customer);
+                boolean isRegisterSuccess = employeeService.addEmployee(employee);
                 utx.commit();
                 if (isRegisterSuccess) {
                     out.print("Register Successfully");
                     return;
                 }
-            } catch (NotSupportedException | SystemException | javax.transaction.RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
-                Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, ex.getMessage(), ex);
+            } catch (Exception ex) {
+                Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 

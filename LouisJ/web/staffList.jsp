@@ -4,11 +4,11 @@
     Author     : Wai Loc
 --%>
 
+<%@page import="interfaces.*"%>
+<%@page import="model.Customer"%>
 <%@page import="java.util.List"%>
 <%@page import="model.Employee"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="sessionUtil" class="util.UserSessionUtil" />
-<jsp:useBean id="user" class="interfaces.User" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,27 +21,32 @@
         <script src="https://kit.fontawesome.com/a293bfc92d.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        <% if (sessionUtil.getCurrentLoginUser(request.getCookies()).equals("manager")){ %>
-            <a class="btn btn-primary" href="" style="width: 120px; margin: 2rem 2rem 0 2rem">Add Staff</a>
-        <% } %>
+        <%
+            util.UserSessionUtil userSession = new util.UserSessionUtil(request.getSession());
+            User user = userSession.getCurrentLoginUser(request.getCookies());
+            if (user != null){
+                if (user.getUsertype().equals(User.MANAGER)){ %>
+                    <a class="btn btn-primary" href="" style="width: 120px; margin: 2rem 2rem 0 2rem">Add Staff</a>
+        <%  }} %>
         
         <div class="row">
             <% 
-                List<Employee> employeeList = (List<Employee>)request.getAttribute("employeeList"); 
+                List<Employee> employeeList = (List<Employee>)request.getAttribute("employeeList");
+                for (Employee e : employeeList) {
             %>
             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column m-3">
                 <div class="card bg-light d-flex flex-fill">
                     <div class="card-header border-bottom-0 p-3">
-                        <h2 class="lead"><b>StaffName</b></h2>
+                        <h2 class="lead"><b><%= e.getUsername() %></b></h2>
                     </div>
                     <div class="card-body pt-0">
                         <div class="row">
                             <div class="col-7">
                                 <ul class="ml-4 mb-0 fa-ul text-muted">
-                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-phone" style="font-size: 15px; color: gray; padding-right: 5px;"></i></span> StaffContactNo</li>
-                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-envelope" style="font-size: 15px; color: gray; padding-right: 5px;"></i></span> StaffEmail</li>
-                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-address-book-o" style="font-size: 20px; color: gray; padding-right: 5px;"></i></span> StaffAddress</li>
-                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa-solid fa-calendar-days" style="font-size: 20px; color: gray; padding-right: 5px;"></i></span> Joined 1 January 1999</li>
+                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-phone" style="font-size: 15px; color: gray; padding-right: 5px;"></i></span> <%=e.getContact() %></li>
+                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-envelope" style="font-size: 15px; color: gray; padding-right: 5px;"></i></span> <%=e.getEmail() %></li>
+                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-address-book-o" style="font-size: 20px; color: gray; padding-right: 5px;"></i></span> <%=e.getAddress() %></li>
+                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa-solid fa-calendar-days" style="font-size: 20px; color: gray; padding-right: 5px;"></i></span> Joined <%=e.getDatejoin() %></li>
                                 </ul>
                             </div>
                             <div class="col-5 text-center">
@@ -51,17 +56,19 @@
                     </div>
                     <div class="card-footer p-3">
                         
-                        <% if (sessionUtil.getCurrentLoginUser(request.getCookies()).equals("manager")){ %>
-                            <a href="" style="text-decoration: none;">
-                                <i class="fa-regular fa-pen-to-square fa-2xl"></i>
-                            </a>
-                            <a id="deleteItem" style="cursor: pointer;" class="deleteItem" data-target="#basic" data-toggle="modal">
-                                <i class="fa fa-trash fa-2xl"></i>
-                            </a>
-                        <% } %>
+                        <%  if (user != null){
+                                if (user.getUsertype().equals(User.MANAGER)){ %>
+                                    <a href="" style="text-decoration: none;">
+                                        <i class="fa-regular fa-pen-to-square fa-2xl"></i>
+                                    </a>
+                                    <a id="deleteItem" style="cursor: pointer;" class="deleteItem" data-target="#basic" data-toggle="modal">
+                                        <i class="fa fa-trash fa-2xl"></i>
+                                    </a>
+                        <%  }} %>
                     </div>
                 </div>
             </div>
+            <% } %>
         </div>
 
         <%@include file="footer.jsp" %>

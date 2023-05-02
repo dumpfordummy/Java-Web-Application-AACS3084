@@ -1,8 +1,6 @@
 package controller;
 
-import interfaces.User;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.annotation.Resource;
 import javax.persistence.*;
 import javax.servlet.http.*;
@@ -32,12 +30,6 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserSessionUtil userSession = new UserSessionUtil(request.getSession());
-        User    user = userSession.getCurrentLoginUser(request.getCookies());
-        if (user != null) {
-            response.sendRedirect(HOMEPAGE);
-            return;
-        }
         request.getRequestDispatcher(LOGINPAGE).forward(request, response);
 
     }
@@ -46,7 +38,6 @@ public class LoginController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
 
-        PrintWriter out = response.getWriter();
         String username = request.getParameter("uname");
         String password = request.getParameter("upass");
         CustomerService customerService = new CustomerService(em);

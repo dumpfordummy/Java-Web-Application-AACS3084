@@ -51,7 +51,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="col-md-9">
                     <div class="row product">
                         <%
@@ -64,7 +63,7 @@
                                     <p class="text-center"><img src="images/<%=product.getImage()%>" class="imw"/></p> 
                                 </div>
                                 <div class="card-body">
-                                    <h5 class="text-center"><%=product.getName()%></h5> 
+                                    <h5 class="text-center"><%=product.getName()%></h5>
                                     <p class="text-center">Price: RM <%=product.getPrice()%></p>
                                     <form class="text-center" method="POST" action="productDetail">
                                         <input type="hidden" name="productid" value="<%=product.getProductid()%>">
@@ -78,6 +77,7 @@
                         %> 
                     </div>
                 </div>
+
             </div>
         </div>
         <script>
