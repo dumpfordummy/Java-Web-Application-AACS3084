@@ -39,7 +39,7 @@
                     <span class="ml-2">CART</span>
                 </a>
             </div>
-        </nav>
+        </nav>  
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="homePage.jsp" target="_blank">Home</a>
@@ -48,6 +48,8 @@
             <a href="customerList" target="_blank">Customer List</a>
             <a href="staffList" target="_blank">Staff List</a>
             <a href="orderList.jsp" target="_blank">Order List</a>
+            <a href="voucher.jsp" target="_blank">Vouchers</a>
+            <a href="addVoucher.jsp" target="_blank">Add Voucher</a>
         </div>
 
         <script>
