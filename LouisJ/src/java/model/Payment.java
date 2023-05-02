@@ -24,27 +24,38 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author Asus
  */
 @Entity
-@Table(name = "ORDER")
+@Table(name = "PAYMENT")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Order.findAll", query = "SELECT o FROM Order o"),
-    @NamedQuery(name = "Order.findByOrderid", query = "SELECT o FROM Order o WHERE o.orderid = :orderid"),
-    @NamedQuery(name = "Order.findByCustomerid", query = "SELECT o FROM Order o WHERE o.customerid = :customerid"),
-    @NamedQuery(name = "Order.findByEmployeeid", query = "SELECT o FROM Order o WHERE o.employeeid = :employeeid")})
-public class Order implements Serializable {
+    @NamedQuery(name = "Payment.findAll", query = "SELECT p FROM Payment p"),
+    @NamedQuery(name = "Payment.findByPaymentid", query = "SELECT p FROM Payment p WHERE p.paymentid = :paymentid"),
+    @NamedQuery(name = "Payment.findByCustomerid", query = "SELECT p FROM Payment p WHERE p.customerid = :customerid"),
+    @NamedQuery(name = "Payment.findByEmployeeid", query = "SELECT p FROM Payment p WHERE p.employeeid = :employeeid"),
+    @NamedQuery(name = "Payment.findByStatus", query = "SELECT p FROM Payment p WHERE p.status = :status")})
+public class Payment implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @Basic(optional = false)
-    @NotNull
-    @Column(name = "ORDERID")
-    private Integer orderid;
     @Size(max = 36)
     @Column(name = "CUSTOMERID")
     private String customerid;
     @Size(max = 36)
     @Column(name = "EMPLOYEEID")
     private String employeeid;
+    @Size(max = 50)
+    @Column(name = "SHIPPINGADDRESS")
+    private String shippingaddress;
+    @Size(max = 256)
+    @Column(name = "PAYMENTMETHOD")
+    private String paymentmethod;
+    @Size(max = 256)
+    @Column(name = "STATUS")
+    private String status;
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "PAYMENTID")
+    private Integer paymentid;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "SUBTOTAL")
     private Double subTotal;
@@ -56,55 +67,31 @@ public class Order implements Serializable {
     private Double discountAmount;
     @Column(name = "TOTALPAYMENT")
     private Double totalPayment;
-    @Size(max = 50)
-    @Column(name = "SHIPPINGADDRESS")
-    private String shippingAddress;
-    @Size(max = 256)
-    @Column(name = "PAYMENTMETHOD")
-    private String paymentMethod;
-    @Size(max = 256)
-    @Column(name = "STATUS")
-    private String status;
     @Column(name = "ORDERDATE")
     @Temporal(TemporalType.DATE)
     private Date orderDate;
 
-    public Order() {
+    public Payment() {
     }
 
-    public Order(Integer orderid) {
-        this.orderid = orderid;
+    public Payment(Integer paymentid) {
+        this.paymentid = paymentid;
     }
 
-    public Integer getOrderid() {
-        return orderid;
+    public Integer getPaymentid() {
+        return paymentid;
     }
 
-    public void setOrderid(Integer orderid) {
-        this.orderid = orderid;
+    public void setPaymentid(Integer paymentid) {
+        this.paymentid = paymentid;
     }
 
-    public String getCustomerid() {
-        return customerid;
-    }
-
-    public void setCustomerid(String customerid) {
-        this.customerid = customerid;
-    }
-
-    public String getEmployeeid() {
-        return employeeid;
-    }
-
-    public void setEmployeeid(String employeeid) {
-        this.employeeid = employeeid;
-    }
 
     public Double getSubTotal() {
         return subTotal;
     }
 
-    public void setSubtotal(Double subTotal) {
+    public void setsubTotal(Double subTotal) {
         this.subTotal = subTotal;
     }
 
@@ -140,29 +127,6 @@ public class Order implements Serializable {
         this.totalPayment = totalPayment;
     }
 
-    public String getShippingAddress() {
-        return shippingAddress;
-    }
-
-    public void setShippingAddress(String shippingAddress) {
-        this.shippingAddress = shippingAddress;
-    }
-
-    public String getPaymentMethod() {
-        return paymentMethod;
-    }
-
-    public void setPaymentMethod(String paymentMethod) {
-        this.paymentMethod = paymentMethod;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     public Date getOrderDate() {
         return orderDate;
@@ -175,18 +139,18 @@ public class Order implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (orderid != null ? orderid.hashCode() : 0);
+        hash += (paymentid != null ? paymentid.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Order)) {
+        if (!(object instanceof Payment)) {
             return false;
         }
-        Order other = (Order) object;
-        if ((this.orderid == null && other.orderid != null) || (this.orderid != null && !this.orderid.equals(other.orderid))) {
+        Payment other = (Payment) object;
+        if ((this.paymentid == null && other.paymentid != null) || (this.paymentid != null && !this.paymentid.equals(other.paymentid))) {
             return false;
         }
         return true;
@@ -194,7 +158,47 @@ public class Order implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Order[ orderid=" + orderid + " ]";
+        return "model.Payment[ paymentid=" + paymentid + " ]";
+    }
+
+    public String getCustomerid() {
+        return customerid;
+    }
+
+    public void setCustomerid(String customerid) {
+        this.customerid = customerid;
+    }
+
+    public String getEmployeeid() {
+        return employeeid;
+    }
+
+    public void setEmployeeid(String employeeid) {
+        this.employeeid = employeeid;
+    }
+
+    public String getShippingaddress() {
+        return shippingaddress;
+    }
+
+    public void setShippingaddress(String shippingaddress) {
+        this.shippingaddress = shippingaddress;
+    }
+
+    public String getPaymentmethod() {
+        return paymentmethod;
+    }
+
+    public void setPaymentmethod(String paymentmethod) {
+        this.paymentmethod = paymentmethod;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
     
 }

@@ -78,7 +78,7 @@ public class CartService {
             tempCart.setCustomerid(cart.getCustomerid());
             tempCart.setProductid(cart.getProductid());
             tempCart.setQty(cart.getQty());
-            tempCart.setOrderid(cart.getOrderid());
+            tempCart.setPaymentid(cart.getPaymentid());
             mgr.merge(tempCart);
             return true;
         }
