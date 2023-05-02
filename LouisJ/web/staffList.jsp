@@ -16,8 +16,8 @@
         <title>Louis J - Staff List</title>
         <link rel="stylesheet" href="styling/index.css" type="text/css">
         <link rel="stylesheet" href="styling/listPages.css" text="text/css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/a293bfc92d.js" crossorigin="anonymous"></script>
+        <%@include file="components/common_css_js.jsp" %>
         <%@include file="navbar.jsp" %> 
     </head>
     <body>
