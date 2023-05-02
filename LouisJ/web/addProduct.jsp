@@ -9,23 +9,45 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <%@include file="components/common_css_js.jsp" %>
+        <%@include file="navbar.jsp" %>
         <title>Add Product</title>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="styling/addProduct.css">
     </head>
     <body>
-        <h1>Add Product</h1>
-        <form method="POST" action="addProduct">
-            <label for="name">Name:</label>
-            <input type="text" name="name"><br>
-            <label for="description">Description:</label>
-            <input type="text" name="description"><br>
-            <label for="category">Category</label>
-            <input type="text" name="category"><br>
-            <label for="price">Price:</label>
-            <input type="number" step="0.01" name="price"><br>
-            <label for="image">Select image:</label>
-            <input type="file" name="image">
-            <input type="submit" value="Add Product">
-            <input type="reset" value="Reset">
-        </form>
+        <div class="container">
+            <div class="card">
+                <div class="container-fliud">
+                    <form runat="server" method="POST" action="addProduct" class="wrapper row">
+                        <div class="preview col-md-6">
+                            <div class="preview-pic tab-content">
+                                <img id="blah" src="#" /><br/>
+                                <input type='file' id="imgInp" name="image"/>
+                            </div>
+                        </div>
+                        <div class="details col-md-6">
+                            <h1 class="product-title">Name:<input class="form-control mr-sm-2" type="text" name="name"></h1>
+                            <h1 class="product-title">Description:<input class="form-control mr-sm-2" type="text" name="description"></h1>
+                            <h1 class="product-title">Price:<input class="form-control mr-sm-2" type="number" step="0.01" name="price"></h1>
+                            <h1 class="product-title">Category:<input class="form-control mr-sm-2" type="text" name="category"></h1>
+                            <input type="submit" class="add-product btn btn-default" value="Add Product">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script>
+            imgInp.onchange = evt => {
+                const [file] = imgInp.files;
+                if (file) {
+                    blah.src = URL.createObjectURL(file);
+                }
+            };
+        </script>    
     </body>
+    <footer>
+        <%@include file="footer.jsp" %>
+    </footer>
 </html>
