@@ -35,12 +35,13 @@ public class ImageController extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String[] paths = request.getRequestURI().substring(1).split("/");
-        String userRole = paths[1];
-        String userId = paths[2];
-        User user;
         if (paths.length != 3) {
             return;
         }
+        String userRole = paths[1];
+        String userId = paths[2];
+        User user;
+        
 
         if (userRole.equals(User.CUSTOMER)) {
             CustomerService customerService = new CustomerService(em);
@@ -52,7 +53,7 @@ public class ImageController extends HttpServlet {
         response.setContentType(user.getProfileimgtype());
 
         String profileImage = user.getProfileimg();
-
+  
         byte[] profileImageByteArray = Base64.getDecoder().decode(profileImage);
 
         response.getOutputStream().write(profileImageByteArray);
