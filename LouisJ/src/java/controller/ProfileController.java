@@ -13,6 +13,7 @@ import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import javax.transaction.UserTransaction;
 import model.Customer;
@@ -25,6 +26,7 @@ import util.UserSessionUtil;
  *
  * @author CY
  */
+@WebServlet(urlPatterns = {"/profile", "/profile/*"})
 public class ProfileController extends HttpServlet {
 
     @PersistenceContext

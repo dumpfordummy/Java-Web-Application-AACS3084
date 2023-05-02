@@ -18,7 +18,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -37,7 +36,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email"),
     @NamedQuery(name = "Customer.findByFullname", query = "SELECT c FROM Customer c WHERE c.fullname = :fullname"),
     @NamedQuery(name = "Customer.findByContact", query = "SELECT c FROM Customer c WHERE c.contact = :contact"),
-    @NamedQuery(name = "Customer.findByAddress", query = "SELECT c FROM Customer c WHERE c.address = :address")})
+    @NamedQuery(name = "Customer.findByAddress", query = "SELECT c FROM Customer c WHERE c.address = :address"),
+    @NamedQuery(name = "Customer.findByDatejoin", query = "SELECT c FROM Customer c WHERE c.datejoin = :datejoin"),
+    @NamedQuery(name = "Customer.findByProfileimgtype", query = "SELECT c FROM Customer c WHERE c.profileimgtype = :profileimgtype")})
 public class Customer extends User implements Serializable {
 
     @Basic(optional = false)
@@ -51,10 +52,6 @@ public class Customer extends User implements Serializable {
     @Column(name = "PASSWORDHASH")
     private String passwordhash;
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 50)
@@ -65,8 +62,9 @@ public class Customer extends User implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "FULLNAME")
     private String fullname;
-    @Basic(optional=false)//if the field contains email address consider using this annotation to enforce field validation
-    @NotNull()
+    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
+    @Basic(optional = false)
+    @NotNull
     @Size(min = 1, max = 50)
     @Column(name = "CONTACT")
     private String contact;
@@ -79,12 +77,8 @@ public class Customer extends User implements Serializable {
     @Column(name = "PROFILEIMGTYPE")
     private String profileimgtype;
     @Lob()
-    @Size(max = 32700)
     @Column(name = "PROFILEIMG")
     private String profileimg;
-    @Column(name = "DATEJOIN")
-    @Temporal(TemporalType.DATE)
-    private Date datejoin;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -92,10 +86,13 @@ public class Customer extends User implements Serializable {
     @Size(min = 1, max = 36)
     @Column(name = "ID")
     private String id;
+    @Column(name = "DATEJOIN")
+    @Temporal(TemporalType.DATE)
+    private Date datejoin;
 
     public Customer() {
-        setUsertype(User.CUSTOMER);
         setDatejoin(new Date());
+        setUsertype(User.CUSTOMER);
     }
 
     public Customer(String id) {
@@ -103,13 +100,12 @@ public class Customer extends User implements Serializable {
         this.id = id;
     }
 
-    public Customer(String id, String username, String passwordhash, String email, String profileimg, String fullname, String contact, String address) {
+    public Customer(String id, String username, String passwordhash, String email, String fullname, String contact, String address) {
         this();
         this.id = id;
         this.username = username;
         this.passwordhash = passwordhash;
         this.email = email;
-        this.profileimg = profileimg;
         this.fullname = fullname;
         this.contact = contact;
         this.address = address;
@@ -121,6 +117,12 @@ public class Customer extends User implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+    public Date getDatejoin() {
+        return datejoin;
+    }
+    public void setDatejoin(Date datejoin) {
+        this.datejoin = datejoin;
     }
     @Override
     public int hashCode() {
@@ -143,12 +145,6 @@ public class Customer extends User implements Serializable {
     @Override
     public String toString() {
         return "model.Customer[ id=" + id + " ]";
-    }
-    public Date getDatejoin() {
-        return datejoin;
-    }
-    public void setDatejoin(Date datejoin) {
-        this.datejoin = datejoin;
     }
 
     public String getUsername() {

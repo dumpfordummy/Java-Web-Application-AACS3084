@@ -37,7 +37,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Employee.findByFullname", query = "SELECT e FROM Employee e WHERE e.fullname = :fullname"),
     @NamedQuery(name = "Employee.findByContact", query = "SELECT e FROM Employee e WHERE e.contact = :contact"),
     @NamedQuery(name = "Employee.findByAddress", query = "SELECT e FROM Employee e WHERE e.address = :address"),
-    @NamedQuery(name = "Employee.findByUsertype", query = "SELECT e FROM Employee e WHERE e.usertype = :usertype")})
+    @NamedQuery(name = "Employee.findByUsertype", query = "SELECT e FROM Employee e WHERE e.usertype = :usertype"),
+    @NamedQuery(name = "Employee.findByDatejoin", query = "SELECT e FROM Employee e WHERE e.datejoin = :datejoin"),
+    @NamedQuery(name = "Employee.findByProfileimgtype", query = "SELECT e FROM Employee e WHERE e.profileimgtype = :profileimgtype")})
 public class Employee extends User implements Serializable {
 
     @Basic(optional = false)
@@ -50,11 +52,6 @@ public class Employee extends User implements Serializable {
     @Size(min = 1, max = 50)
     @Column(name = "PASSWORDHASH")
     private String passwordhash;
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
-    // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     // @Pattern(regexp="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?", message="Invalid email")//if the field contains email address consider using this annotation to enforce field validation
     @Basic(optional = false)
     @NotNull
@@ -86,12 +83,8 @@ public class Employee extends User implements Serializable {
     @Column(name = "PROFILEIMGTYPE")
     private String profileimgtype;
     @Lob()
-    @Size(max = 32700)
     @Column(name = "PROFILEIMG")
     private String profileimg;
-    @Column(name = "DATEJOIN")
-    @Temporal(TemporalType.DATE)
-    private Date datejoin;
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -99,9 +92,13 @@ public class Employee extends User implements Serializable {
     @Size(min = 1, max = 36)
     @Column(name = "ID")
     private String id;
+    @Column(name = "DATEJOIN")
+    @Temporal(TemporalType.DATE)
+    private Date datejoin;
 
     public Employee() {
         setDatejoin(new Date());
+        setUsertype(User.STAFF);
     }
 
     public Employee(String id) {
@@ -109,13 +106,12 @@ public class Employee extends User implements Serializable {
         this.id = id;
     }
 
-    public Employee(String id, String username, String passwordhash, String email, String profileimg, String fullname, String contact, String address, String usertype) {
+    public Employee(String id, String username, String passwordhash, String email, String fullname, String contact, String address, String usertype) {
         this();
         this.id = id;
         this.username = username;
         this.passwordhash = passwordhash;
         this.email = email;
-        this.profileimg = profileimg;
         this.fullname = fullname;
         this.contact = contact;
         this.address = address;
@@ -128,6 +124,12 @@ public class Employee extends User implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+    public Date getDatejoin() {
+        return datejoin;
+    }
+    public void setDatejoin(Date datejoin) {
+        this.datejoin = datejoin;
     }
     @Override
     public int hashCode() {
@@ -150,12 +152,6 @@ public class Employee extends User implements Serializable {
     @Override
     public String toString() {
         return "model.Employee[ id=" + id + " ]";
-    }
-    public Date getDatejoin() {
-        return datejoin;
-    }
-    public void setDatejoin(Date datejoin) {
-        this.datejoin = datejoin;
     }
 
     public String getUsername() {
