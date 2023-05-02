@@ -8,6 +8,8 @@ import interfaces.User;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.RequestDispatcher;
@@ -36,36 +38,38 @@ public class CartPaymentController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        UserSessionUtil userSession = new UserSessionUtil(session);
-        User user = userSession.getCurrentLoginUser(request.getCookies());
-        if (user == null || !user.getUsertype().equals(User.CUSTOMER)) {
-            response.sendRedirect("/login");
-            return;
-        }
-        user = (Customer) user;
-        String customerid = user.getId();
-        
-        CartService cartService = new CartService(em);
-        List<Cart> customerCartList = cartService.findByCustomerid(customerid);
-        List<CartPK> cartPKList = new ArrayList<>();
-        CustomerService customerService = new CustomerService(em);
-        ProductService productService = new ProductService(em);
-        Customer customer;
-        Product product;
-        for(Cart cart : customerCartList){
-            if (cart.getPaymentid() == null) {
-                customer = customerService.findCustomerById(cart.getCustomerid());
-                product = productService.findProductByProductid(cart.getProductid());
-                cartPKList.add(new CartPK(cart.getCartid(), customer, product, cart.getQty()));
+        try {
+            HttpSession session = request.getSession();
+            UserSessionUtil userSession = new UserSessionUtil(session);
+            User user = userSession.getCurrentLoginUser(request.getCookies());
+            if (user == null || !user.getUsertype().equals(User.CUSTOMER)) {
+                response.sendRedirect("/login");
+                return;
             }
-        }
-        
+            user = (Customer) user;
+            String customerid = user.getId();
 
-        
-        request.setAttribute("cartPKList", cartPKList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/cartPayment.jsp");
-        dispatcher.forward(request, response);
-        
+            CartService cartService = new CartService(em);
+            List<Cart> customerCartList = cartService.findByCustomerid(customerid);
+            List<CartPK> cartPKList = new ArrayList<>();
+            CustomerService customerService = new CustomerService(em);
+            ProductService productService = new ProductService(em);
+            Customer customer;
+            Product product;
+            for (Cart cart : customerCartList) {
+                if (cart.getPaymentid() == null) {
+                    customer = customerService.findCustomerById(cart.getCustomerid());
+                    product = productService.findProductByProductid(cart.getProductid());
+                    cartPKList.add(new CartPK(cart.getCartid(), customer, product, cart.getQty()));
+                }
+            }
+
+            request.setAttribute("cartPKList", cartPKList);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/cartPayment.jsp");
+            dispatcher.forward(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendRedirect(request.getContextPath() + "/product");
+        }
     }
 }

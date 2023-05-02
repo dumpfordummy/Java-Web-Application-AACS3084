@@ -6,6 +6,8 @@ package controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.RequestDispatcher;
@@ -28,19 +30,23 @@ public class ProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        ProductService productService = new ProductService(em);
-        
-        // Find all product
-        List<Product> productList = productService.findAll();
-        List<String> categories = productService.findAllCategory();
-        double maxPrice = productService.findMaxPrice();
-        request.setAttribute("productList", productList);
-        request.setAttribute("maxPrice", maxPrice);
-        request.setAttribute("priceRangeInput", maxPrice);
-        request.setAttribute("categories", categories);
-        
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/product.jsp");
-        dispatcher.forward(request, response);
-        
+        try {
+            ProductService productService = new ProductService(em);
+
+            // Find all product
+            List<Product> productList = productService.findAll();
+            List<String> categories = productService.findAllCategory();
+            double maxPrice = productService.findMaxPrice();
+            request.setAttribute("productList", productList);
+            request.setAttribute("maxPrice", maxPrice);
+            request.setAttribute("priceRangeInput", maxPrice);
+            request.setAttribute("categories", categories);
+
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/product.jsp");
+            dispatcher.forward(request, response);
+        } catch (Exception ex) {
+            Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendRedirect(request.getContextPath());
+        }
     }
 }
