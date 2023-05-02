@@ -67,7 +67,7 @@
                                     <p class="text-center">Price: RM <%=product.getPrice()%></p>
                                     <form class="text-center" method="POST" action="productDetail">
                                         <input type="hidden" name="productid" value="<%=product.getProductid()%>">
-                                        <input type="submit" value="Learn Detail" class="cc1">
+                                        <input type="submit" value="Learn More" class="cc1">
                                     </form>
                                         <br/>
                                     <form class="text-center" method="POST" action="deleteProduct">

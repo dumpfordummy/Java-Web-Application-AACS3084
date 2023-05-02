@@ -112,7 +112,7 @@ a{
 }
 
 .btnDelete{
-    background: red;
+    background: lightcoral;
     color: #000;
     padding: 4px 8px;
     border: 1px solid #000;
@@ -120,7 +120,7 @@ a{
     border-radius: 7px;
 
     &:hover{
-        background: darkred;
+        background: red;
         border: 1px solid #000;
     }
 }

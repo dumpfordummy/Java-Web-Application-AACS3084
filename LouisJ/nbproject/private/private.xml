@@ -4,9 +4,12 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/web/homePage.jsp</file>
-            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/web/styling/welcomeCSS.css</file>
-            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/web/welcome.jsp</file>
+            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/src/java/controller/ProductController.java</file>
+            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/web/product.jsp</file>
+            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/src/java/controller/HomePageController.java</file>
+            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/src/java/controller/DeleteProductController.java</file>
             <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/web/styling/homePage.css</file>
+            <file>file:/C:/Users/Pua/OneDrive/Desktop/PUA%2003/DCS/SEM3%20JAVA%20ASSG/Java-Web-Application-AMIT3084/LouisJ/src/java/model/ProductService.java</file>
         </group>
     </open-files>
 </project-private>

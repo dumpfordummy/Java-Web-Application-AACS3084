@@ -18,8 +18,10 @@
             <header class="text-center">
                 <h1 class="text-uppercase header-txt"><strong>Louis J</strong></h1>
             </header>
-            <section class="text-center">
+            <section class="text-center buttonSection">
+                <form method="get" action="home">
                 <button id="btn-xl" class="exploringBtn">Start Exploring</button>
+                </form>
             </section>
         </div>
 

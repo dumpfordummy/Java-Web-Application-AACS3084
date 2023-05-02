@@ -72,6 +72,12 @@ public class ProductService {
         return query.getResultList();
     }
 
+    public Product findFirstProductImageByCategory(String category) {
+        TypedQuery<Product> query = mgr.createNamedQuery("Product.findFirstProductImageByCategory", Product.class);
+        query.setParameter("category", category);
+        return query.getSingleResult();
+    }
+
     public List<Product> findByCategoryAndPriceRange(String category, Double priceRange) {
         TypedQuery<Product> query = mgr.createNamedQuery("Product.findByCategoryAndPriceRange", Product.class);
         query.setParameter("category", category);
@@ -94,7 +100,7 @@ public class ProductService {
         TypedQuery<String> query = mgr.createNamedQuery("Product.findAllCategory", String.class);
         return query.getResultList();
     }
-    
+
     public boolean updateProduct(Product product) {
         Product tempProduct = findProductByProductid(product.getProductid());
         if (tempProduct != null) {

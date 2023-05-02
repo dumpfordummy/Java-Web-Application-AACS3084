@@ -42,7 +42,7 @@
         </nav>  
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="homePage.jsp" target="_blank">Home</a>
+            <a href="home" target="_blank">Home</a>
             <a href="product" target="_blank">Products</a>
             <a href="addProduct.jsp" target="_blank">Add Product</a>
             <a href="customerList" target="_blank">Customer List</a>
