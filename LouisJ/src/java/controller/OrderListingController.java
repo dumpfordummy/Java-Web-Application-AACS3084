@@ -15,16 +15,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Customer;
-import model.CustomerService;
+import model.Payment;
+import model.PaymentService;
 import util.UserSessionUtil;
 
 /**
  *
  * @author Wai Loc
  */
-@WebServlet(urlPatterns={"/customerList"})
-public class CustomerListingController extends HttpServlet {
+@WebServlet(urlPatterns={"/orderList"})
+public class OrderListingController extends HttpServlet {
     @PersistenceContext EntityManager em;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -38,15 +38,15 @@ public class CustomerListingController extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CustomerService customerService = new CustomerService(em);
-        List<Customer> customerList = customerService.findAll();
-        request.setAttribute("employeeList", customerList);
+        PaymentService paymentService = new PaymentService(em);
+        List<Payment> paymentList = paymentService.findAll();
+        request.setAttribute("paymentList", paymentList);
         
         UserSessionUtil userSession = new UserSessionUtil(request.getSession());
         User user = userSession.getCurrentLoginUser(request.getCookies());
         if (user != null){
             if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)){ 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/staffList.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/orderList.jsp");
                 dispatcher.forward(request, response);
             }
             else {
@@ -68,12 +68,8 @@ public class CustomerListingController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        CustomerService customerService = new CustomerService(em);
-        List<Customer> customerList = customerService.findAll();
-        request.setAttribute("employeeList", customerList);
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/staffList.jsp");
-        dispatcher.forward(request, response);
     }
+
 
 }

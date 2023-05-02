@@ -55,6 +55,8 @@
     <servlet>
         <servlet-name>HomePageController</servlet-name>
         <servlet-class>controller.HomePageController</servlet-class>
+        <servlet-name>OrderListingController</servlet-name>
+        <servlet-class>controller.OrderListingController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
@@ -111,6 +113,8 @@
     <servlet-mapping>
         <servlet-name>HomePageController</servlet-name>
         <url-pattern>/home</url-pattern>
+        <servlet-name>OrderListingController</servlet-name>
+        <url-pattern>/OrderListingController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

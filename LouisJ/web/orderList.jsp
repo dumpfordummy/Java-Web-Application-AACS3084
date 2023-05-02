@@ -4,6 +4,9 @@
     Author     : Wai Loc
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="model.Payment"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -18,22 +21,25 @@
     <body>
 
         <div class="row m-3 justify-content-between" style="background-color: #f7c188;">
-            <div class="col-8 p-3">
-                Order number: XXXXXX<br />
-                Date: dd/MM/YYYY<br />
-                <br />
-                Items:<br />
-                1.<br />
-                2.<br />
-                3.<br /><br />
-                Subtotal: RM XXX<br />
-            </div>
-            <div class="col-2 p-3">
-                <p>
-                    <span>STATUS: </span>
-                    <span>DELIVERED</span><span>/ </span><span>PENDING</span>
-                </p>
-            </div>
+            <% 
+                List<Payment> paymentList = (List<Payment>)request.getAttribute("paymentList");
+                for (Payment p : paymentList ){
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+            %>
+                <div class="col-8 p-3">
+                    Order number: <%= p.getPaymentid() %><br />
+                    Date: <%= dateFormat.format(p.getOrderDate()) %><br />
+                    <br />
+                    <br />
+                    Subtotal: RM <%= p.getSubTotal() %><br />
+                </div>
+                <div class="col-2 p-3">
+                    <p>
+                        <span>STATUS: </span>
+                        <span><%= p.getStatus() %></span>
+                    </p>
+                </div>
+            <% } %>
         </div>
         
         <%@include file="footer.jsp" %>
