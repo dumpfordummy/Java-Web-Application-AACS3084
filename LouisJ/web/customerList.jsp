@@ -31,7 +31,7 @@
                     <a class="btn btn-primary" href="" style="width: 120px; margin: 2rem 2rem 0 2rem">Add Customer</a>
         <%  }} %>
         
-        <div class="row">
+        <div class="row" style="margin-bottom: 2rem;">
             <% 
                 List<Customer> customerList = (List<Customer>)request.getAttribute("customerList");
                 for (Customer c : customerList ){

@@ -29,7 +29,7 @@
                     <a class="btn btn-primary" href="" style="width: 120px; margin: 2rem 2rem 0 2rem">Add Staff</a>
         <%  }} %>
         
-        <div class="row">
+        <div class="row" style="margin-bottom: 2rem;">
             <% 
                 List<Employee> employeeList = (List<Employee>)request.getAttribute("employeeList");
                 for (Employee e : employeeList) {
