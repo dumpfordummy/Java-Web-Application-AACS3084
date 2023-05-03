@@ -84,12 +84,7 @@ public class PaymentService {
     }
 
     public boolean updatePayment(Payment payment) {
-        Payment tempPayment = findPaymentByPaymentid(payment.getPaymentid());
-        if (tempPayment != null) {
-            tempPayment.setCustomerid(payment.getCustomerid());
-            mgr.merge(tempPayment);
-            return true;
-        }
-        return false;
+        mgr.merge(payment);
+        return true;
     }
 }

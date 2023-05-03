@@ -18,12 +18,24 @@
         <%@include file="components/common_css_js.jsp" %>
         <%@include file="navbar.jsp" %>
     </head>
-    <body>        
+    <body> 
+        <% 
+            boolean success = Boolean.valueOf(String.valueOf(request.getAttribute("updateSuccess")));
+            if (success){
+        %>
+            <div class="row" style="padding: 0.5rem 1rem;">
+                <div class="SuccessBox">
+                    <i class="fa fa-check-circle-o" style="padding-right: 10px; font-size: 20px;"></i>
+                    <label style="padding-top: 5px;">Order updated successfully!</label>
+                    <span class="DivClose" onclick="this.parentNode.parentNode.removeChild(this.parentNode); return false;">&times;</span>
+                </div>
+            </div>
+        <% } %>
         <% 
             List<Payment> paymentList = (List<Payment>) request.getAttribute("paymentList");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
             for (Payment p : paymentList){
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
-                if(p.getStatus().toUpperCase().equals("DELIVERED")){
+                if(p.getStatus().toUpperCase().equals("COMPLETED")){
         %>
             <div class="row m-3 justify-content-between rounded" style="background-color: #29E275;">
                 <div class="col-10 p-3">
@@ -39,7 +51,10 @@
                         <span><%= p.getStatus() %></span>
                     </p>
                 </div>
-                <a class="btn btn-primary" href="" style="width: 160px; margin: 1rem 2rem ">Change Status</a>
+                <form action="/orderUpdate" method="GET">
+                    <input type="hidden" value="<%= p.getPaymentid() %>" name="PaymentID" />
+                    <button type="submit" class="btn btn-primary" style="width: 160px; margin: 1rem 2rem">Change Status</button>
+                </form>
             </div>
         <%      }
                 else { %>
@@ -57,7 +72,10 @@
                             <span><%= p.getStatus() %></span>
                         </p>
                     </div>
-                    <a class="btn btn-primary" href="" style="width: 160px; margin: 1rem 2rem ">Change Status</a>
+                    <form action="/orderUpdate" method="GET">
+                        <input type="hidden" value="<%= p.getPaymentid() %>" name="PaymentID" />
+                        <button type="submit" class="btn btn-primary" style="width: 160px; margin: 1rem 2rem">Change Status</button>
+                    </form>
                 </div>
             <%  }}  %>
         

@@ -64,6 +64,10 @@
         <servlet-name>CustomerListingController</servlet-name>
         <servlet-class>controller.CustomerListingController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>OrderUpdateController</servlet-name>
+        <servlet-class>controller.OrderUpdateController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>CustomerListingController</servlet-name>
         <url-pattern>/CustomerListingController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderUpdateController</servlet-name>
+        <url-pattern>/OrderUpdateController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

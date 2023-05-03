@@ -56,6 +56,12 @@ public class CustomerListingController extends HttpServlet {
                 dispatcher.forward(request, response);
             }
         }
+        else {
+            request.setAttribute("errorTitle", "Forbidden Access");
+            request.setAttribute("errorMessage", "You are not logged in, hence you do not have access to this page.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/error.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     /**
