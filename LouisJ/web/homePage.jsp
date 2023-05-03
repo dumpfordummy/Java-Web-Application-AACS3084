@@ -24,14 +24,17 @@
             <div class="row">
                 <% for (Product product : (List<Product>) request.getAttribute("allProducts")) {%>
                 <div class="col">
-                    <a href="belt_bag.html">
+                    <form method="get" action="filterCategory">
+                        <input type="hidden" name="category" value="<%= product.getCategory()%>">
                         <div class="card prodCategory">
-                            <img src="images/<%=product.getImage()%>" class="card-img-top">
-                            <h5 class="card-title">
-                                <%= product.getCategory()%>
-                            </h5>
+                            <button type="submit" name="priceRangeInput">
+                                <img src="images/<%=product.getImage()%>" class="card-img-top">
+                                <h5 class="card-title">
+                                    <%= product.getCategory()%>
+                                </h5>
+                            </button>
                         </div>
-                    </a>
+                    </form>
                 </div>
                 <% } %>
             </div>
@@ -42,7 +45,7 @@
             <div class="row product">
                 <%
                     List<Product> productList = (List<Product>) request.getAttribute("productList");
-                    for (int i = 0; i < 3; i++) {
+                    for (int i = 0; i < 3 && i < productList.size(); i++) {
                 %>
                 <div class="col-md-4 ">
                     <div class="card">

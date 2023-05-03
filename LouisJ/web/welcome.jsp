@@ -14,17 +14,17 @@
         <title>Louis J - Welcome</title>
     </head>
     <body>
-        <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
-            <header class="text-center">
-                <h1 class="text-uppercase header-txt"><strong>Louis J</strong></h1>
-            </header>
-            <section class="text-center buttonSection">
-                <form method="get" action="home">
-                <button id="btn-xl" class="exploringBtn">Start Exploring</button>
-                </form>
-            </section>
+        <div class="overlay">
+            <div class="container d-flex flex-column justify-content-center align-items-center vh-100">
+                <header class="text-center">
+                    <form action="home" method="get">
+                        <button type="submit" class="header-btn">
+                            <h1 class="text-uppercase header-txt"><strong>Louis J</strong></h1>
+                        </button>
+                    </form>
+                </header>
+            </div>
         </div>
-
         <!-- JavaScript Bundle with Popper -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
     </body>
