@@ -141,6 +141,7 @@ img {
 .add-to-cart, .like {
     background: #ff9f1a;
     padding: 1.2em 1.5em;
+    width: 100%;
     border: none;
     text-transform: UPPERCASE;
     font-weight: bold;

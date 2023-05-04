@@ -15,16 +15,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Employee;
-import model.EmployeeService;
+import model.Payment;
+import model.PaymentService;
 import util.UserSessionUtil;
 
 /**
  *
  * @author Wai Loc
  */
-@WebServlet(urlPatterns={"/staffList"})
-public class StaffListingController extends HttpServlet {
+@WebServlet(urlPatterns={"/orderList"})
+public class OrderListingController extends HttpServlet {
     @PersistenceContext EntityManager em;
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -38,15 +38,15 @@ public class StaffListingController extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EmployeeService employeeService = new EmployeeService(em);
-        List<Employee> employeeList = employeeService.findAll();
-        request.setAttribute("employeeList", employeeList);
+        PaymentService paymentService = new PaymentService(em);
+        List<Payment> paymentList = paymentService.findAll();
+        request.setAttribute("paymentList", paymentList);
         
         UserSessionUtil userSession = new UserSessionUtil(request.getSession());
         User user = userSession.getCurrentLoginUser(request.getCookies());
         if (user != null){
             if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)){ 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/staffList.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/orderList.jsp");
                 dispatcher.forward(request, response);
             }
             else {
@@ -74,7 +74,8 @@ public class StaffListingController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
+        doGet(request, response);
     }
+
 
 }

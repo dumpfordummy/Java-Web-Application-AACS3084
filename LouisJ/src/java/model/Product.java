@@ -27,6 +27,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Product.findAll", query = "SELECT p FROM Product p"),
     @NamedQuery(name = "Product.findAllDesc", query = "SELECT p FROM Product p ORDER BY p.productid DESC"),
     @NamedQuery(name = "Product.findAllCategory", query = "SELECT DISTINCT p.category FROM Product p"),
+    @NamedQuery(name = "Product.findFirstProductImageByCategory", query = "SELECT p FROM Product p WHERE p.productid IN (SELECT MIN(p2.productid) FROM Product p2 WHERE p2.category = :category GROUP BY p2.category)"),
     @NamedQuery(name = "Product.findByProductid", query = "SELECT p FROM Product p WHERE p.productid = :productid"),
     @NamedQuery(name = "Product.findByName", query = "SELECT p FROM Product p WHERE p.name = :name"),
     @NamedQuery(name = "Product.findByNamePattern", query = "SELECT p FROM Product p WHERE p.name LIKE :namePattern"),
@@ -36,7 +37,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Product.findByPriceRange", query = "SELECT p FROM Product p WHERE p.price <= :priceRange"),
     @NamedQuery(name = "Product.findByCategoryAndPriceRange", query = "SELECT p FROM Product p WHERE p.category = :category AND p.price <= :priceRange"),
     @NamedQuery(name = "Product.findMaxPrice", query = "SELECT MAX(p.price) FROM Product p"),
-    @NamedQuery(name = "Product.findByStockqty", query = "SELECT p FROM Product p WHERE p.stockqty = :stockqty")})
+    @NamedQuery(name = "Product.findByStockqty", query = "SELECT p FROM Product p WHERE p.stockqty = :stockqty")
+
+})
 public class Product implements Serializable {
 
     @Size(max = 256)
@@ -85,7 +88,6 @@ public class Product implements Serializable {
         this.productid = productid;
     }
 
-
     public Double getPrice() {
         return (double) Math.round(price * 100) / 100;
     }
@@ -101,7 +103,6 @@ public class Product implements Serializable {
     public void setStockqty(Integer stockqty) {
         this.stockqty = stockqty;
     }
-
 
     @Override
     public int hashCode() {
@@ -129,27 +130,27 @@ public class Product implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return name.toUpperCase();
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name.toUpperCase();
     }
 
     public String getDescription() {
-        return description;
+        return description.toUpperCase();
     }
 
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description.toUpperCase();
     }
 
     public String getCategory() {
-        return category;
+        return category.toUpperCase();
     }
 
     public void setCategory(String category) {
-        this.category = category;
+        this.category = category.toUpperCase();
     }
 
     public String getImage() {

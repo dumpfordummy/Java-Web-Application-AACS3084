@@ -1,0 +1,64 @@
+<%-- 
+    Document   : orderUpdate
+    Created on : May 3, 2023, 1:08:19 PM
+    Author     : Wai Loc
+--%>
+
+<%@page import="model.Payment"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Louis J - Order List</title>
+        <link rel="stylesheet" href="styling/index.css" type="text/css">
+        <link rel="stylesheet" href="styling/listPages.css" text="text/css">
+        <%@include file="components/common_css_js.jsp" %>
+        <%@include file="navbar.jsp" %>        
+        <script src="https://kit.fontawesome.com/a293bfc92d.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <% 
+            Payment p = (Payment) request.getAttribute("payment");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+        %>
+        <form action="/orderUpdate" method="POST" name="changeStatus" id="changeStatus">
+            <h4 style="margin: 20px 10px 10px 20px;">Order Details</h4>
+            <div class="row m-3 justify-content-between rounded" style="background-color: #f7c188;">
+                <input type='hidden' name="PaymentID" value='<%= p.getPaymentid() %>' />
+                <div class="col-10 p-3">
+                    Order number: <%= p.getPaymentid() %><br />
+                    Date: <%= dateFormat.format(p.getOrderDate()) %><br />
+                    <br />
+                    <br />
+                    Subtotal: RM <%= p.getSubTotal() %><br />
+                </div>
+                <div class="col-2 p-3">
+                    <p>
+                        <span>STATUS: 
+                            <select name="orderStatus" id="orderStatus" class="form-control" >
+                                <option value="PENDING">PENDING</option>
+                                <option value="PREPARING">PREPARING</option>
+                                <option value="DELIVERING">DELIVERING</option>
+                                <option value="COMPLETED">COMPLETED</option>
+                                <option value="DELAYED">DELAYED</option>
+                            </select>
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="row" style="margin: 20px;">
+                <div class="col-1" style="width: fit-content; margin-right: 5px;">
+                    <button type="submit" class="btn btn-success col-12">Update</button>
+                </div>
+                <div style="width: fit-content">
+                    <a href="/orderList" class="btn btn-danger col-12">Back</a>
+                </div>
+            </div>
+        </form>
+        
+        <%@include file="footer.jsp" %>
+    </body>
+</html>

@@ -12,12 +12,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Louis J - Customer List</title>
-        <%@include file="navbar.jsp" %> 
+        <title>Louis J - Customer List</title> 
         <link rel="stylesheet" href="styling/index.css" type="text/css">
         <link rel="stylesheet" href="styling/listPages.css" text="text/css">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
         <script src="https://kit.fontawesome.com/a293bfc92d.js" crossorigin="anonymous"></script>
+        <%@include file="components/common_css_js.jsp" %>
+        <%@include file="navbar.jsp" %>
     </head>
     <body>
         <%
@@ -31,7 +31,7 @@
                     <a class="btn btn-primary" href="" style="width: 120px; margin: 2rem 2rem 0 2rem">Add Customer</a>
         <%  }} %>
         
-        <div class="row">
+        <div class="row" style="margin-bottom: 2rem;">
             <% 
                 List<Customer> customerList = (List<Customer>)request.getAttribute("customerList");
                 for (Customer c : customerList ){

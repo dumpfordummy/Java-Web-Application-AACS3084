@@ -111,6 +111,20 @@ a{
     }
 }
 
+.btnDelete{
+    background: lightcoral;
+    color: #000;
+    padding: 4px 8px;
+    border: 1px solid #000;
+    height: 40px;
+    border-radius: 7px;
+
+    &:hover{
+        background: red;
+        border: 1px solid #000;
+    }
+}
+
 input[type=range]::-webkit-slider-thumb {
     background-color: gray;
 }

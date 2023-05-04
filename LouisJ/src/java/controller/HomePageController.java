@@ -5,6 +5,8 @@
 package controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,7 +14,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,28 +22,26 @@ import model.ProductService;
 
 /**
  *
- * @author Asus
+ * @author Pua
  */
-public class ProductController extends HttpServlet {
-
+public class HomePageController extends HttpServlet {
+    
     @PersistenceContext
     EntityManager em;
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProductService productService = new ProductService(em);
-
-        // Find all product
-        List<Product> productList = productService.findAll();
+        
+        List<Product> allProducts = new ArrayList<>();
+        List<Product> productList = productService.findAllDesc();
         List<String> categories = productService.findAllCategory();
-        double maxPrice = productService.findMaxPrice();
+        categories.forEach((n) -> allProducts.add(productService.findFirstProductImageByCategory(n)));
         request.setAttribute("productList", productList);
-        request.setAttribute("maxPrice", maxPrice);
-        request.setAttribute("priceRangeInput", maxPrice);
-        request.setAttribute("categories", categories);
-
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/product.jsp");
+//        request.setAttribute("categories", categories);
+        request.setAttribute("allProducts", allProducts);
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/homePage.jsp");
         dispatcher.forward(request, response);
-
     }
 }

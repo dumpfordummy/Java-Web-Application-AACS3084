@@ -3,8 +3,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css to edit this template
 */
 /* 
-    Created on : May 1, 2023, 2:46:41 PM
-    Author     : Pua
+    Created on : May 2, 2023, 3:44:15 PM
+    Author     : Asus
 */
 
 img {
@@ -138,7 +138,7 @@ img {
     margin-left: 20px;
 }
 
-.add-to-cart, .like {
+.checkout, .like {
     background: #ff9f1a;
     padding: 1.2em 1.5em;
     width: 100%;
@@ -149,7 +149,7 @@ img {
     -webkit-transition: background .3s ease;
     transition: background .3s ease;
 }
-.add-to-cart:hover, .like:hover {
+.checkout:hover, .like:hover {
     background: #b36800;
     color: #fff;
 }
@@ -205,5 +205,3 @@ img {
         transform: scale(1);
     }
 }
-
-/*# sourceMappingURL=style.css.map */
