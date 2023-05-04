@@ -34,7 +34,7 @@ public class SearchController extends HttpServlet {
         double maxPrice = productService.findMaxPrice();
         request.setAttribute("categories", categories);
         String searchTerm = request.getParameter("searchTerm");
-        searchTerm = searchTerm.toUpperCase();
+        searchTerm = searchTerm.trim().toUpperCase();
         List<Product> productList = productService.findByNamePattern(searchTerm);
         request.setAttribute("maxPrice", maxPrice);
         request.setAttribute("priceRangeInput", maxPrice);

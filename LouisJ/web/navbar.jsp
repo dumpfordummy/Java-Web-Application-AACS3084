@@ -48,7 +48,7 @@
             <a href="customerList" target="_blank">Customer List</a>
             <a href="staffList" target="_blank">Staff List</a>
             <a href="orderList" target="_blank">Order List</a>
-            <a href="voucher.jsp" target="_blank">Vouchers</a>
+            <a href="voucher" target="_blank">Vouchers</a>
             <a href="addVoucher.jsp" target="_blank">Add Voucher</a>
         </div>
 

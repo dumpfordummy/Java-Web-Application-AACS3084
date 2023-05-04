@@ -4,6 +4,9 @@
     Author     : Pua
 --%>
 
+<%@page import="model.Voucher"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,9 +29,27 @@
             </ul>
         </div>
         <div class="tab-content" id="pills-tabContent">
-            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="voucher-latest-tab" tabindex="0">...</div>
+            <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="voucher-latest-tab" tabindex="0">
+                <br>
+                <div class="row justify-content-center">
+                    <% List<Voucher> voucherList = (List<Voucher>) request.getAttribute("voucherList");
+                        for (Voucher voucher : voucherList) {%>
+                    <div class="col-sm-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-header text-center voucherHeader" style="font-weight: bold"><%= voucher.getVoucherCode()%></h4>
+                                <p class="card-text text-center voucherAmtTxt">Voucher Amount: <span class="badge rounded-pill">RM <%= voucher.getVoucherOfferAmount()%></span></p>
+                                <div class="card-footer text-body-secondary text-center">Expiry date: <%= voucher.getVoucherExpiryDate()%></div>
+                            </div>
+                        </div>
+                    </div>
+                    <% }%>
+                </div>
+                <br>
+            </div>
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="voucher-expiring-tab" tabindex="0">...</div>
         </div>
+
 
         <%@include file="footer.jsp" %>
     </body>
