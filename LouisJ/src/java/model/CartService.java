@@ -71,6 +71,17 @@ public class CartService {
         List cartList = mgr.createNamedQuery("Cart.findAllDesc").getResultList();
         return cartList;
     }
+    
+    public List<Cart> findByProductid(String productid) {
+        try {
+            return (List<Cart>) mgr.createNamedQuery("Cart.findByProductid").setParameter("productid", productid).getResultList();
+        } catch (EntityExistsException ex) {
+            Logger.getLogger(CartService.class.getName()).log(Level.SEVERE, "No record found!", ex);
+        } catch (Exception ex) {
+            Logger.getLogger(CartService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return null;
+    }
 
     public boolean updateCart(Cart cart) {
         Cart tempCart = findCartByCartid(cart.getCartid());

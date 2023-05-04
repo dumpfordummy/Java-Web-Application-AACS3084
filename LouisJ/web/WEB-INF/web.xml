@@ -64,6 +64,10 @@
         <servlet-name>OrderUpdateController</servlet-name>
         <servlet-class>controller.OrderUpdateController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SalesReportController</servlet-name>
+        <servlet-class>controller.SalesReportController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -127,6 +131,10 @@
     <servlet-mapping>
         <servlet-name>OrderUpdateController</servlet-name>
         <url-pattern>/OrderUpdateController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SalesReportController</servlet-name>
+        <url-pattern>/SalesReportController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

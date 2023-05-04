@@ -42,26 +42,9 @@ public class OrderListingController extends HttpServlet {
         List<Payment> paymentList = paymentService.findAll();
         request.setAttribute("paymentList", paymentList);
         
-        UserSessionUtil userSession = new UserSessionUtil(request.getSession());
-        User user = userSession.getCurrentLoginUser(request.getCookies());
-        if (user != null){
-            if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)){ 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/orderList.jsp");
-                dispatcher.forward(request, response);
-            }
-            else {
-                request.setAttribute("errorTitle", "Forbidden Access");
-                request.setAttribute("errorMessage", "You are logged in as " + user.getUsertype() + ", hence you do not have access to this page.");
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/error.jsp");
-                dispatcher.forward(request, response);
-            }
-        }
-        else {
-            request.setAttribute("errorTitle", "Forbidden Access");
-            request.setAttribute("errorMessage", "You are not logged in, hence you do not have access to this page.");
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/error.jsp");
-            dispatcher.forward(request, response);
-        }
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/orderList.jsp");
+        dispatcher.forward(request, response);
     }
 
     /**
