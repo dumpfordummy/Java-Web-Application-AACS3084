@@ -24,6 +24,7 @@ import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 import model.Customer;
 import model.CustomerService;
+import util.ImageUtil;
 import util.hashUtil;
 
 /**
@@ -35,7 +36,7 @@ public class RegisterController extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
-    @Resource
+    @Resource  
     UserTransaction utx;
 
     private static final String REGISTERPAGE = "/register.jsp";
@@ -75,22 +76,10 @@ public class RegisterController extends HttpServlet {
 
                 Part imagePart = request.getPart("profileImg");
 
-                if (imagePart != null) {
-                    try (
-                            InputStream imageContent = imagePart.getInputStream()) {
-                        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-                        int nRead;
-                        byte[] data = new byte[1024];
-                        while ((nRead = imageContent.read(data, 0, data.length)) != -1) {
-                            buffer.write(data, 0, nRead);
-                        }
-                        buffer.flush();
-                        byte[] imageBytes = buffer.toByteArray();
-                        String base64Image = Base64.getEncoder().encodeToString(imageBytes);
-                        customer.setProfileimg(base64Image);
-                        customer.setProfileimgtype(imagePart.getContentType());
-                    }
-                }
+                String base64Image = ImageUtil.getImageBase64(imagePart);
+
+                customer.setProfileimg(base64Image);
+                customer.setProfileimgtype(imagePart.getContentType());
 
                 utx.begin();
                 boolean isRegisterSuccess = customerService.addCustomer(customer);

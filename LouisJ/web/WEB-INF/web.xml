@@ -45,10 +45,6 @@
         <servlet-class>controller.CheckoutController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>StaffRegisterController</servlet-name>
-        <servlet-class>controller.StaffRegisterController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>StaffListingController</servlet-name>
         <servlet-class>controller.StaffListingController</servlet-class>
     </servlet>
@@ -95,10 +91,6 @@
     <servlet-mapping>
         <servlet-name>CheckoutController</servlet-name>
         <url-pattern>/checkout</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>StaffRegisterController</servlet-name>
-        <url-pattern>/registerStaff</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>StaffListingController</servlet-name>
