@@ -4,6 +4,14 @@
     Author     : Wai Loc
 --%>
 
+<%@page import="javax.persistence.EntityManagerFactory"%>
+<%@page import="javax.persistence.PersistenceContext"%>
+<%@page import="model.ProductService"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="javax.persistence.*"%>
+<%@page import="model.PaymentService"%>
+<%@page import="model.Cart"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -17,25 +25,38 @@
         <script src="https://kit.fontawesome.com/a293bfc92d.js" crossorigin="anonymous"></script>
     </head>
     <body>
-        
+        <h4 style="margin: 20px 10px 10px 20px;">Sales Report</h4>
         <div class="card m-3">
             <table class="table" style="margin-bottom: 0;">
                 <tr style="background-color: #f6b26b; color: white;">
                     <th style="width: 150px;">Date</th>
                     <th style="width: 150px;">Order ID</th>
-                    <th style="width: 150px;">Customer ID</th>
                     <th>Product(s)</th>
+                    <th style="width: 10%;">Quantity</th>
                     <th style="width: 200px;">Subtotal (RM)</th>
                 </tr>
+                <jsp:useBean id="payment" class="model.Payment"></jsp:useBean>
+                <jsp:useBean id="product" class="model.Product"></jsp:useBean>
+                <% 
+                    EntityManagerFactory emf = Persistence.createEntityManagerFactory("Louis_JPU");
+                    EntityManager em = emf.createEntityManager();
+                    PaymentService paymentService = new PaymentService(em);
+                    ProductService productService = new ProductService(em);
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+                    List<Cart> cartList = (List<Cart>)request.getAttribute("cartList");
+                    for (Cart cart : cartList) {
+                        payment = paymentService.findPaymentByPaymentid(cart.getPaymentid());
+                        product = productService.findProductByProductid(cart.getProductid());
+                %>
                 <tr>
-                    <td>12/12/2022</td>
-                    <td>XXXX</td>
-                    <td>XXXX</td>
-                    <td>Bags</td>
-                    <td>1000</td>
+                    <td><%= dateFormat.format(payment.getOrderDate()) %></td>
+                    <td><%= cart.getPaymentid() %></td>
+                    <td><%= product.getName() %></td>
+                    <td><%= cart.getQty() %></td>
+                    <td>RM <%= String.format("%.2f", payment.getTotalPayment()) %></td>
                 </tr>
+                <% } %>
             </table>
-
         </div> 
         
         <%@include file="footer.jsp" %>

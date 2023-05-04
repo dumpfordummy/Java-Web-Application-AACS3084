@@ -4,6 +4,8 @@
     Author     : Wai Loc
 --%>
 
+<%@page import="interfaces.User"%>
+<%@page import="util.UserSessionUtil"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="model.Payment"%>
 <%@page import="java.util.List"%>
@@ -15,18 +17,22 @@
         <title>Louis J - Order List</title>
         <link rel="stylesheet" href="styling/index.css" type="text/css">
         <link rel="stylesheet" href="styling/listPages.css" text="text/css">
+        <script src="https://kit.fontawesome.com/a293bfc92d.js" crossorigin="anonymous"></script>
         <%@include file="components/common_css_js.jsp" %>
         <%@include file="navbar.jsp" %>
     </head>
     <body> 
         <% 
+            UserSessionUtil userSession = new UserSessionUtil(request.getSession());
+            User user = userSession.getCurrentLoginUser(request.getCookies());
+        
             boolean success = Boolean.valueOf(String.valueOf(request.getAttribute("updateSuccess")));
             if (success){
         %>
             <div class="row" style="padding: 0.5rem 1rem;">
                 <div class="SuccessBox">
                     <i class="fa fa-check-circle-o" style="padding-right: 10px; font-size: 20px;"></i>
-                    <label style="padding-top: 5px;">Order updated successfully!</label>
+                    <label style="padding: 10px;">Order updated successfully!</label>
                     <span class="DivClose" onclick="this.parentNode.parentNode.removeChild(this.parentNode); return false;">&times;</span>
                 </div>
             </div>
@@ -48,13 +54,18 @@
                 <div class="col-2 p-3">
                     <p>
                         <span>STATUS: </span>
-                        <span><%= p.getStatus() %></span>
+                        <span><b><%= p.getStatus() %></b></span>
                     </p>
                 </div>
+                <%
+                    if (user != null){
+                        if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)){
+                %>
                 <form action="/orderUpdate" method="GET">
                     <input type="hidden" value="<%= p.getPaymentid() %>" name="PaymentID" />
                     <button type="submit" class="btn btn-primary" style="width: 160px; margin: 1rem 2rem">Change Status</button>
                 </form>
+                <% }} %>
             </div>
         <%      }
                 else { %>
@@ -69,15 +80,20 @@
                     <div class="col-2 p-3">
                         <p>
                             <span>STATUS: </span>
-                            <span><%= p.getStatus() %></span>
+                            <span><b><%= p.getStatus() %></b></span>
                         </p>
                     </div>
+                    <%
+                        if (user != null){
+                            if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)){
+                    %>
                     <form action="/orderUpdate" method="GET">
                         <input type="hidden" value="<%= p.getPaymentid() %>" name="PaymentID" />
                         <button type="submit" class="btn btn-primary" style="width: 160px; margin: 1rem 2rem">Change Status</button>
                     </form>
+                    <% }} %>
                 </div>
-            <%  }}  %>
+            <%  }} %>
         
         <%@include file="footer.jsp" %>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>

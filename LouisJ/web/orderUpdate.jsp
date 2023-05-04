@@ -38,11 +38,10 @@
                     <p>
                         <span>STATUS: 
                             <select name="orderStatus" id="orderStatus" class="form-control" >
-                                <option value="PENDING">PENDING</option>
-                                <option value="PREPARING">PREPARING</option>
+                                <option value="PACKAGING">PACKAGING</option>
+                                <option value="SHIPPING">SHIPPING</option>
                                 <option value="DELIVERING">DELIVERING</option>
                                 <option value="COMPLETED">COMPLETED</option>
-                                <option value="DELAYED">DELAYED</option>
                             </select>
                         </span>
                     </p>

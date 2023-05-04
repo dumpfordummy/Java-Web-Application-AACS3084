@@ -54,13 +54,11 @@ public class CustomerService {
         return null;
     }
     
-    public boolean deleteCustomer(String id) {
-        Customer customer = findCustomerById(id );
+    public void deleteCustomer(String id) {
+        Customer customer = findCustomerById(id);
         if (customer != null) {
             mgr.remove(customer);
-            return true;
         }
-        return false;
     }
     
     public List<Customer> findAll() {
@@ -68,12 +66,7 @@ public class CustomerService {
         return customerList;
     }
     
-    public boolean updateCustomer(Customer customer) {
-        Customer tempCustomer = findCustomerById(customer.getId());
-        if (tempCustomer != null) {
-            tempCustomer.setUsername(customer.getUsername());
-            return true;
-        }
-        return false;
+    public Customer updateCustomer(Customer customer) {
+        return (Customer) mgr.merge(customer);
     }
 }

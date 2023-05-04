@@ -45,10 +45,6 @@
         <servlet-class>controller.CheckoutController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>StaffRegisterController</servlet-name>
-        <servlet-class>controller.StaffRegisterController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>StaffListingController</servlet-name>
         <servlet-class>controller.StaffListingController</servlet-class>
     </servlet>
@@ -75,6 +71,8 @@
     <servlet>
         <servlet-name>VoucherController</servlet-name>
         <servlet-class>controller.VoucherController</servlet-class>
+        <servlet-name>SalesReportController</servlet-name>
+        <servlet-class>controller.SalesReportController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
@@ -121,10 +119,6 @@
         <url-pattern>/checkout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>StaffRegisterController</servlet-name>
-        <url-pattern>/registerStaff</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>StaffListingController</servlet-name>
         <url-pattern>/StaffListingController</url-pattern>
     </servlet-mapping>
@@ -151,6 +145,8 @@
     <servlet-mapping>
         <servlet-name>VoucherController</servlet-name>
         <url-pattern>/voucher</url-pattern>
+        <servlet-name>SalesReportController</servlet-name>
+        <url-pattern>/SalesReportController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

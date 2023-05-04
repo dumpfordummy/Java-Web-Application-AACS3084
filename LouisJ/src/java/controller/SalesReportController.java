@@ -4,11 +4,12 @@
  */
 package controller;
 
+import com.sun.javafx.scene.control.skin.VirtualFlow;
 import interfaces.User;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.annotation.Resource;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.servlet.RequestDispatcher;
@@ -17,20 +18,18 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.transaction.UserTransaction;
-import model.Payment;
-import model.PaymentService;
+import model.Cart;
+import model.CartService;
 import util.UserSessionUtil;
-
 
 /**
  *
- * @author frost
+ * @author Wai Loc
  */
-@WebServlet(urlPatterns = {"/orderUpdate"})
-public class OrderUpdateController extends HttpServlet {
+@WebServlet(urlPatterns = {"/salesReport"})
+public class SalesReportController extends HttpServlet {
     @PersistenceContext EntityManager em;
-    @Resource UserTransaction utx;
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -42,16 +41,21 @@ public class OrderUpdateController extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PaymentService paymentService = new PaymentService(em);
-        int paymentId = Integer.parseInt(request.getParameter("PaymentID"));
-        Payment payment = paymentService.findPaymentByPaymentid(paymentId);
-        request.setAttribute("payment", payment);
+        CartService cartService = new CartService(em);
+        List<Cart> tempCartList = cartService.findAll();
+        List<Cart> cartList = new ArrayList<>();
+        for (Cart cart : tempCartList){
+            if(cart.getPaymentid() != null){
+                cartList.add(cart);
+            }
+        }
+        request.setAttribute("cartList", cartList);
         
         UserSessionUtil userSession = new UserSessionUtil(request.getSession());
         User user = userSession.getCurrentLoginUser(request.getCookies());
         if (user != null){
-            if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)){
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/orderUpdate.jsp");
+            if (user.getUsertype().equals(User.MANAGER)){ 
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/salesReport.jsp");
                 dispatcher.forward(request, response);
             }
             else {
@@ -79,31 +83,6 @@ public class OrderUpdateController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try{
-            Payment payment = new Payment();
-            PaymentService paymentService = new PaymentService(em);
-            UserSessionUtil userSession = new UserSessionUtil(request.getSession());
-            User user = userSession.getCurrentLoginUser(request.getCookies());
-            
-            int paymentId = Integer.parseInt(request.getParameter("PaymentID"));
-            String status = request.getParameter("orderStatus");
-            payment = paymentService.findPaymentByPaymentid(paymentId);
-            payment.setStatus(status);
-            payment.setEmployeeid(user.getId());
-
-            utx.begin();
-            boolean success = paymentService.updatePayment(payment);
-            utx.commit();
-            
-            if (success){
-                request.setAttribute("updateSuccess", Boolean.TRUE);
-                request.getRequestDispatcher("/orderList").forward(request, response);
-            }
-        }
-        catch(Exception ex){
-            Logger.getLogger(OrderUpdateController.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
-
 
 }
