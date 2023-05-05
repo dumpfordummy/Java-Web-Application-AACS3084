@@ -33,7 +33,7 @@ public class StaffLoginController extends HttpServlet {
     UserTransaction utx;
 
     private static final String STAFFLOGINPAGE = "/loginStaff.jsp";
-    private static final String HOMEPAGE = "/homePage.jsp";
+    private static final String HOMEPAGE = "/home";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

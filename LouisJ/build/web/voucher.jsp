@@ -53,11 +53,6 @@
                                 <form class="text-center" method="POST" action="deleteVoucher">
                                     <input type="hidden" name="voucherid" value="<%=voucher.getVoucherid()%>">
                                     <%
-                                        util.UserSessionUtil userSession = new util.UserSessionUtil(request.getSession());
-                                        //Customer customer = new Customer("1001", "test", "056823974923", "test@cust.com", "", "Test Customer", "0137416287", "123, Jln Bunga, 50300 KL");
-                                        //Cookie userCookie = userSession.setUserSession(customer);
-                                        //response.addCookie(userCookie);
-                                        User user = userSession.getCurrentLoginUser(request.getCookies());
                                         if (user != null) {
                                             if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) { %>
                                     <input type="submit" value="Delete Voucher" class="btnDelete">
@@ -93,11 +88,6 @@
                                 <form class="text-center" method="POST" action="deleteVoucher">
                                     <input type="hidden" name="voucherid" value="<%=voucher.getVoucherid()%>">
                                     <%
-                                        util.UserSessionUtil userSession = new util.UserSessionUtil(request.getSession());
-                                        //Customer customer = new Customer("1001", "test", "056823974923", "test@cust.com", "", "Test Customer", "0137416287", "123, Jln Bunga, 50300 KL");
-                                        //Cookie userCookie = userSession.setUserSession(customer);
-                                        //response.addCookie(userCookie);
-                                        User user = userSession.getCurrentLoginUser(request.getCookies());
                                         if (user != null) {
                                             if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) { %>
                                     <input type="submit" value="Delete Voucher" class="btnDelete">
@@ -133,11 +123,6 @@
                                 <form class="text-center" method="POST" action="deleteVoucher">
                                     <input type="hidden" name="voucherid" value="<%=voucher.getVoucherid()%>">
                                     <%
-                                        util.UserSessionUtil userSession = new util.UserSessionUtil(request.getSession());
-                                        //Customer customer = new Customer("1001", "test", "056823974923", "test@cust.com", "", "Test Customer", "0137416287", "123, Jln Bunga, 50300 KL");
-                                        //Cookie userCookie = userSession.setUserSession(customer);
-                                        //response.addCookie(userCookie);
-                                        User user = userSession.getCurrentLoginUser(request.getCookies());
                                         if (user != null) {
                                             if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) { %>
                                     <input type="submit" value="Delete Voucher" class="btnDelete">
