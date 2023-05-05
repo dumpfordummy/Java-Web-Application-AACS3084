@@ -49,6 +49,10 @@
         <servlet-class>controller.StaffListingController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DeleteCartPaymentController</servlet-name>
+        <servlet-class>controller.DeleteCartPaymentController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>HomePageController</servlet-name>
         <servlet-class>controller.HomePageController</servlet-class>
     </servlet>
@@ -93,10 +97,6 @@
         <url-pattern>/productDetail</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>CartPaymentController</servlet-name>
-        <url-pattern>/cartPayment</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>AddToCartController</servlet-name>
         <url-pattern>/addToCart</url-pattern>
     </servlet-mapping>
@@ -127,6 +127,14 @@
     <servlet-mapping>
         <servlet-name>StaffListingController</servlet-name>
         <url-pattern>/StaffListingController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteCartPaymentController</servlet-name>
+        <url-pattern>/deleteCartPayment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartPaymentController</servlet-name>
+        <url-pattern>/cartPayment</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>HomePageController</servlet-name>

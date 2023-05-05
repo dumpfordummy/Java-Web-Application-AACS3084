@@ -4,6 +4,8 @@
     Author     : Asus
 --%>
 
+<%@page import="java.awt.Image"%>
+<%@page import="java.io.File"%>
 <%@page import="model.CartPK"%>
 <%@page import="model.Product"%>
 <%@page import="javax.persistence.EntityManager"%>
@@ -44,7 +46,8 @@
                                 <div class="col-3 mb-2">
                                     <img class="w-100" src="images/<%=cartPK.getProduct().getImage()%>" alt="art image">
                                 </div>
-                                <div class="col-5 mb-2">
+
+                                <div class="col-4 mb-2">
                                     <h6 class=""><%=cartPK.getProduct().getName()%></h6>
                                     <p class="pl-1 mb-0">RM<%=String.format("%.2f", cartPK.getProduct().getPrice())%></p>
                                     <p class="pl-1 mb-0"><%=cartPK.getProduct().getCategory()%></p>
@@ -55,6 +58,10 @@
                                 <div class="col-2">
                                     <p id="cartItem1Price">RM<%=String.format("%.2f", totalProductPrice)%></p>
                                 </div>
+                                <form method="POST" action="deleteCartPayment" class="col-1">
+                                    <input type="hidden" value="<%=cartPK.getCartid()%>" name="cartid">
+                                    <input type="submit" value="X" class="btnDelete">
+                                </form>
                             </div>
                             <hr>
                             <%
@@ -64,10 +71,33 @@
                                 totalPayment = subTotal + tax + deliveryCharge - discountAmount;
                             %>
                         </div>
-                        <div class="col-12 col-sm-4 p-3 proceed form">
+                        <form method="POST" action="checkout" class="col-12 col-sm-4 p-3 proceed form">
+                            <div class="row m-0">
+                                <div class="col-sm-12 p-0">
+                                    <h5>Shipping Address:</h5>
+                                </div>
+                            </div>
+                            <div class="row m-0">
+                                <div class="col-sm-12 p-0">
+                                    <p><%=cartPKList.get(0).getCustomer().getAddress()%></p>
+                                </div>
+                            </div>
+                            <div class="row m-0">
+                                <div class="col-sm-12 p-0">
+                                    <h5>Payment Method:</h5>
+                                </div>
+                            </div>
+                            <div class="row m-0">
+                                <div class="col-sm-12 p-0">
+                                    <select class="form-control" id="paymentMethod" onchange="myFunction()" name="paymentMethod">
+                                        <option value="CASH">Cash On Delivery</option>
+                                        <option value="CARD">Card</option>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="row m-0">
                                 <div class="col-sm-8 p-0">
-                                    <h6>Subtotal</h6>
+                                    <h5>Subtotal</h5>
                                 </div>
                                 <div class="col-sm-4 p-0">
                                     <p id="subtotal">RM<%=String.format("%.2f", subTotal)%></p>
@@ -75,7 +105,7 @@
                             </div>
                             <div class="row m-0">
                                 <div class="col-sm-8 p-0 ">
-                                    <h6>Tax</h6>
+                                    <h5>(+)Tax</h5>
                                 </div>
                                 <div class="col-sm-4 p-0">
                                     <p id="tax">RM<%=String.format("%.2f", tax)%></p>
@@ -83,7 +113,7 @@
                             </div>
                             <div class="row m-0">
                                 <div class="col-sm-8 p-0 ">
-                                    <h6>Delivery Charge</h6>
+                                    <h5>(+)Delivery Charge</h5>
                                 </div>
                                 <div class="col-sm-4 p-0">
                                     <p id="deliveryCharge">RM<%=String.format("%.2f", deliveryCharge)%></p>
@@ -91,7 +121,7 @@
                             </div>
                             <div class="row m-0">
                                 <div class="col-sm-8 p-0 ">
-                                    <h6>Discount Amount</h6>
+                                    <h5>(-)Discount Amount</h5>
                                 </div>
                                 <div class="col-sm-4 p-0">
                                     <p id="discountAmount">RM<%=String.format("%.2f", discountAmount)%></p>
@@ -100,27 +130,81 @@
                             <hr>
                             <div class="row mx-0 mb-2">
                                 <div class="col-sm-8 p-0 d-inline">
-                                    <h5>Total Payment</h5>
+                                    <h4>Total Payment</h4>
                                 </div>
                                 <div class="col-sm-4 p-0">
                                     <p id="total">RM<%=String.format("%.2f", totalPayment)%></p>
                                 </div>
                             </div>
-                            <form method="POST" action="checkout">
-                                <input type="hidden" name="customerid" value="<%=cartPKList.get(0).getCustomer().getId()%>">
-                                <input type="hidden" name="subTotal" value="<%=subTotal%>">
-                                <input type="hidden" name="tax" value="<%=tax%>">
-                                <input type="hidden" name="deliveryCharge" value="<%=deliveryCharge%>">
-                                <input type="hidden" name="discountAmount" value="<%=discountAmount%>">
-                                <input type="hidden" name="totalPayment" value="<%=totalPayment%>">
-                                <input type="hidden" name="shippingAddress" value="<%=cartPKList.get(0).getCustomer().getAddress()%>">
-                                <input type="submit" class="checkout btn btn-default" value="Checkout">
-                            </form>
-                        </div>
+                            <div id="cardMethod" style="visibility: hidden">
+                                <div class="row mx-0 mb-2">
+                                    <div class="col-sm-12 p-0 d-inline">
+                                        <h4>Card Number:</h4>
+                                    </div>
+                                </div>
+                                <div class="row mx-0 mb-2">
+                                    <div class="col-sm-12 p-0 d-inline">
+                                        <input class="form-control" type="text" name="cardNumber" id="cardNumber">
+                                    </div>
+                                </div>
+                                <div class="row mx-0 mb-2">
+                                    <div class="col-sm-12 p-0 d-inline">
+                                        <h4>Expiration Date:</h4>
+                                    </div>
+                                </div>
+                                <div class="row mx-0 mb-2">
+                                    <div class="col-sm-12 p-0 d-inline">
+                                        <input class="form-control" type="date" name="expDate" id="expDate">
+                                    </div>
+                                </div>
+                                <div class="row mx-0 mb-2">
+                                    <div class="col-sm-12 p-0 d-inline">
+                                        <h4>CVV:</h4>
+                                    </div>
+                                </div>
+                                <div class="row mx-0 mb-2">
+                                    <div class="col-sm-12 p-0 d-inline">
+                                        <input class="form-control" type="text" name="CVV" id="CVV">
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+
+
+                            <input type="hidden" name="customerid" value="<%=cartPKList.get(0).getCustomer().getId()%>">
+                            <input type="hidden" name="subTotal" value="<%=subTotal%>">
+                            <input type="hidden" name="tax" value="<%=tax%>">
+                            <input type="hidden" name="deliveryCharge" value="<%=deliveryCharge%>">
+                            <input type="hidden" name="discountAmount" value="<%=discountAmount%>">
+                            <input type="hidden" name="totalPayment" value="<%=totalPayment%>">
+                            <input type="hidden" name="shippingAddress" value="<%=cartPKList.get(0).getCustomer().getAddress()%>">
+
+                            <input type="submit" class="checkout btn btn-default" value="Checkout">
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+            function myFunction() {
+                var paymentMethod = document.getElementById("paymentMethod").value;
+                var cardMethod = document.getElementById("cardMethod");
+
+                if (paymentMethod === "CASH") {
+                    cardMethod.style.visibility = 'hidden';
+                } else if (paymentMethod === "CARD") {
+                    cardMethod.style.visibility = 'visible';
+                }
+
+            }
+            
+            var error = "<%=request.getAttribute("error")%>";
+            if (error !== "null") {
+                window.alert("Please fill in the payment information!");
+            }
+        </script>
     </body>
     <footer>
         <%@include file="footer.jsp" %>
