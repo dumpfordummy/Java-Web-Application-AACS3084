@@ -34,4 +34,18 @@ public class VoucherService {
         List<Voucher> voucherList = mgr.createNamedQuery("Voucher.findAllVoucher", Voucher.class).getResultList();
         return voucherList;
     }
+
+    public Voucher findByVoucherid(int voucherid) {
+        Voucher voucher = mgr.find(Voucher.class, voucherid);
+        return voucher;
+    }
+
+    public boolean deleteVoucher(int voucherid) {
+        Voucher voucher = findByVoucherid(voucherid);
+        if (voucher != null) {
+            mgr.remove(voucher);
+            return true;
+        }
+        return false;
+    }
 }

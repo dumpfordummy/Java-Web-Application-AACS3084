@@ -26,6 +26,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "VOUCHER")
 @XmlRootElement
 @NamedQueries({
+    @NamedQuery(name = "Product.findByVoucherid", query = "SELECT v FROM Voucher v WHERE v.voucherid = :voucherid"),
     @NamedQuery(name = "Voucher.findAllVoucher", query = "SELECT v FROM Voucher v")
 })
 
@@ -42,9 +43,6 @@ public class Voucher implements Serializable {
     @Column(name = "VOUCHEROFFERAMOUNT")
     private Double voucherOfferAmount;
 
-    @Column(name = "VOUCHERQTY")
-    private Integer voucherQty;
-
     @Column(name = "VOUCHEREXPIRYDATE")
     private LocalDate voucherExpiryDate;
 
@@ -54,10 +52,9 @@ public class Voucher implements Serializable {
     public Voucher() {
     }
 
-    public Voucher(Integer voucherid, Double voucherOfferAmount, Integer voucherQty, LocalDate voucherExpiryDate, String voucherCode) {
+    public Voucher(Integer voucherid, Double voucherOfferAmount, LocalDate voucherExpiryDate, String voucherCode) {
         this.voucherid = voucherid;
         this.voucherOfferAmount = voucherOfferAmount;
-        this.voucherQty = voucherQty;
         this.voucherExpiryDate = voucherExpiryDate;
         this.voucherCode = voucherCode;
     }
@@ -76,14 +73,6 @@ public class Voucher implements Serializable {
 
     public void setVoucherOfferAmount(Double voucherOfferAmount) {
         this.voucherOfferAmount = voucherOfferAmount;
-    }
-
-    public Integer getVoucherQty() {
-        return voucherQty;
-    }
-
-    public void setVoucherQty(Integer voucherQty) {
-        this.voucherQty = voucherQty;
     }
 
     public LocalDate getVoucherExpiryDate() {

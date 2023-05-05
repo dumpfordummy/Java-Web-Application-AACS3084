@@ -32,13 +32,10 @@ public class VoucherController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         VoucherService voucherService = new VoucherService(em);
 
-        // Find all product
+        // Find all voucher
         List<Voucher> voucherList = voucherService.findAllVoucher();
-        System.out.println(voucherList);
-
         request.setAttribute("voucherList", voucherList);
-        System.out.println(request.getAttribute("voucherList"));
-        System.out.println("HERE");
+       
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("/voucher.jsp");
         dispatcher.forward(request, response);

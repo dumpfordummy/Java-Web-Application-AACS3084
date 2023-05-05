@@ -76,6 +76,10 @@
         <servlet-name>SalesReportController</servlet-name>
         <servlet-class>controller.SalesReportController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteVoucherController</servlet-name>
+        <servlet-class>controller.DeleteVoucherController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -151,6 +155,10 @@
     <servlet-mapping>
         <servlet-name>SalesReportController</servlet-name>
         <url-pattern>/SalesReportController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteVoucherController</servlet-name>
+        <url-pattern>/deleteVoucher</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
