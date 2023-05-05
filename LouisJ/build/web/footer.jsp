@@ -9,6 +9,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" href="/path/to/font-awesome/css/font-awesome.min.css">
+
         <title>FOOTER</title>
     </head>
     <body>
@@ -17,25 +19,33 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-sm-6 col-md-3 item">
-                            <h3>Products</h3>
-                            <ul>
-                                <li><a href="#"><div class="footerLink">Bag 1</div></a></li>
-                                <li><a href="#"><div class="footerLink">Bag 1</div></a></li>
-                                <li><a href="#"><div class="footerLink">Bag 1</div></a></li>
-                            </ul>
+                            <h3>Find us here!</h3>
+                            <div class="mapouter">
+                                <div class="gmap_canvas"><iframe width="100%" height="100%" id="gmap_canvas" src="https://maps.google.com/maps?q=the starhill&t=&z=13&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://2yu.co">2yu</a><br><style>.mapouter{
+                                            position:relative;
+                                            text-align:right;
+                                            height:100%;
+                                            width:100%;
+                                            }</style><a href="https://embedgooglemap.2yu.co/">html embed google map</a><style>.gmap_canvas {
+                                            overflow:hidden;
+                                            background:none!important;
+                                            height:80%;
+                                            width:80%;
+                                            }</style>
+                                </div>
+                            </div>
                         </div>
                         <div class="col-sm-6 col-md-3 item">
-                            <h3>Contact</h3>
+                            <h3>Contact Us!</h3>
                             <ul>
-                                <li><a href="#"><div class="footerLink">Email Us</div></a></li>
-                                <li><a href="#"><div class="footerLink">Call Us</div></a></li>
+                                <li><a href = "mailto: louisj@gmail.com"><div class="footerLink">Email Us</div></a></li>
+                                <li><a href="tel:+60133630908"><div class="footerLink">Call Us</div></a></li>
                             </ul>
                         </div>
                         <div class="col-md-5 item textFooter">
                             <h3>LOUIS J</h3>
                             <p>Whether you're a fashionista looking for the latest trends, a busy professional in need of a functional bag, or simply someone who appreciates great design and craftsmanship, LouisJ is the ultimate destination for all your bag needs.</p>
                         </div>
-                        <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-instagram"></i></a></div>
                     </div>
                     <p class="copyright">&copy;LouisJ 2023</p>
                 </div>
