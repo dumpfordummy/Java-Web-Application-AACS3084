@@ -4,6 +4,7 @@
  */
 package controller;
 
+import interfaces.User;
 import java.io.IOException;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Employee;
 import model.EmployeeService;
+import util.UserSessionUtil;
 
 /**
  *
@@ -40,8 +42,26 @@ public class StaffListingController extends HttpServlet {
         List<Employee> employeeList = employeeService.findAll();
         request.setAttribute("employeeList", employeeList);
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/staffList.jsp");
-        dispatcher.forward(request, response);
+        UserSessionUtil userSession = new UserSessionUtil(request.getSession());
+        User user = userSession.getCurrentLoginUser(request.getCookies());
+        if (user != null){
+            if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)){ 
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/staffList.jsp");
+                dispatcher.forward(request, response);
+            }
+            else {
+                request.setAttribute("errorTitle", "Forbidden Access");
+                request.setAttribute("errorMessage", "You are logged in as " + user.getUsertype() + ", hence you do not have access to this page.");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/error.jsp");
+                dispatcher.forward(request, response);
+            }
+        }
+        else {
+            request.setAttribute("errorTitle", "Forbidden Access");
+            request.setAttribute("errorMessage", "You are not logged in, hence you do not have access to this page.");
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/error.jsp");
+            dispatcher.forward(request, response);
+        }
     }
 
     /**
@@ -54,12 +74,7 @@ public class StaffListingController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        EmployeeService employeeService = new EmployeeService(em);
-        List<Employee> employeeList = employeeService.findAll();
-        request.setAttribute("employeeList", employeeList);
         
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/staffList.jsp");
-        dispatcher.forward(request, response);
     }
 
 }

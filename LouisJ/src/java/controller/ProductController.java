@@ -30,23 +30,19 @@ public class ProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        try {
-            ProductService productService = new ProductService(em);
+        ProductService productService = new ProductService(em);
 
-            // Find all product
-            List<Product> productList = productService.findAll();
-            List<String> categories = productService.findAllCategory();
-            double maxPrice = productService.findMaxPrice();
-            request.setAttribute("productList", productList);
-            request.setAttribute("maxPrice", maxPrice);
-            request.setAttribute("priceRangeInput", maxPrice);
-            request.setAttribute("categories", categories);
+        // Find all product
+        List<Product> productList = productService.findAll();
+        List<String> categories = productService.findAllCategory();
+        double maxPrice = productService.findMaxPrice();
+        request.setAttribute("productList", productList);
+        request.setAttribute("maxPrice", maxPrice);
+        request.setAttribute("priceRangeInput", maxPrice);
+        request.setAttribute("categories", categories);
 
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/product.jsp");
-            dispatcher.forward(request, response);
-        } catch (Exception ex) {
-            Logger.getLogger(ProductController.class.getName()).log(Level.SEVERE, null, ex);
-            response.sendRedirect(request.getContextPath());
-        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/product.jsp");
+        dispatcher.forward(request, response);
+
     }
 }

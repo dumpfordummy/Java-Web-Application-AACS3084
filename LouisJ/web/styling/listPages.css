@@ -28,3 +28,40 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 }
 
 body { background-color: #E8D4B2 !important;}
+
+.SuccessBox {
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #24CB69;
+    color: white;
+    border-radius: 5px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: block;
+    align-items: center;
+}
+
+.FailedBox {
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #FF1E1E;
+    color: white;
+    border-radius: 5px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: block;
+    align-items: center;
+}
+
+.DivClose {
+    position: relative;
+    cursor: pointer;
+    float: right;
+    padding: 0px;
+    font-weight: 600;
+    font-size: 20px;
+}

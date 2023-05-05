@@ -4,6 +4,9 @@
     Author     : Pua
 --%>
 
+<%@page import="java.util.List"%>
+<%@page import="model.Product"%>
+<%@page import="model.Product"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -19,119 +22,49 @@
         <h3 class="heading">Cave of Wonders</h3>
         <div class="container text-center">
             <div class="row">
+                <% for (Product product : (List<Product>) request.getAttribute("allProducts")) {%>
                 <div class="col">
-                    <a href="belt_bag.html">
+                    <form method="get" action="filterCategory">
+                        <input type="hidden" name="category" value="<%= product.getCategory()%>">
                         <div class="card prodCategory">
-                            <img src="images/belt_bag_home.png" class="card-img-top">
-                            <h5 class="card-title">
-                                Belt Bag
-                            </h5>
+                            <button type="submit" name="priceRangeInput">
+                                <img src="images/<%=product.getImage()%>" class="card-img-top">
+                                <h5 class="card-title">
+                                    <%= product.getCategory()%>
+                                </h5>
+                            </button>
                         </div>
-                    </a>
+                    </form>
                 </div>
-                <div class="col">
-                    <a href="clutch_bag.html">
-                        <div class="card prodCategory">
-                            <img src="images/clutch_bag_home.png" class="card-img-top">
-                            <h5 class="card-title">
-                                Clutch Bag
-                            </h5>
-                        </div>
-                    </a>
-                </div>
-                <div class="col">
-                    <a href="backpack.html">
-                        <div class="card prodCategory">
-                            <img src="images/backpack_home.png" class="card-img-top">
-                            <h5 class="card-title">
-                                Backpack
-                            </h5>
-                        </div>
-                    </a>
-                </div>
+                <% } %>
             </div>
         </div>
 
         <h3 class="heading">Latest Products</h3>
         <div class="container">
             <div class="row product">
+                <%
+                    List<Product> productList = (List<Product>) request.getAttribute("productList");
+                    for (int i = 0; i < 3 && i < productList.size(); i++) {
+                %>
                 <div class="col-md-4 ">
                     <div class="card">
                         <div class="ccc">
-                            <p class="text-center"><img src="https://raw.githubusercontent.com/rxhack/productImage/main/1.jpg" class="imw"></p> 
+                            <p class="text-center"><img src="images/<%=productList.get(i).getImage()%>" class="imw"></p>
                         </div>
                         <div class="card-body">
-                            <h5 class="text-center">Apple Watch Series 3</h5> 
-                            <p class="text-center">Price: $550.00</p>
-                            <p class="text-center"><input type="submit" name="Save" value="Buy" class=" cc1"></p>
+                            <h5 class="text-center"><%=productList.get(i).getName()%></h5> 
+                            <p class="text-center">RM <%=productList.get(i).getPrice()%></p>
+                            <form class="text-center" method="POST" action="productDetail">
+                                <input type="hidden" name="productid" value="<%=productList.get(i).getProductid()%>">
+                                <input type="submit" value="Learn More" class="cc1">
+                            </form>
                         </div>
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="ccc">
-                            <p class="text-center"><img src="https://raw.githubusercontent.com/rxhack/productImage/main/2.jpg" class="imw"></p> 
-                        </div>
-                        <div class="card-body">
-                            <h5  class="text-center">Beat Solo3 Wearless</h5> 
-                            <p  class="text-center">Price: $159.99</p>
-                            <p class="text-center"><input type="submit" name="Save" value="Buy" class=" cc1"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="ccc">
-                            <p class="text-center"><img src="https://raw.githubusercontent.com/rxhack/productImage/main/3.jpg" class="imw"></p> 
-                        </div>
-                        <div class="card-body">
-                            <h5  class="text-center">Apple MacBook</h5> 
-                            <p  class="text-center">Price: $2249.00</p>
-                            <p class="text-center"><input type="submit" name="Save" value="Buy" class=" cc1"></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row product">
-                <div class="col-md-4 ">
-                    <div class="card">
-                        <div class="ccc">
-                            <p class="text-center"><img src="https://raw.githubusercontent.com/rxhack/productImage/main/4.jpg" class="imw"></p> 
-                        </div>
-                        <div class="card-body">
-                            <h5  class="text-center">Apple imac</h5> 
-                            <p  class="text-center">Price: $1699.99</p>
-                            <p class="text-center"><input type="submit" name="Save" value="Buy" class=" cc1"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="ccc">
-                            <p class="text-center"><img src="https://raw.githubusercontent.com/rxhack/productImage/main/6.jpg" class="imw"></p> 
-                        </div>
-                        <div class="card-body">
-                            <h5  class="text-center">Apple ipad Air</h5> 
-                            <p  class="text-center">Price: $415.99</p>
-                            <p class="text-center"><input type="submit" name="Save" value="Buy" class=" cc1"></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="ccc">
-                            <p class="text-center"><img src="https://raw.githubusercontent.com/rxhack/productImage/main/7.jpg" class="imw"></p> 
-                        </div>
-                        <div class="card-body">
-                            <h5  class="text-center">Apple iphone X</h5> 
-                            <p  class="text-center">Price: $1342.00</p>
-                            <p class="text-center"><input type="submit" name="Save" value="Buy" class=" cc1"></p>
-                        </div>
-                    </div>
-                </div>
+                <% }%>
             </div>
         </div>
-
         <%@include file="footer.jsp" %>
     </body>
 </html>

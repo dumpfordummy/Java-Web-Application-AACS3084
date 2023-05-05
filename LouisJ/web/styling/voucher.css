@@ -7,6 +7,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : Pua
 */
 
+body{
+    overflow-x: hidden;
+}
+
+.voucherAmtTxt{
+    margin: 15px;
+    font-size: 20px;
+}
+
+.rounded-pill{
+    background-color: black;
+}
+
 .vouchersSelectionTab{
     margin-top: 25px;
     border-bottom: 1px solid gray;
@@ -22,4 +35,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
 
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link{
     background-color: black;
+}
+
+.voucherHeader{
+    background: lightgray;
 }

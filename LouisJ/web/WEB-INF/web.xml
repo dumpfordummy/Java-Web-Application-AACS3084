@@ -45,16 +45,40 @@
         <servlet-class>controller.CheckoutController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>StaffRegisterController</servlet-name>
-        <servlet-class>controller.StaffRegisterController</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>StaffListingController</servlet-name>
         <servlet-class>controller.StaffListingController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteCartPaymentController</servlet-name>
         <servlet-class>controller.DeleteCartPaymentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HomePageController</servlet-name>
+        <servlet-class>controller.HomePageController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderListingController</servlet-name>
+        <servlet-class>controller.OrderListingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CustomerListingController</servlet-name>
+        <servlet-class>controller.CustomerListingController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>OrderUpdateController</servlet-name>
+        <servlet-class>controller.OrderUpdateController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddVoucherController</servlet-name>
+        <servlet-class>controller.AddVoucherController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>VoucherController</servlet-name>
+        <servlet-class>controller.VoucherController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SalesReportController</servlet-name>
+        <servlet-class>controller.SalesReportController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
@@ -97,10 +121,6 @@
         <url-pattern>/checkout</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>StaffRegisterController</servlet-name>
-        <url-pattern>/registerStaff</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>StaffListingController</servlet-name>
         <url-pattern>/StaffListingController</url-pattern>
     </servlet-mapping>
@@ -112,12 +132,40 @@
         <servlet-name>CartPaymentController</servlet-name>
         <url-pattern>/cartPayment</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomePageController</servlet-name>
+        <url-pattern>/home</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderListingController</servlet-name>
+        <url-pattern>/OrderListingController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CustomerListingController</servlet-name>
+        <url-pattern>/CustomerListingController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OrderUpdateController</servlet-name>
+        <url-pattern>/OrderUpdateController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddVoucherController</servlet-name>
+        <url-pattern>/addVoucher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>VoucherController</servlet-name>
+        <url-pattern>/voucher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SalesReportController</servlet-name>
+        <url-pattern>/SalesReportController</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             60
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>homePage.jsp</welcome-file>
+        <welcome-file>welcome.jsp</welcome-file>
     </welcome-file-list>
 </web-app>

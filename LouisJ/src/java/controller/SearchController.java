@@ -31,11 +31,14 @@ public class SearchController extends HttpServlet {
             throws ServletException, IOException {
         ProductService productService = new ProductService(em);
         List<String> categories = productService.findAllCategory();
+        double maxPrice = productService.findMaxPrice();
         request.setAttribute("categories", categories);
         String searchTerm = request.getParameter("searchTerm");
-        searchTerm = searchTerm.toUpperCase();
+        searchTerm = searchTerm.trim().toUpperCase();
         List<Product> productList = productService.findByNamePattern(searchTerm);
-  
+        request.setAttribute("maxPrice", maxPrice);
+        request.setAttribute("priceRangeInput", maxPrice);
+
         request.setAttribute("productList", productList);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/product.jsp");
         dispatcher.forward(request, response);
