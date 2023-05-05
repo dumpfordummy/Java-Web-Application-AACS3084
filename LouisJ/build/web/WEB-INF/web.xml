@@ -71,6 +71,8 @@
     <servlet>
         <servlet-name>VoucherController</servlet-name>
         <servlet-class>controller.VoucherController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>SalesReportController</servlet-name>
         <servlet-class>controller.SalesReportController</servlet-class>
     </servlet>
@@ -145,6 +147,8 @@
     <servlet-mapping>
         <servlet-name>VoucherController</servlet-name>
         <url-pattern>/voucher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>SalesReportController</servlet-name>
         <url-pattern>/SalesReportController</url-pattern>
     </servlet-mapping>
