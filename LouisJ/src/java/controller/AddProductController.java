@@ -29,7 +29,24 @@ public class AddProductController extends HttpServlet {
     
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String name = request.getParameter("name");
+        String description = request.getParameter("description");
+        String category = request.getParameter("category");
+        String priceStr = request.getParameter("price");
+        String image = request.getParameter("image");
+        
         try {
+            if (name.isEmpty() || description.isEmpty() || category.isEmpty() || priceStr.isEmpty() || image.isEmpty()) {
+                response.sendRedirect("/addProduct.jsp?name=" + name
+                        + "&description=" + description
+                        + "&category=" + category
+                        + "&price=" + priceStr
+                        + "&error=empty");
+                return;
+            }
+
+            Product product = new Product();
+            
             ProductService productService = new ProductService(em);
             List<Product> ProductList = productService.findAllDesc();
             int lastProductid;
@@ -38,27 +55,20 @@ public class AddProductController extends HttpServlet {
             } else {
                 lastProductid = ProductList.get(0).getProductid();
             }
+            double price = Double.parseDouble(priceStr);
             
-            String name = request.getParameter("name");
-            String description = request.getParameter("description");
-            String type = request.getParameter("type");
-            String category = request.getParameter("category");
-            double price = Double.parseDouble(request.getParameter("price"));
-            String image = request.getParameter("image");
-
-            Product product = new Product();
             product.setProductid(lastProductid + 1);
             product.setName(name);
             product.setDescription(description);
             product.setCategory(category);
             product.setPrice(price);
             product.setImage(image);
-            
+
             utx.begin();
             boolean success = productService.addProduct(product);
             utx.commit();
             
-            response.sendRedirect(request.getContextPath() + "/product");
+            response.sendRedirect("/product");
         } catch (Exception ex) {
             Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -66,6 +76,6 @@ public class AddProductController extends HttpServlet {
     
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.sendRedirect(request.getContextPath() + "/addProduct.jsp");
+        response.sendRedirect("/addProduct.jsp");
     }
 }
