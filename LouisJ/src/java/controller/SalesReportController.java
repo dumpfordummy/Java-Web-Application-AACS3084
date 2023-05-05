@@ -4,10 +4,9 @@
  */
 package controller;
 
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import interfaces.User;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -20,6 +19,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Cart;
 import model.CartService;
+import model.Payment;
+import model.PaymentService;
+import model.Product;
+import model.ProductService;
 import util.UserSessionUtil;
 
 /**
@@ -29,7 +32,8 @@ import util.UserSessionUtil;
 @WebServlet(urlPatterns = {"/salesReport"})
 public class SalesReportController extends HttpServlet {
     @PersistenceContext EntityManager em;
-
+    
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -42,14 +46,18 @@ public class SalesReportController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         CartService cartService = new CartService(em);
+        ProductService productService = new ProductService(em);
+        List<Product> productList = productService.findAll();
         List<Cart> tempCartList = cartService.findAll();
         List<Cart> cartList = new ArrayList<>();
+        
         for (Cart cart : tempCartList){
             if(cart.getPaymentid() != null){
                 cartList.add(cart);
             }
         }
         request.setAttribute("cartList", cartList);
+        request.setAttribute("productList", productList);
         
         UserSessionUtil userSession = new UserSessionUtil(request.getSession());
         User user = userSession.getCurrentLoginUser(request.getCookies());
@@ -83,6 +91,39 @@ public class SalesReportController extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        CartService cartService = new CartService(em);
+        ProductService productService = new ProductService(em);
+        PaymentService paymentService = new PaymentService(em);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        List<Product> productList = productService.findAll();
+        String date = request.getParameter("dateValue");
+        String productId = request.getParameter("filterProduct");
+        
+        List<Cart> tempCartList = cartService.findAll();
+        List<Cart> cartList = new ArrayList<>();
+        
+        if (date != null){
+            for (Cart cart : tempCartList){
+                Payment payment = paymentService.findPaymentByPaymentid(cart.getPaymentid());
+                String orderDate = dateFormat.format(payment.getOrderDate());
+                if (orderDate.equals(date)){
+                    cartList.add(cart);
+                }
+            }
+        } 
+        else if (productId != null){
+            for (Cart cart : tempCartList){
+                Product product = productService.findProductByProductid(Integer.parseInt(productId));
+                if (cart.getProductid().equals(product.getProductid())){
+                    cartList.add(cart);
+                }
+            }
+        }
+        
+        request.setAttribute("cartList", cartList);
+        request.setAttribute("productList", productList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/salesReport.jsp");
+        dispatcher.forward(request, response);
     }
 
 }

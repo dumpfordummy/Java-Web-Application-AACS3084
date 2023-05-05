@@ -83,6 +83,11 @@ public class CartService {
         return null;
     }
 
+    public List<Cart> findAllOrderByProductid(){
+        List cartList = mgr.createNamedQuery("Cart.findAllOrderByProductid").getResultList();
+        return cartList;
+    }
+    
     public boolean updateCart(Cart cart) {
         Cart tempCart = findCartByCartid(cart.getCartid());
         if (tempCart != null) {
