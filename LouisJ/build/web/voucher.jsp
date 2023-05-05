@@ -4,6 +4,7 @@
     Author     : Pua
 --%>
 
+<%@page import="interfaces.User"%>
 <%@page import="java.time.temporal.ChronoUnit"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="model.Voucher"%>
@@ -51,7 +52,17 @@
                                 <p class="card-text text-center voucherAmtTxt">Voucher Amount: <span class="badge rounded-pill">RM <%= voucher.getVoucherOfferAmount()%></span></p>
                                 <form class="text-center" method="POST" action="deleteVoucher">
                                     <input type="hidden" name="voucherid" value="<%=voucher.getVoucherid()%>">
+                                    <%
+                                        util.UserSessionUtil userSession = new util.UserSessionUtil(request.getSession());
+                                        //Customer customer = new Customer("1001", "test", "056823974923", "test@cust.com", "", "Test Customer", "0137416287", "123, Jln Bunga, 50300 KL");
+                                        //Cookie userCookie = userSession.setUserSession(customer);
+                                        //response.addCookie(userCookie);
+                                        User user = userSession.getCurrentLoginUser(request.getCookies());
+                                        if (user != null) {
+                                            if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) { %>
                                     <input type="submit" value="Delete Voucher" class="btnDelete">
+                                    <%  }
+                                        }%>
                                 </form>
                                 <br>
                                 <div class="card-footer text-body-secondary text-center">Expiry date: <%= voucher.getVoucherExpiryDate()%></div>
@@ -81,7 +92,17 @@
                                 <p class="card-text text-center voucherAmtTxt">Voucher Amount: <span class="badge rounded-pill">RM <%= voucher.getVoucherOfferAmount()%></span></p>
                                 <form class="text-center" method="POST" action="deleteVoucher">
                                     <input type="hidden" name="voucherid" value="<%=voucher.getVoucherid()%>">
+                                    <%
+                                        util.UserSessionUtil userSession = new util.UserSessionUtil(request.getSession());
+                                        //Customer customer = new Customer("1001", "test", "056823974923", "test@cust.com", "", "Test Customer", "0137416287", "123, Jln Bunga, 50300 KL");
+                                        //Cookie userCookie = userSession.setUserSession(customer);
+                                        //response.addCookie(userCookie);
+                                        User user = userSession.getCurrentLoginUser(request.getCookies());
+                                        if (user != null) {
+                                            if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) { %>
                                     <input type="submit" value="Delete Voucher" class="btnDelete">
+                                    <%  }
+                                        }%>
                                 </form>
                                 <br>
                                 <div class="card-footer text-body-secondary text-center">Expiry date: <%= voucher.getVoucherExpiryDate()%></div>
@@ -111,7 +132,17 @@
                                 <p class="card-text text-center voucherAmtTxt">Voucher Amount: <span class="badge rounded-pill">RM <%= voucher.getVoucherOfferAmount()%></span></p>
                                 <form class="text-center" method="POST" action="deleteVoucher">
                                     <input type="hidden" name="voucherid" value="<%=voucher.getVoucherid()%>">
+                                    <%
+                                        util.UserSessionUtil userSession = new util.UserSessionUtil(request.getSession());
+                                        //Customer customer = new Customer("1001", "test", "056823974923", "test@cust.com", "", "Test Customer", "0137416287", "123, Jln Bunga, 50300 KL");
+                                        //Cookie userCookie = userSession.setUserSession(customer);
+                                        //response.addCookie(userCookie);
+                                        User user = userSession.getCurrentLoginUser(request.getCookies());
+                                        if (user != null) {
+                                            if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) { %>
                                     <input type="submit" value="Delete Voucher" class="btnDelete">
+                                    <%  }
+                                        }%>
                                 </form>
                                 <br>
                                 <div class="card-footer text-body-secondary text-center">Expiry date: <%= voucher.getVoucherExpiryDate()%></div>
