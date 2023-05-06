@@ -50,8 +50,12 @@ public class LoginController extends HttpServlet {
                 Cookie userCookie = userSession.setUserSession(customer);
                 response.addCookie(userCookie);
                 response.sendRedirect(HOMEPAGE);
+                return;
             }
         }
+        
+        request.setAttribute("loginErrorMsg", "Invalid username or password");
+        request.getRequestDispatcher(LOGINPAGE).forward(request, response);
     }
 
 }

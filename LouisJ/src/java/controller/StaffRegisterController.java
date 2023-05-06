@@ -42,6 +42,7 @@ public class StaffRegisterController extends HttpServlet {
     UserTransaction utx;
 
     private static final String STAFFREGISTERPAGE = "/registerStaff.jsp";
+    private static final String HOMEPAGE = "/home";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -103,15 +104,14 @@ public class StaffRegisterController extends HttpServlet {
                 utx.begin();
                 boolean isRegisterSuccess = employeeService.addEmployee(employee);
                 utx.commit();
-                if (isRegisterSuccess) {
-                    out.print("Register Successfully");
-                    return;
-                }
+//                if (isRegisterSuccess) {
+//                    
+//                    return;
+//                }
             } catch (Exception ex) {
                 Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
-        out.print("Failed to register");
+        response.sendRedirect(HOMEPAGE);
     }
 }

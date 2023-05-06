@@ -45,11 +45,12 @@
                             User users = userSession.getCurrentLoginUser(request.getCookies());
                             if (users == null) {
                         %>
-                        <a href="loginStaff.jsp">Login Staff</a>
-                        <a href="login.jsp">Login Customer</a>
-                        <a href="register.jsp">Register Customer</a>
+                        <a href="/loginStaff">Login Staff</a>
+                        <a href="/login">Login Customer</a>
+                        <a href="/register">Register Customer</a>
                         <%} else {%>
-                        <a href="profile.jsp">Profile</a>
+                        <a href="/profile">Profile</a>
+                        <a href="/logout">Logout</a>
                         <% } %>
                     </div>
                 </div>

@@ -57,6 +57,15 @@
                         <button class="log-in"> Log In </button>
                     </div>
 
+                    <%
+                        String loginErrorMsg = (String) request.getAttribute("loginErrorMsg");
+                        if(loginErrorMsg != null) {
+                        
+                    %>
+                    <p style="color:red"><%= loginErrorMsg %></p>
+                    <%
+                        }
+                    %>
                     <!--   other buttons -->
                     <div class="other">
                         <!--      Forgot Password button-->

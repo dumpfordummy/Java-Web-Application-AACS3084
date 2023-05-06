@@ -141,6 +141,9 @@ public class ProfileController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            UserSessionUtil userSession = new UserSessionUtil(request.getSession());
+            User currentUser = userSession.getCurrentLoginUser(request.getCookies());
+
             String[] paths = request.getRequestURI().substring(1).split("/");
 
             String userType = paths[2];
@@ -178,9 +181,11 @@ public class ProfileController extends HttpServlet {
                     customer.setProfileimg(base64Image);
                 }
 
-                UserSessionUtil userSession = new UserSessionUtil(request.getSession());
-                Cookie userCookie = userSession.setUserSession(customer);
-                
+                if (currentUser.getId().equals(customer.getId())) {
+                    UserSessionUtil userSessions = new UserSessionUtil(request.getSession());
+                    Cookie userCookie = userSessions.setUserSession(customer);
+                }
+
                 utx.begin();
                 customerService.updateCustomer(customer);
                 utx.commit();
@@ -207,10 +212,11 @@ public class ProfileController extends HttpServlet {
                     String base64Image = ImageUtil.getImageBase64(imagePart);
                     employee.setProfileimg(base64Image);
                 }
+                if (currentUser.getId().equals(employee.getId())) {
+                    UserSessionUtil userSessions = new UserSessionUtil(request.getSession());
+                    Cookie userCookie = userSessions.setUserSession(employee);
+                }
 
-                UserSessionUtil userSession = new UserSessionUtil(request.getSession());
-                Cookie userCookie = userSession.setUserSession(employee);
-                
                 utx.begin();
                 employeeService.updateEmployee(employee);
                 utx.commit();
