@@ -67,6 +67,11 @@ public class CartService {
         return cartList;
     }
     
+    public List<Cart> findAllPaid() {
+        List cartList = mgr.createNamedQuery("Cart.findAllPaid").getResultList();
+        return cartList;
+    }
+    
     public List<Cart> findAllDesc() {
         List cartList = mgr.createNamedQuery("Cart.findAllDesc").getResultList();
         return cartList;

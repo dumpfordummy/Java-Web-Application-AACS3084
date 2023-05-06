@@ -46,9 +46,9 @@
                 <% } %>
             </select>
         </form>
-        <form id="dateFilter" action="/salesReport" method="POST" class="col-3 m-3" style="display: none;">
-            <input type="date" name="dateValue" class="form-control" />
-            <input type="submit" class="ml-3 btn btn-primary" />
+        <form id="dateFilter" action="/salesReport" method="POST" class="col-3 m-3" style="display: none; flex-direction: row;">
+            <input type="date" name="dateValue" class="form-control" style="width: auto;" />
+            <input type="submit" class="btn btn-primary" style="margin-left: 1rem;" />
         </form>
         <div class="card m-3">
             <table id="salesTable" class="table" style="margin-bottom: 0;">
@@ -161,7 +161,7 @@
                     document.getElementById("dateFilter").style.display = "none";
                 }
                 else if (document.getElementById("filterBy").value === "Date"){
-                    document.getElementById("dateFilter").style.display = "block";
+                    document.getElementById("dateFilter").style.display = "flex";
                     document.getElementById("productFilter").style.display = "none";
                 }
             }
