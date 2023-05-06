@@ -49,6 +49,11 @@
                                 <input type="hidden" name="productid" value="<%=product.getProductid()%>">
                                 <input type="submit" class="add-to-cart btn btn-default" value="Add To Cart">
                             </form>
+                            <br/>
+                            <form method="GET" action="editProduct">
+                                <input type="hidden" name="productid" value="<%=product.getProductid()%>">
+                                <input type="submit" class="add-to-cart btn btn-default green" value="Edit Product">
+                            </form>
                         </div>
                     </div>
                 </div>

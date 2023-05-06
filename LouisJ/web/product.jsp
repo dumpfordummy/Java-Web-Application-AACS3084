@@ -80,13 +80,6 @@
                         <%
                             }
                         %> 
-                        <div class="col-md-4">
-                            <div class="card">
-                                <div class="ccc">
-                                    <p class="text-center"><a href="/addProduct"><img src="images/add.jpg" class="imw"/></a></p> 
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 
