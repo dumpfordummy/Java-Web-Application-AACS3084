@@ -31,10 +31,17 @@
                 <img src="images/logo.png" height="50" width="150" class="d-inline-block align-top" alt="LOGO.PNG">
             </a>
             <div class="navbar-nav ml-auto">
-                <a class="nav-item nav-link" href="#">
-                    <img src="images/account.png" height="30" class="d-inline-block align-top" alt="ACCOUNT.PNG">
-                    <span class="ml-2">ACCOUNT</span>
-                </a>
+                <div class="dropdown">
+                    <a class="nav-item nav-link" href="#">
+                        <img src="images/account.png" height="30" class="d-inline-block align-top" alt="ACCOUNT.PNG">
+                        <span class="ml-2">ACCOUNT</span>
+                    </a>
+                    <div class="dropdown-content">
+                        <a href="#">Login</a>
+                        <a href="#">Register</a>
+                        <a href="#">Profile</a>
+                    </div>
+                </div>
                 <a class="nav-item nav-link" href="cartPayment">
                     <img src="images/cart.png" height="30" class="d-inline-block align-top" alt="CART.PNG">
                     <span class="ml-2">CART</span>
