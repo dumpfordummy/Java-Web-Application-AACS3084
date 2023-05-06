@@ -36,8 +36,6 @@ public class LoginController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-
         String username = request.getParameter("uname");
         String password = request.getParameter("upass");
         CustomerService customerService = new CustomerService(em);

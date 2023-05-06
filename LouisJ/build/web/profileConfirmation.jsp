@@ -12,6 +12,6 @@
         <title>Delete user</title>
     </head>
     <body>
-        <h2>User <%= request.getAttribute("action") %> successfully, click <a href="/">me</a> to back to home</h2>
+        <h2>User <%= request.getAttribute("action") %> successfully, click <a href="/home">me</a> to back to home</h2>
     </body>
 </html>

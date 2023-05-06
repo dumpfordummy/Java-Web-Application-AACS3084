@@ -22,9 +22,9 @@
                 <div class="con">
                     <!--     Start  header Content  -->
                     <header class="head-form">
-                        <h2>Log In</h2>
+                        <h2>Forgot password</h2>
                         <!--     A welcome message or an explanation of the login form -->
-                        <p>login here using your username and password</p>
+                        <p>Reset your password by username</p>
                     </header>
                     <!--     End  header Content  -->
                     <br>
@@ -84,8 +84,10 @@
             $('#pwd, #cpwd').on('keyup', function () {
                 if ($('#pwd').val() == $('#cpwd').val()) {
                     $("#resetBtn").prop("disabled", false);
+                    $("#resetBtn").css("color", "#252537");
                 } else {
                     $("#resetBtn").prop("disabled", true);
+                    $("#resetBtn").css("color", "#ffcccb");
                 }
             });
 

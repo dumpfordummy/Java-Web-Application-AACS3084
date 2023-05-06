@@ -21,8 +21,8 @@
                 <div class="con">
                     <!--     Start  header Content  -->
                     <header class="head-form">
-                        <h2>Forgot password</h2>
-                        <p>Reset your password by username</p>
+                        <h2>Log In</h2>
+                        <p>Login here using your username and password</p>
                     </header>
                     <!--     End  header Content  -->
                     <br>
