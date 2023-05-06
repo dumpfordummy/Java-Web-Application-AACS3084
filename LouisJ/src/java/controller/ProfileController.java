@@ -178,6 +178,7 @@ public class ProfileController extends HttpServlet {
                     customer.setAddress(address);
                 }
                 if (!Paths.get(imagePart.getSubmittedFileName()).getFileName().toString().equals("")) {
+                    System.out.println("Setting image");
                     String base64Image = ImageUtil.getImageBase64(imagePart);
                     customer.setProfileimg(base64Image);
                 }
@@ -210,6 +211,7 @@ public class ProfileController extends HttpServlet {
                     employee.setAddress(address);
                 }
                 if (!Paths.get(imagePart.getSubmittedFileName()).getFileName().toString().equals("")) {
+                    System.out.println("Setting image");
                     String base64Image = ImageUtil.getImageBase64(imagePart);
                     employee.setProfileimg(base64Image);
                 }

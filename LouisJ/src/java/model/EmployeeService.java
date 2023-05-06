@@ -72,12 +72,7 @@ public class EmployeeService {
         return employeeList;
     }
     
-    public boolean updateEmployee(Employee employee) {
-        Employee tempEmployee = findEmployeeById(employee.getId());
-        if (tempEmployee != null) {
-            tempEmployee.setUsername(employee.getUsername());
-            return true;
-        }
-        return false;
+    public Employee updateEmployee(Employee employee) {
+        return (Employee) mgr.merge(employee);
     }
 }
