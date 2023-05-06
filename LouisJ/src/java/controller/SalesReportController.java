@@ -99,7 +99,7 @@ public class SalesReportController extends HttpServlet {
         String date = request.getParameter("dateValue");
         String productId = request.getParameter("filterProduct");
         
-        List<Cart> tempCartList = cartService.findAll();
+        List<Cart> tempCartList = cartService.findAllPaid();
         List<Cart> cartList = new ArrayList<>();
         
         if (date != null){
