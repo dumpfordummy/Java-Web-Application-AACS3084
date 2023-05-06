@@ -23,7 +23,7 @@ import util.hashUtil;
  *
  * @author CY
  */
-@WebServlet(name = "ForgotPasswordController", urlPatterns = {"/forgot"})
+@WebServlet(name = "ForgotPasswordController", urlPatterns = {"/forgotStaff"})
 public class StaffForgotPasswordController extends HttpServlet {
 
     @PersistenceContext
