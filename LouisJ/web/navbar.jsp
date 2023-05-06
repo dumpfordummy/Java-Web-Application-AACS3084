@@ -37,9 +37,20 @@
                         <span class="ml-2">ACCOUNT</span>
                     </a>
                     <div class="dropdown-content">
-                        <a href="#">Login</a>
-                        <a href="#">Register</a>
-                        <a href="#">Profile</a>
+                        <%
+                            util.UserSessionUtil userSession = new util.UserSessionUtil(request.getSession());
+                            //Customer customer = new Customer("1001", "test", "056823974923", "test@cust.com", "", "Test Customer", "0137416287", "123, Jln Bunga, 50300 KL");
+                            //Cookie userCookie = userSession.setUserSession(customer);
+                            //response.addCookie(userCookie);
+                            User users = userSession.getCurrentLoginUser(request.getCookies());
+                            if (users == null) {
+                        %>
+                        <a href="loginStaff.jsp">Login Staff</a>
+                        <a href="login.jsp">Login Customer</a>
+                        <a href="register.jsp">Register Customer</a>
+                        <%} else {%>
+                        <a href="profile.jsp">Profile</a>
+                        <% } %>
                     </div>
                 </div>
                 <a class="nav-item nav-link" href="cartPayment">
@@ -54,13 +65,9 @@
             <a href="product" target="_blank">Products</a>
             <a href="voucher" target="_blank">Vouchers</a>
             <%
-                util.UserSessionUtil userSession = new util.UserSessionUtil(request.getSession());
-                //Customer customer = new Customer("1001", "test", "056823974923", "test@cust.com", "", "Test Customer", "0137416287", "123, Jln Bunga, 50300 KL");
-                //Cookie userCookie = userSession.setUserSession(customer);
-                //response.addCookie(userCookie);
-                User user = userSession.getCurrentLoginUser(request.getCookies());
-                if (user != null) {
-                    if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) { %>
+                if (users
+                        != null) {
+                    if (users.getUsertype().equals(User.MANAGER) || users.getUsertype().equals(User.STAFF)) { %>
             <a href="addProduct.jsp" target="_blank">Add Product</a>
             <a href="customerList" target="_blank">Customer List</a>
             <a href="staffList" target="_blank">Staff List</a>
