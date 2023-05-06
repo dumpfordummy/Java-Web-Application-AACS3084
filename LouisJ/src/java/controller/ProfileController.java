@@ -134,9 +134,8 @@ public class ProfileController extends HttpServlet {
         while (headerNames.hasMoreElements()) {
             System.out.println(request.getHeader(headerNames.nextElement()));
         }
-        request.setAttribute("action", "deleted");
 
-        request.getRequestDispatcher(PROFILECONFIRMATIONPAGE).forward(request, response);
+        response.sendRedirect("/home");
     }
 
     @Override
@@ -224,8 +223,7 @@ public class ProfileController extends HttpServlet {
                 employeeService.updateEmployee(employee);
                 utx.commit();
             }
-            request.setAttribute("action", "edited");
-            request.getRequestDispatcher(PROFILECONFIRMATIONPAGE).forward(request, response);
+            response.sendRedirect("/home");
         } catch (Exception ex) {
             request.setAttribute("errorTitle", "Error!");
             request.setAttribute("errorTitle", ex.getMessage());

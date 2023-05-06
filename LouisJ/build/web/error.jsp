@@ -18,5 +18,6 @@
         <% errorMessage = (String)request.getAttribute("errorMessage"); %>
         <h1><%= errorTitle == null ? "Error" : errorTitle %></h1>
         <p><%= errorMessage == null ? "An Unexpected Error occurred. Please contact administration for further assistance" : errorMessage %></p>
+        <a href="/home">back home</a>
     </body>
 </html>
