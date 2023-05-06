@@ -171,7 +171,7 @@
                                 </div>
                                 <div class="row mx-0 mb-2">
                                     <div class="col-sm-12 p-0 d-inline">
-                                        <input class="form-control" type="text" name="cardNumber" id="cardNumber" pattern="\d{12}" title="Please enter a 12-digit card number" required>
+                                        <input class="form-control" type="text" name="cardNumber" id="cardNumber" pattern="\d{12}" title="Please enter a 12-digit card number" required disabled>
                                     </div>
                                 </div>
                                 <div class="row mx-0 mb-2">
@@ -181,7 +181,7 @@
                                 </div>
                                 <div class="row mx-0 mb-2">
                                     <div class="col-sm-12 p-0 d-inline">
-                                        <input class="form-control" id="myDate" min="{{todayDate}}" type="date" name="expDate" id="expDate" required>
+                                        <input class="form-control" id="myDate" min="{{todayDate}}" type="date" name="expDate" required disabled>
                                     </div>
                                 </div>
                                 <div class="row mx-0 mb-2">
@@ -191,7 +191,7 @@
                                 </div>
                                 <div class="row mx-0 mb-2">
                                     <div class="col-sm-12 p-0 d-inline">
-                                        <input class="form-control" type="text" name="CVV" id="CVV" pattern="\d{3}" title="Please enter a 3-digit CVV number" required> 
+                                        <input class="form-control" type="text" name="CVV" id="CVV" pattern="\d{3}" title="Please enter a 3-digit CVV number" required disabled> 
                                     </div>
                                 </div>
                             </div>
@@ -218,8 +218,14 @@
 
                 if (paymentMethod === "CASH") {
                     cardMethod.style.visibility = 'hidden';
+                    document.getElementById("cardNumber").disabled = true;
+                    document.getElementById("myDate").disabled = true;
+                    document.getElementById("CVV").disabled = true;
                 } else if (paymentMethod === "CARD") {
                     cardMethod.style.visibility = 'visible';
+                    document.getElementById("cardNumber").disabled = false;
+                    document.getElementById("myDate").disabled = false;
+                    document.getElementById("CVV").disabled = false;
                 }
 
             }
