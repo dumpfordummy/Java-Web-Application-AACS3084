@@ -59,7 +59,7 @@ public class CheckoutController extends HttpServlet {
                     return;
                 }
             }
-            String status = request.getParameter("status");
+            //String status = request.getParameter("status");
             double subTotal = Double.parseDouble(request.getParameter("subTotal"));
             double tax = Double.parseDouble(request.getParameter("tax"));
             double deliveryCharge = Double.parseDouble(request.getParameter("deliveryCharge"));
@@ -102,7 +102,7 @@ public class CheckoutController extends HttpServlet {
             payment.setCustomerid(customerid);
             payment.setShippingaddress(shippingAddress);
             payment.setPaymentmethod(paymentMethod);
-            payment.setStatus(status);
+            payment.setStatus("PACKAGING");
             payment.setsubTotal(subTotal);
             payment.setTax(tax);
             payment.setDeliveryCharge(deliveryCharge);
