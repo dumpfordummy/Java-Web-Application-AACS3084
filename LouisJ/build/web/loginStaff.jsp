@@ -62,10 +62,6 @@
                     <div class="other">
                         <!--      Forgot Password button-->
                         <button class="btn submits frgt-pass" onclick="location.pathname='forgot'">Forgot Password</button>
-                        <!--     Sign Up button -->
-                        <button class="btn submits sign-up" onclick="location.pathname='register'">Sign Up 
-                            <!--         Sign Up font icon -->
-                            <i class="fa fa-user-plus" aria-hidden="true"></i>
                         </button>
                         <!--      End Other the Division -->
                     </div>

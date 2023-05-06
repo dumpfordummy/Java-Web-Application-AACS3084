@@ -97,6 +97,7 @@ public class ProfileController extends HttpServlet {
             request.setAttribute("errorTitle", "Error!");
             request.setAttribute("errorTitle", ex.getMessage());
             request.getRequestDispatcher(ERRORPAGE).forward(request, response);
+            return;
         }
 
     }

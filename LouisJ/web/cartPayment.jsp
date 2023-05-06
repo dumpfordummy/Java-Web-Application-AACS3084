@@ -181,7 +181,7 @@
                                 </div>
                                 <div class="row mx-0 mb-2">
                                     <div class="col-sm-12 p-0 d-inline">
-                                        <input class="form-control" type="date" name="expDate" id="expDate">
+                                        <input class="form-control" id="myDate" min="{{todayDate}}" type="date" name="expDate" id="expDate">
                                     </div>
                                 </div>
                                 <div class="row mx-0 mb-2">
@@ -329,6 +329,20 @@
             if (error !== "null") {
                 window.alert("Please fill in the payment information!");
             }
+            
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+            today = yyyy + '-' + mm + '-' + dd;
+            document.getElementById("myDate").setAttribute("min", today);
+        
         </script>
     </body>
     <footer>
