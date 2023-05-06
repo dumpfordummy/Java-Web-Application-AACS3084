@@ -4,6 +4,7 @@
     Author     : Wai Loc
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="interfaces.*"%>
 <%@page import="model.Customer"%>
 <%@page import="java.util.List"%>
@@ -22,16 +23,16 @@
     </head>
     <body>
         <%
-            util.UserSessionUtil userSession = new util.UserSessionUtil(request.getSession());
-            User user = userSession.getCurrentLoginUser(request.getCookies());
-            if (user != null){
-                if (user.getUsertype().equals(User.MANAGER)){ %>
+            String userRole = (String) request.getAttribute("UserRole");
+            if (userRole != null){
+                if (userRole.equals(User.MANAGER)){ %>
                     <a class="btn btn-primary" href="" style="width: 120px; margin: 2rem 2rem 0 2rem">Add Staff</a>
         <%  }} %>
         
         <div class="row" style="margin-bottom: 2rem;">
             <% 
                 List<Employee> employeeList = (List<Employee>)request.getAttribute("employeeList");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
                 for (Employee e : employeeList) {
             %>
             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column m-3">
@@ -43,10 +44,10 @@
                         <div class="row">
                             <div class="col-7">
                                 <ul class="ml-4 mb-0 fa-ul text-muted">
-                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-phone" style="font-size: 15px; color: gray; padding-right: 5px;"></i></span> <%=e.getContact() %></li>
-                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-envelope" style="font-size: 15px; color: gray; padding-right: 5px;"></i></span> <%=e.getEmail() %></li>
-                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-address-book-o" style="font-size: 20px; color: gray; padding-right: 5px;"></i></span> <%=e.getAddress() %></li>
-                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa-solid fa-calendar-days" style="font-size: 20px; color: gray; padding-right: 5px;"></i></span> Joined <%=e.getDatejoin() %></li>
+                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-phone" style="font-size: 15px; color: gray; padding-right: 5px;"></i></span> <%= e.getContact() %></li>
+                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-envelope" style="font-size: 15px; color: gray; padding-right: 5px;"></i></span> <%= e.getEmail() %></li>
+                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-address-book-o" style="font-size: 20px; color: gray; padding-right: 5px;"></i></span> <%= e.getAddress() %></li>
+                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa-solid fa-calendar-days" style="font-size: 20px; color: gray; padding-right: 5px;"></i></span> Joined <%= dateFormat.format(e.getDatejoin()) %></li>
                                 </ul>
                             </div>
                             <div class="col-5 text-center">
@@ -56,9 +57,8 @@
                     </div>
                     <div class="card-footer p-3">
                         
-                        <%  if (user != null){
-                                String usertype = user.getUsertype();
-                                if (user.getUsertype().equals(User.MANAGER)){ %>
+                        <%  if (userRole != null){
+                                if (userRole.equals(User.MANAGER)){ %>
                                     <a href="" style="text-decoration: none;">
                                         <i class="fa-regular fa-pen-to-square fa-2xl"></i>
                                     </a>

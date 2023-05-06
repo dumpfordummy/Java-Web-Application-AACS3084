@@ -4,6 +4,9 @@
     Author     : Pua
 --%>
 
+<%@page import="interfaces.User"%>
+<%@page import="java.time.temporal.ChronoUnit"%>
+<%@page import="java.time.LocalDate"%>
 <%@page import="model.Voucher"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.List"%>
@@ -26,30 +29,119 @@
                 <li class="nav-item" role="presentation">
                     <button class="nav-link" id="voucher-expiring-tab" data-bs-toggle="pill" data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile" aria-selected="false">EXPIRING</button>
                 </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link" id="voucher-expired-tab" data-bs-toggle="pill" data-bs-target="#pills-profile2" type="button" role="tab" aria-controls="pills-profile2" aria-selected="false">EXPIRED</button>
+                </li>
             </ul>
         </div>
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="voucher-latest-tab" tabindex="0">
                 <br>
                 <div class="row justify-content-center">
-                    <% List<Voucher> voucherList = (List<Voucher>) request.getAttribute("voucherList");
-                        for (Voucher voucher : voucherList) {%>
+                    <%
+                        LocalDate currentDate = LocalDate.now();
+                        List<Voucher> voucherLists = (List<Voucher>) request.getAttribute("voucherList");
+                        for (Voucher voucher : voucherLists) {
+                            long daysUntilExpiry = ChronoUnit.DAYS.between(currentDate, voucher.getVoucherExpiryDate());
+                            if (daysUntilExpiry > 3) {
+                    %>
+                    <div class="col-sm-3">
+                        <div class="card" style="margin-bottom:10px">
+                            <div class="card-body">
+                                <h4 class="card-header text-center voucherHeader" style="font-weight: bold"><%= voucher.getVoucherCode()%></h4>
+                                <p class="card-text text-center voucherAmtTxt">Voucher Amount: <span class="badge rounded-pill">RM <%= voucher.getVoucherOfferAmount()%></span></p>
+                                <form class="text-center" method="POST" action="deleteVoucher">
+                                    <input type="hidden" name="voucherid" value="<%=voucher.getVoucherid()%>">
+                                    <%
+                                        if (user != null) {
+                                            if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) { %>
+                                    <input type="submit" value="Delete Voucher" class="btnDelete">
+                                    <%  }
+                                        }%>
+                                </form>
+                                <br>
+                                <div class="card-footer text-body-secondary text-center">Expiry date: <%= voucher.getVoucherExpiryDate()%></div>
+                            </div>
+                        </div>
+                    </div>
+                    <%
+                            }
+                        }
+                    %>
+                </div>
+                <br>
+            </div>
+
+            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="voucher-expiring-tab" tabindex="0">
+                <br>
+                <div class="row justify-content-center">
+                    <%
+                        for (Voucher voucher : voucherLists) {
+                            long daysUntilExpiry = ChronoUnit.DAYS.between(currentDate, voucher.getVoucherExpiryDate());
+                            if (daysUntilExpiry <= 3 && daysUntilExpiry >= 0) {
+                    %>
                     <div class="col-sm-3">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-header text-center voucherHeader" style="font-weight: bold"><%= voucher.getVoucherCode()%></h4>
                                 <p class="card-text text-center voucherAmtTxt">Voucher Amount: <span class="badge rounded-pill">RM <%= voucher.getVoucherOfferAmount()%></span></p>
+                                <form class="text-center" method="POST" action="deleteVoucher">
+                                    <input type="hidden" name="voucherid" value="<%=voucher.getVoucherid()%>">
+                                    <%
+                                        if (user != null) {
+                                            if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) { %>
+                                    <input type="submit" value="Delete Voucher" class="btnDelete">
+                                    <%  }
+                                        }%>
+                                </form>
+                                <br>
                                 <div class="card-footer text-body-secondary text-center">Expiry date: <%= voucher.getVoucherExpiryDate()%></div>
                             </div>
                         </div>
                     </div>
-                    <% }%>
+                    <%
+                            }
+                        }
+                    %>
                 </div>
                 <br>
             </div>
-            <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="voucher-expiring-tab" tabindex="0">...</div>
-        </div>
 
+            <div class="tab-pane fade" id="pills-profile2" role="tabpanel" aria-labelledby="voucher-expired-tab" tabindex="0">
+                <br>
+                <div class="row justify-content-center">
+                    <%
+                        for (Voucher voucher : voucherLists) {
+                            long daysUntilExpiry = ChronoUnit.DAYS.between(currentDate, voucher.getVoucherExpiryDate());
+                            if (daysUntilExpiry < 0) {
+                    %>
+                    <div class="col-sm-3">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-header text-center voucherHeader" style="font-weight: bold"><%= voucher.getVoucherCode()%></h4>
+                                <p class="card-text text-center voucherAmtTxt">Voucher Amount: <span class="badge rounded-pill">RM <%= voucher.getVoucherOfferAmount()%></span></p>
+                                <form class="text-center" method="POST" action="deleteVoucher">
+                                    <input type="hidden" name="voucherid" value="<%=voucher.getVoucherid()%>">
+                                    <%
+                                        if (user != null) {
+                                            if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) { %>
+                                    <input type="submit" value="Delete Voucher" class="btnDelete">
+                                    <%  }
+                                        }%>
+                                </form>
+                                <br>
+                                <div class="card-footer text-body-secondary text-center">Expiry date: <%= voucher.getVoucherExpiryDate()%></div>
+                            </div>
+                        </div>
+                    </div>
+                    <%
+                            }
+                        }
+                    %>
+                </div>
+                <br>
+            </div>
+        </div>
 
         <%@include file="footer.jsp" %>
     </body>

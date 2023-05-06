@@ -7,6 +7,7 @@ package controller;
 import interfaces.User;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,6 +47,25 @@ public class CheckoutController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            String shippingAddress = request.getParameter("shippingAddress");
+            String paymentMethod = request.getParameter("paymentMethod");
+            if (paymentMethod.equals("CARD")) {
+                String cardNumber = request.getParameter("cardNumber");
+                String expDateStr = request.getParameter("expDate");
+                String CVV = request.getParameter("CVV");
+                if(cardNumber.equals("") || expDateStr.equals("") || CVV.equals("")){
+                    
+                    response.sendRedirect("/cartPayment?error=empty");
+                    return;
+                }
+            }
+            String status = request.getParameter("status");
+            double subTotal = Double.parseDouble(request.getParameter("subTotal"));
+            double tax = Double.parseDouble(request.getParameter("tax"));
+            double deliveryCharge = Double.parseDouble(request.getParameter("deliveryCharge"));
+            double discountAmount = Double.parseDouble(request.getParameter("discountAmount"));
+            double totalPayment = Double.parseDouble(request.getParameter("totalPayment"));
+            
             PaymentService paymentService = new PaymentService(em);
             List<Payment> paymentList = paymentService.findAllDesc();
             int lastPaymentid;
@@ -75,14 +95,7 @@ public class CheckoutController extends HttpServlet {
                 }
             }
             
-            String shippingAddress = request.getParameter("shippingAddress");
-            String paymentMethod = request.getParameter("paymentMethod");
-            String status = request.getParameter("status");
-            double subTotal = Double.parseDouble(request.getParameter("subTotal"));
-            double tax = Double.parseDouble(request.getParameter("tax"));
-            double deliveryCharge = Double.parseDouble(request.getParameter("deliveryCharge"));
-            double discountAmount = Double.parseDouble(request.getParameter("discountAmount"));
-            double totalPayment = Double.parseDouble(request.getParameter("totalPayment"));
+
             Date orderDate = new Date();
             Payment payment = new Payment();
             payment.setPaymentid(lastPaymentid + 1);
@@ -105,7 +118,7 @@ public class CheckoutController extends HttpServlet {
             response.sendRedirect("/product");
         } catch (Exception ex) {
             Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);
+            response.sendRedirect("/cartPayment");
         }
     }
-    
 }

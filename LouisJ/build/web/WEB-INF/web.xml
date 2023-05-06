@@ -49,6 +49,10 @@
         <servlet-class>controller.StaffListingController</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>DeleteCartPaymentController</servlet-name>
+        <servlet-class>controller.DeleteCartPaymentController</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>HomePageController</servlet-name>
         <servlet-class>controller.HomePageController</servlet-class>
     </servlet>
@@ -76,6 +80,14 @@
         <servlet-name>SalesReportController</servlet-name>
         <servlet-class>controller.SalesReportController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DeleteVoucherController</servlet-name>
+        <servlet-class>controller.DeleteVoucherController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditProductController</servlet-name>
+        <servlet-class>controller.EditProductController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -87,10 +99,6 @@
     <servlet-mapping>
         <servlet-name>ProductDetailController</servlet-name>
         <url-pattern>/productDetail</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>CartPaymentController</servlet-name>
-        <url-pattern>/cartPayment</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>AddToCartController</servlet-name>
@@ -125,6 +133,14 @@
         <url-pattern>/StaffListingController</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
+        <servlet-name>DeleteCartPaymentController</servlet-name>
+        <url-pattern>/deleteCartPayment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CartPaymentController</servlet-name>
+        <url-pattern>/cartPayment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
         <servlet-name>HomePageController</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
@@ -151,6 +167,14 @@
     <servlet-mapping>
         <servlet-name>SalesReportController</servlet-name>
         <url-pattern>/SalesReportController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteVoucherController</servlet-name>
+        <url-pattern>/deleteVoucher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProductController</servlet-name>
+        <url-pattern>/editProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

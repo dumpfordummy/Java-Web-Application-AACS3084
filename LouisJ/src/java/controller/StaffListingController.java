@@ -45,7 +45,8 @@ public class StaffListingController extends HttpServlet {
         UserSessionUtil userSession = new UserSessionUtil(request.getSession());
         User user = userSession.getCurrentLoginUser(request.getCookies());
         if (user != null){
-            if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)){ 
+            if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)){
+                request.setAttribute("UserRole", user.getUsertype());
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/staffList.jsp");
                 dispatcher.forward(request, response);
             }

@@ -1,6 +1,6 @@
 <%-- 
-    Document   : addProduct
-    Created on : Mar 19, 2023, 11:15:08 AM
+    Document   : editProduct
+    Created on : May 5, 2023, 5:53:30 PM
     Author     : Asus
 --%>
 
@@ -17,7 +17,8 @@
         <link rel="stylesheet" type="text/css" href="styling/addProduct.css">
     </head>
     <body>
-        <% 
+        <%
+            String productid = request.getParameter("productid");
             String name = request.getParameter("name");
             String description = request.getParameter("description");
             String price = request.getParameter("price");
@@ -27,19 +28,20 @@
         <div class="container">
             <div class="card">
                 <div class="container-fliud">
-                    <form runat="server" method="POST" action="addProduct" class="wrapper row">
+                    <form runat="server" method="POST" action="editProduct" class="wrapper row">
                         <div class="preview col-md-6">
                             <div class="preview-pic tab-content">
-                                <img id="blah" src="#" /><br/>
+                                <img class="rounded" id="blah" src="#" /><br/>
                                 <input type='file' id="image" name="image"/>
                             </div>
                         </div>
                         <div class="details col-md-6">
+                            <input type="hidden" name="productid" value="<%=productid%>">
                             <h1 class="product-title">Name:<input class="form-control mr-sm-2" type="text" name="name" id="name" onkeypress="return /[a-zA-Z ]/.test(event.key)"></h1>
                             <h1 class="product-title">Description:<input class="form-control mr-sm-2" type="text" name="description" id="description" onkeypress="return /[a-zA-Z ]/.test(event.key)"></h1>
                             <h1 class="product-title">Price:<input class="form-control mr-sm-2" type="number" step="1" name="price" id="price"></h1>
                             <h1 class="product-title">Category:<input class="form-control mr-sm-2" type="text" name="category" id="category" onkeypress="return /[a-zA-Z ]/.test(event.key)"></h1>
-                            <input type="submit" class="add-product btn btn-default" value="Add Product">
+                            <input type="submit" class="add-product btn btn-default" value="Confirm Edit">
                         </div>
                     </form>
                 </div>
@@ -52,20 +54,20 @@
                     blah.src = URL.createObjectURL(file);
                 }
             };
-            
+
             var error = "<%=error%>";
+            document.getElementById("name").value = "<%= name%>";
+            document.getElementById("description").value = "<%= description%>";
+            document.getElementById("price").value = "<%= price%>";
+            document.getElementById("category").value = "<%= category%>";
 
             if (error == "empty") {
                 window.alert("PLEASE FILL IN ALL THE INFORMATION");
-                document.getElementById("name").value = "<%= name%>";
-                document.getElementById("description").value = "<%= description%>";
-                document.getElementById("price").value = "<%= price%>";
-                document.getElementById("category").value = "<%= category%>";
             }
-            
+
             const priceInput = document.getElementById("price");
 
-            priceInput.addEventListener("input", function() {
+            priceInput.addEventListener("input", function () {
                 let price = parseFloat(this.value);
                 let decimalIndex = price.toString().indexOf(".");
                 let decimalPlaces = 0;

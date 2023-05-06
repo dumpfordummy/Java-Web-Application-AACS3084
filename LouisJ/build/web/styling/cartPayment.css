@@ -205,3 +205,18 @@ img {
         transform: scale(1);
     }
 }
+
+.btnDelete{
+    background: red;
+    color: #000;
+    padding: 0px 0px;
+    border: 1px solid #000;
+    height: 30px;
+    width: 30px;
+    border-radius: 7px;
+
+    &:hover{
+        background: darkred;
+        border: 1px solid #000;
+    }
+}
