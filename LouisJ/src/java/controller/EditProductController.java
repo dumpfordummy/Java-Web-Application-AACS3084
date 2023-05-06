@@ -83,7 +83,7 @@ public class EditProductController extends HttpServlet {
         response.sendRedirect("/editProduct.jsp?productid=" + productid
                 + "&name=" + product.getName()
                 + "&description=" + product.getDescription()
-                + "&category=" + product.getDescription()
+                + "&category=" + product.getCategory()
                 + "&price=" + product.getPrice());
     }
 
