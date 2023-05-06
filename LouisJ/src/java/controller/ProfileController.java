@@ -16,6 +16,7 @@ import javax.persistence.PersistenceContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -177,6 +178,9 @@ public class ProfileController extends HttpServlet {
                     customer.setProfileimg(base64Image);
                 }
 
+                UserSessionUtil userSession = new UserSessionUtil(request.getSession());
+                Cookie userCookie = userSession.setUserSession(customer);
+                
                 utx.begin();
                 customerService.updateCustomer(customer);
                 utx.commit();
@@ -204,6 +208,9 @@ public class ProfileController extends HttpServlet {
                     employee.setProfileimg(base64Image);
                 }
 
+                UserSessionUtil userSession = new UserSessionUtil(request.getSession());
+                Cookie userCookie = userSession.setUserSession(employee);
+                
                 utx.begin();
                 employeeService.updateEmployee(employee);
                 utx.commit();
