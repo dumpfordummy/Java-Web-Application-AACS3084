@@ -36,7 +36,7 @@ public class RegisterController extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
-    @Resource  
+    @Resource
     UserTransaction utx;
 
     private static final String REGISTERPAGE = "/register.jsp";
@@ -86,6 +86,7 @@ public class RegisterController extends HttpServlet {
                 utx.commit();
                 if (isRegisterSuccess) {
                     out.print("Register Successfully");
+                    response.sendRedirect("login.jsp");
                     return;
                 }
             } catch (NotSupportedException | SystemException | javax.transaction.RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
@@ -94,5 +95,6 @@ public class RegisterController extends HttpServlet {
         }
 
         out.print("Failed to register");
+        response.sendRedirect("homePage.jsp");
     }
 }

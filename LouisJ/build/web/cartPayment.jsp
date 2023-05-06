@@ -109,7 +109,7 @@
                             </div>
                             <div class="row m-0">
                                 <div class="col-sm-8 p-0 ">
-                                    <h5>(+)Tax</h5>
+                                    <h5>(+)Tax (6%)</h5>
                                 </div>
                                 <div class="col-sm-4 p-0">
                                     <p id="tax">RM<%=String.format("%.2f", tax)%></p>

@@ -71,8 +71,9 @@
                                     </form>
                                     <br/>
                                     <%
-                                        if (user != null) {
-                                            if (user.getUsertype().equals(User.MANAGER)) {%>
+                                        User currentUser = userSession.getCurrentLoginUser(request.getCookies());
+                                        if (currentUser != null) {
+                                            if (currentUser.getUsertype().equals(User.MANAGER)) {%>
                                     <form class="text-center" method="POST" action="deleteProduct">
                                         <input type="hidden" name="productid" value="<%=product.getProductid()%>">
                                         <input type="submit" value="Delete Product" class="btnDelete">
@@ -86,8 +87,9 @@
                             }
                         %> 
                         <%
-                             if (user != null) {
-                                 if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) {%>
+                            User currentUser = userSession.getCurrentLoginUser(request.getCookies());
+                            if (currentUser != null) {
+                                if (currentUser.getUsertype().equals(User.MANAGER) || currentUser.getUsertype().equals(User.STAFF)) {%>
                         <div class="col-md-4">
                             <div class="card">
 

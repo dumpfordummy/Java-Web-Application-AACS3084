@@ -50,10 +50,15 @@
                                 <input type="submit" class="add-to-cart btn btn-default" value="Add To Cart">
                             </form>
                             <br/>
+                            <%
+                                User userCurrent = userSession.getCurrentLoginUser(request.getCookies());
+                                if (userCurrent.getUsertype().equals(User.MANAGER)) {
+                            %>
                             <form method="GET" action="editProduct">
                                 <input type="hidden" name="productid" value="<%=product.getProductid()%>">
                                 <input type="submit" class="add-to-cart btn btn-default green" value="Edit Product">
                             </form>
+                            <% }%>
                         </div>
                     </div>
                 </div>

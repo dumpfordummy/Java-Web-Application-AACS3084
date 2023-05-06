@@ -53,7 +53,6 @@
                                 <form class="text-center" method="POST" action="deleteVoucher">
                                     <input type="hidden" name="voucherid" value="<%=voucher.getVoucherid()%>">
                                     <%
-                                        
                                         User user = userSession.getCurrentLoginUser(request.getCookies());
                                         if (user != null) {
                                             if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) { %>
@@ -90,6 +89,7 @@
                                 <form class="text-center" method="POST" action="deleteVoucher">
                                     <input type="hidden" name="voucherid" value="<%=voucher.getVoucherid()%>">
                                     <%
+                                        User user = userSession.getCurrentLoginUser(request.getCookies());
                                         if (user != null) {
                                             if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) { %>
                                     <input type="submit" value="Delete Voucher" class="btnDelete">
@@ -125,6 +125,7 @@
                                 <form class="text-center" method="POST" action="deleteVoucher">
                                     <input type="hidden" name="voucherid" value="<%=voucher.getVoucherid()%>">
                                     <%
+                                        User user = userSession.getCurrentLoginUser(request.getCookies());
                                         if (user != null) {
                                             if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) { %>
                                     <input type="submit" value="Delete Voucher" class="btnDelete">
