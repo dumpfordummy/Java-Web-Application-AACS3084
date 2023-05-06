@@ -52,7 +52,7 @@ MANAGER
   - /profile/{edit OR delete}/{target_usertype}/{target_userid}: get specific user's edit page
  */
 @MultipartConfig
-@WebServlet(name = "ProfileController", urlPatterns = {"/profile/*"})
+@WebServlet(name = "ProfileController", urlPatterns = {"/profile/*", "/profileEdit"})
 public class ProfileController extends HttpServlet {
 
     @PersistenceContext
@@ -75,7 +75,7 @@ public class ProfileController extends HttpServlet {
             if (paths.length == 1 && paths[0].equals("profile")) {
                 request.getRequestDispatcher(PROFILEPAGE).forward(request, response);
                 return;
-            } else if (paths.length == 2 && paths[1].equals("edit")) {
+            } else if (paths.length == 1 && paths[0].equals("profileEdit")) {
                 // having issue where css is not loading
                 request.getRequestDispatcher(PROFILEEDITPAGE).forward(request, response);
                 return;

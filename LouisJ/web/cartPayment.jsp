@@ -36,7 +36,7 @@
                                 List<CartPK> cartPKList = (List<CartPK>) request.getAttribute("cartPKList");
                                 double subTotal = 0;
                                 double tax;
-                                double deliveryCharge = 5;
+                                double deliveryCharge = 25;
                                 double totalPayment;
                                 double totalProductPrice;
                                 for (CartPK cartPK : cartPKList) {
@@ -49,14 +49,15 @@
 
                                 <div class="col-4 mb-2">
                                     <h6 class=""><%=cartPK.getProduct().getName()%></h6>
-                                    <p class="pl-1 mb-0">RM<%=String.format("%.2f", cartPK.getProduct().getPrice())%></p>
+                                    <p class="pl-1 mb-0 price">RM<%=String.format("%.2f", cartPK.getProduct().getPrice())%></p>
                                     <p class="pl-1 mb-0"><%=cartPK.getProduct().getCategory()%></p>
                                 </div>
+                                <form id="myForm" method="GET" action="editCartPayment" class="col-2">
+                                    <input type="hidden" name="cartid" value="<%=cartPK.getCartid()%>">
+                                    <input min="1" class="form-control productQtyInput" type="number" name="cartQty" onchange="submitForm()" value="<%=cartPK.getQty()%>">
+                                </form>
                                 <div class="col-2">
-                                    <p class="cartItemQuantity p-1 text-center"><%=cartPK.getQty()%></p>
-                                </div>
-                                <div class="col-2">
-                                    <p id="cartItem1Price">RM<%=String.format("%.2f", totalProductPrice)%></p>
+                                    <p class="cartItemPrice">RM<%=String.format("%.2f", totalProductPrice)%></p>
                                 </div>
                                 <form method="POST" action="deleteCartPayment" class="col-1">
                                     <input type="hidden" value="<%=cartPK.getCartid()%>" name="cartid">
@@ -68,6 +69,9 @@
                                     subTotal += totalProductPrice;
                                 }
                                 tax = subTotal * 0.06;
+                                if(subTotal > 200){
+                                    deliveryCharge = 0;
+                                }
                                 totalPayment = subTotal + tax + deliveryCharge;
                             %>
                         </div>
@@ -193,13 +197,10 @@
                             </div>
 
 
-
-
-
                             <input type="hidden" name="customerid" value="<%=cartPKList.get(0).getCustomer().getId()%>">
-                            <input type="hidden" name="subTotal" value="<%=subTotal%>">
-                            <input type="hidden" name="tax" value="<%=tax%>">
-                            <input type="hidden" name="deliveryCharge" value="<%=deliveryCharge%>">
+                            <input type="hidden" id="subTotalPost" name="subTotal" value="<%=subTotal%>">
+                            <input type="hidden" id="taxPost" name="tax" value="<%=tax%>">
+                            <input type="hidden" id="deliveryChargePost" name="deliveryCharge" value="<%=deliveryCharge%>">
                             <input type="hidden" id="discountAmountPost" name="discountAmount" value="0">
                             <input type="hidden" id="totalPaymentPost" name="totalPayment" value="<%=totalPayment%>">
 
@@ -223,18 +224,105 @@
 
             }
             
+            function updateCartItemPrice(input) {
+                var itemRow = input.closest('.cartItem');
+                var priceElem = itemRow.querySelector('.price');
+                var qty = parseInt(input.value);
+                var price = parseFloat(priceElem.innerText.replace('RM', '').trim());
+                var totalProductPrice = qty * price;
+                var cartItemPriceElem = itemRow.querySelector('.cartItemPrice');
+                cartItemPriceElem.innerText = 'RM' + totalProductPrice.toFixed(2);
+
+                // Get all the totalPriceElement elements
+                const totalPriceElements = document.querySelectorAll('.cartItemPrice');
+
+                // Initialize the subtotal variable
+                let subtotal = 0;
+
+                // Loop through all the totalPriceElement elements and add up their values
+                totalPriceElements.forEach(element => {
+                    subtotal += parseFloat(element.textContent.substring(2));
+                });
+
+                var subTotalElement = document.getElementById("subtotal");
+                subTotalElement.innerHTML = "RM" + subtotal.toFixed(2);
+
+                var tax = parseFloat(subtotal) * 0.06;
+                var taxElement = document.getElementById("tax");
+                taxElement.innerHTML = "RM" + tax.toFixed(2);
+
+                var deliveryChargeElement = document.getElementById("deliveryCharge");
+                var deliveryCharge;
+                if(parseFloat(subtotal) > 200){
+                    deliveryCharge = 0;
+                    deliveryChargeElement.innerHTML = "RM0.00";
+                } else {
+                    deliveryCharge = 25;
+                    deliveryChargeElement.innerHTML = "RM25.00";
+                }
+                
+                var totalElement = document.getElementById("total");
+                var voucher = document.getElementById("voucher").value;
+                var total = parseFloat(subtotal) + parseFloat(tax) + parseFloat(deliveryCharge) - parseFloat(voucher);
+                totalElement.innerHTML = "RM" + total.toFixed(2);
+                
+                var subTotalPost = document.getElementById("subTotalPost");
+                var taxPost = document.getElementById("taxPost");
+                var deliveryChargePost = document.getElementById("deliveryChargePost");
+                var discountAmountPost = document.getElementById("discountAmountPost");
+                var totalPaymentPost = document.getElementById("totalPaymentPost");
+                subTotalPost.value = subtotal;
+                taxPost.value = tax;
+                deliveryChargePost.value = deliveryCharge;
+                discountAmountPost.value = document.getElementById("voucher").value;
+                totalPaymentPost.value = total;
+                
+                this.submit();
+            }
+            
             function voucherOnchange(){
                 var voucher = document.getElementById("voucher").value;
                 var discountAmount = document.getElementById("discountAmount");
-                var totalPaymentPost = document.getElementById("totalPaymentPost");
                 var fixedVoucher = parseFloat(voucher).toFixed(2);
-                var total = document.getElementById("total");
-                var totalPayment = parseFloat(<%=totalPayment%>) - fixedVoucher;
-                
                 discountAmount.innerHTML = "RM" + fixedVoucher;
-                total.innerHTML = "RM" + totalPayment;
-                discountAmountPost.value = fixedVoucher;
-                totalPaymentPost.value = totalPayment;
+                
+                // Get all the totalPriceElement elements
+                const totalPriceElements = document.querySelectorAll('.cartItemPrice');
+
+                // Initialize the subtotal variable
+                let subtotal = 0;
+
+                // Loop through all the totalPriceElement elements and add up their values
+                totalPriceElements.forEach(element => {
+                    subtotal += parseFloat(element.textContent.substring(2));
+                });
+                
+                var tax = parseFloat(subtotal) * 0.06;
+                var deliveryCharge;
+                if(parseFloat(subtotal) > 200){
+                    deliveryCharge = 0;
+                } else {
+                    deliveryCharge = 25;
+                }
+                
+                var totalElement = document.getElementById("total");
+                var total = parseFloat(subtotal) + parseFloat(tax) + parseFloat(deliveryCharge) - parseFloat(voucher);
+                totalElement.innerHTML = "RM" + total.toFixed(2);
+                
+                var subTotalPost = document.getElementById("subTotalPost");
+                var taxPost = document.getElementById("taxPost");
+                var deliveryChargePost = document.getElementById("deliveryChargePost");
+                var discountAmountPost = document.getElementById("discountAmountPost");
+                var totalPaymentPost = document.getElementById("totalPaymentPost");
+                subTotalPost.value = subtotal;
+                taxPost.value = tax;
+                deliveryChargePost.value = deliveryCharge;
+                discountAmountPost.value = document.getElementById("voucher").value;
+                totalPaymentPost.value = total;
+            }
+
+            function submitForm() {
+                document.getElementById("myForm").submit();
             }
             
             var error = "<%=request.getAttribute("error")%>";

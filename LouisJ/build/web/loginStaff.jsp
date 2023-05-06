@@ -34,7 +34,7 @@
                             <i class="fa fa-user-circle"></i>
                         </span>
                         <!--   user name Input-->
-                        <input class="form-input" id="txt-input" name="uname" type="text" placeholder="@UserName" required>
+                        <input class="form-input" id="txt-input" name="uname" type="text" placeholder="UserName" required>
 
                         <br>
 

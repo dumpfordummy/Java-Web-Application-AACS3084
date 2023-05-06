@@ -9,20 +9,22 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Forgot Password</title>
+        <title>Login</title>
         <%@include file="components/common_css_js.jsp" %>
         <script src="https://kit.fontawesome.com/2592c49560.js" crossorigin="anonymous"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <link rel="stylesheet" href="styling/login.css"/>
     </head>
     <body>
         <div class="overlay">
-            <form method="POST" action="login">
+            <form method="POST" action="forgot">
                 <!--   con = Container  for items in the form-->
                 <div class="con">
                     <!--     Start  header Content  -->
                     <header class="head-form">
-                        <h2>Forgot password</h2>
-                        <p>Reset your password by username</p>
+                        <h2>Log In</h2>
+                        <!--     A welcome message or an explanation of the login form -->
+                        <p>login here using your username and password</p>
                     </header>
                     <!--     End  header Content  -->
                     <br>
@@ -33,7 +35,7 @@
                             <i class="fa fa-user-circle"></i>
                         </span>
                         <!--   user name Input-->
-                        <input class="form-input" id="txt-input" name="uname" type="text" placeholder="UserName" required>
+                        <input class="form-input" id="txt-input" name="username" type="text" placeholder="UserName" required>
 
                         <br>
 
@@ -43,30 +45,32 @@
                             <i class="fa fa-key"></i>
                         </span>
                         <!--   Password Input-->
-                        <input class="form-input" type="password" placeholder="Password" id="pwd"  name="upass" required>
+                        <input class="form-input" type="password" placeholder="Password" id="pwd"  name="password" required>
 
                         <!--      Show/hide password  -->
                         <span>
-                            <i class="fa fa-eye" aria-hidden="true"  type="button" id="eye"></i>
+                            <i class="fa fa-eye" aria-hidden="true"  type="button" id="eyepw"></i>
+                        </span>
+
+                        <!--   Confirm Password -->
+                        <br>
+                        
+                        <span class="input-item">
+                            <i class="fa fa-key"></i>
+                        </span>
+                        <!--   Password Input-->
+                        <input class="form-input" type="password" placeholder="ConfirmPassword" id="cpwd"  name="confirmPassword" required>
+
+                        <!--      Show/hide confirm password  -->
+                        <span>
+                            <i class="fa fa-eye" aria-hidden="true"  type="button" id="eyecpw"></i>
                         </span>
 
 
                         <br>
                         <!--        buttons -->
                         <!--      button LogIn -->
-                        <button class="log-in"> Log In </button>
-                    </div>
-
-                    <!--   other buttons -->
-                    <div class="other">
-                        <!--      Forgot Password button-->
-                        <button class="btn submits frgt-pass" onclick="location.pathname='forgot'">Forgot Password</button>
-                        <!--     Sign Up button -->
-                        <button class="btn submits sign-up" onclick="location.pathname='register'">Sign Up 
-                            <!--         Sign Up font icon -->
-                            <i class="fa fa-user-plus" aria-hidden="true"></i>
-                        </button>
-                        <!--      End Other the Division -->
+                        <button class="log-in" id="resetBtn" > Reset </button>
                     </div>
 
                     <!--   End Conrainer  -->
@@ -77,25 +81,54 @@
         </div>
 
         <script>
-            function show() {
+            $('#pwd, #cpwd').on('keyup', function () {
+                if ($('#pwd').val() == $('#cpwd').val()) {
+                    $("#resetBtn").prop("disabled", false);
+                } else {
+                    $("#resetBtn").prop("disabled", true);
+                }
+            });
+
+            function showpwd() {
                 var p = document.getElementById('pwd');
                 p.setAttribute('type', 'text');
             }
 
-            function hide() {
+            function hidepwd() {
                 var p = document.getElementById('pwd');
                 p.setAttribute('type', 'password');
             }
 
-            var pwShown = 0;
+            function showcpwd() {
+                var cp = document.getElementById('cpwd');
+                cp.setAttribute('type', 'text');
+            }
 
-            document.getElementById("eye").addEventListener("click", function () {
+            function hidecpwd() {
+                var cp = document.getElementById('cpwd');
+                cp.setAttribute('type', 'password');
+            }
+
+            var pwShown = 0;
+            var cpwShown = 0;
+
+            document.getElementById("eyepw").addEventListener("click", function () {
                 if (pwShown == 0) {
                     pwShown = 1;
-                    show();
+                    showpwd();
                 } else {
                     pwShown = 0;
-                    hide();
+                    hidepwd();
+                }
+            }, false);
+
+            document.getElementById("eyecpw").addEventListener("click", function () {
+                if (cpwShown == 0) {
+                    cpwShown = 1;
+                    showcpwd();
+                } else {
+                    cpwShown = 0;
+                    hidecpwd();
                 }
             }, false);
 

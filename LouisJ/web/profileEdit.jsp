@@ -23,28 +23,28 @@
     </head>
     <body>
         <%
-            User user = (User) request.getAttribute("user");
-            if (user == null) {
+            User currentUser = (User) request.getAttribute("user");
+            if (currentUser == null) {
                 userSession = new UserSessionUtil(request.getSession());
-                user = userSession.getCurrentLoginUser(request.getCookies());
+                currentUser = userSession.getCurrentLoginUser(request.getCookies());
             }
         %>
 
         <div class="container emp-profile">
-            <form action="/profile/edit/<%= user.getUsertype()%>/<%= user.getId()%>" method="post" enctype="multipart/form-data">
+            <form action="/profile/edit/<%= currentUser.getUsertype()%>/<%= currentUser.getId()%>" method="post" enctype="multipart/form-data">
                 <div class="row">
                     <div class="col-md-4">
                         <div class="profile-img">
-                            <img src="/image/<%= user.getUsertype()%>/<%= user.getId()%>"/>
+                            <img src="/image/<%= currentUser.getUsertype()%>/<%= currentUser.getId()%>"/>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="profile-head">
                             <h5>
-                                <%= user.getUsername()%>
+                                <%= currentUser.getUsername()%>
                             </h5>
                             <h6>
-                                <%= user.getUsertype()%>
+                                <%= currentUser.getUsertype()%>
                             </h6>
                             <br>
                             <br>
@@ -68,7 +68,7 @@
                                         <label>User Id</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <p><%= user.getId()%></p>
+                                        <input type="text" id="userid" name="userid" value="<%= currentUser.getId()%>" disabled>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -76,7 +76,7 @@
                                         <label for="username">Username</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" id="username" name="username" value="<%= user.getUsername()%>">
+                                        <input type="text" id="username" name="username" value="<%= currentUser.getUsername()%>">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -84,7 +84,7 @@
                                         <label for="fullname">Fullname</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" id="fullname" name="fullname" value="<%= user.getFullname()%>">
+                                        <input type="text" id="fullname" name="fullname" value="<%= currentUser.getFullname()%>">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -92,7 +92,7 @@
                                         <label for="email">Email</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" id="email" name="email" value="<%= user.getEmail()%>">
+                                        <input type="text" id="email" name="email" value="<%= currentUser.getEmail()%>">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -100,7 +100,7 @@
                                         <label for="contact">Contact</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" id="contact" name="contact" value="<%= user.getContact()%>">
+                                        <input type="text" id="contact" name="contact" value="<%= currentUser.getContact()%>">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -108,7 +108,7 @@
                                         <label for="address">Address</label>
                                     </div>
                                     <div class="col-md-6">
-                                        <input type="text" id="address" name="address" value="<%= user.getAddress()%>">
+                                        <input type="text" id="address" name="address" value="<%= currentUser.getAddress()%>">
                                     </div>
                                 </div>
 
