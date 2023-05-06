@@ -4,6 +4,7 @@
     Author     : Pua
 --%>
 
+<%@page import="interfaces.User"%>
 <%@page import="java.time.temporal.ChronoUnit"%>
 <%@page import="java.time.LocalDate"%>
 <%@page import="model.Voucher"%>
@@ -51,7 +52,12 @@
                                 <p class="card-text text-center voucherAmtTxt">Voucher Amount: <span class="badge rounded-pill">RM <%= voucher.getVoucherOfferAmount()%></span></p>
                                 <form class="text-center" method="POST" action="deleteVoucher">
                                     <input type="hidden" name="voucherid" value="<%=voucher.getVoucherid()%>">
+                                    <%
+                                        if (user != null) {
+                                            if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) { %>
                                     <input type="submit" value="Delete Voucher" class="btnDelete">
+                                    <%  }
+                                        }%>
                                 </form>
                                 <br>
                                 <div class="card-footer text-body-secondary text-center">Expiry date: <%= voucher.getVoucherExpiryDate()%></div>
@@ -81,7 +87,12 @@
                                 <p class="card-text text-center voucherAmtTxt">Voucher Amount: <span class="badge rounded-pill">RM <%= voucher.getVoucherOfferAmount()%></span></p>
                                 <form class="text-center" method="POST" action="deleteVoucher">
                                     <input type="hidden" name="voucherid" value="<%=voucher.getVoucherid()%>">
+                                    <%
+                                        if (user != null) {
+                                            if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) { %>
                                     <input type="submit" value="Delete Voucher" class="btnDelete">
+                                    <%  }
+                                        }%>
                                 </form>
                                 <br>
                                 <div class="card-footer text-body-secondary text-center">Expiry date: <%= voucher.getVoucherExpiryDate()%></div>
@@ -111,7 +122,12 @@
                                 <p class="card-text text-center voucherAmtTxt">Voucher Amount: <span class="badge rounded-pill">RM <%= voucher.getVoucherOfferAmount()%></span></p>
                                 <form class="text-center" method="POST" action="deleteVoucher">
                                     <input type="hidden" name="voucherid" value="<%=voucher.getVoucherid()%>">
+                                    <%
+                                        if (user != null) {
+                                            if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) { %>
                                     <input type="submit" value="Delete Voucher" class="btnDelete">
+                                    <%  }
+                                        }%>
                                 </form>
                                 <br>
                                 <div class="card-footer text-body-secondary text-center">Expiry date: <%= voucher.getVoucherExpiryDate()%></div>

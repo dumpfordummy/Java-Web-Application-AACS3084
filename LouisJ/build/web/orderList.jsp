@@ -23,9 +23,7 @@
     </head>
     <body> 
         <% 
-            UserSessionUtil userSession = new UserSessionUtil(request.getSession());
-            User user = userSession.getCurrentLoginUser(request.getCookies());
-        
+            String userRole = (String) request.getAttribute("UserRole");
             boolean success = Boolean.valueOf(String.valueOf(request.getAttribute("updateSuccess")));
             if (success){
         %>
@@ -58,8 +56,8 @@
                     </p>
                 </div>
                 <%
-                    if (user != null){
-                        if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)){
+                    if (userRole != null){
+                        if (userRole.equals(User.MANAGER) || userRole.equals(User.STAFF)){
                 %>
                 <form action="/orderUpdate" method="GET">
                     <input type="hidden" value="<%= p.getPaymentid() %>" name="PaymentID" />
@@ -84,8 +82,8 @@
                         </p>
                     </div>
                     <%
-                        if (user != null){
-                            if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)){
+                        if (userRole != null){
+                            if (userRole.equals(User.MANAGER) || userRole.equals(User.STAFF)){
                     %>
                     <form action="/orderUpdate" method="GET">
                         <input type="hidden" value="<%= p.getPaymentid() %>" name="PaymentID" />

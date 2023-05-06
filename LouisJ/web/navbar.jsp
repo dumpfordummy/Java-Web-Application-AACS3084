@@ -4,6 +4,7 @@
     Author     : Pua
 --%>
 
+<%@page import="interfaces.User"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -44,12 +45,22 @@
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <a href="home" target="_blank">Home</a>
             <a href="product" target="_blank">Products</a>
+            <a href="voucher" target="_blank">Vouchers</a>
+            <%
+                util.UserSessionUtil userSession = new util.UserSessionUtil(request.getSession());
+                //Customer customer = new Customer("1001", "test", "056823974923", "test@cust.com", "", "Test Customer", "0137416287", "123, Jln Bunga, 50300 KL");
+                //Cookie userCookie = userSession.setUserSession(customer);
+                //response.addCookie(userCookie);
+                User user = userSession.getCurrentLoginUser(request.getCookies());
+                if (user != null) {
+                    if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) { %>
             <a href="addProduct.jsp" target="_blank">Add Product</a>
             <a href="customerList" target="_blank">Customer List</a>
             <a href="staffList" target="_blank">Staff List</a>
             <a href="orderList" target="_blank">Order List</a>
-            <a href="voucher" target="_blank">Vouchers</a>
             <a href="addVoucher.jsp" target="_blank">Add Voucher</a>
+            <%  }
+                }%>
         </div>
 
         <script>
