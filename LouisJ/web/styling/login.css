@@ -184,6 +184,11 @@ button {
 /*       Forgot Password button FAF3DD  */
 .frgt-pass {
     background: transparent;
+    width: 100%;
+}
+
+.sign-up{
+    width: 100%;
 }
 
 /*     Sign Up button  */
@@ -209,6 +214,10 @@ button:hover {
     100% {
         transform: translateY(5px);
     }
+}
+
+.other{
+    width: 80%;
 }
 
 /*body{
