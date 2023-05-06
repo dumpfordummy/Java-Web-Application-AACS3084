@@ -26,7 +26,7 @@
             String userRole = (String) request.getAttribute("UserRole");
             if (userRole != null){
                 if (userRole.equals(User.MANAGER)){ %>
-                    <a class="btn btn-primary" href="" style="width: 120px; margin: 2rem 2rem 0 2rem">Add Staff</a>
+                    <a class="btn btn-primary" href="/registerStaff" style="width: 120px; margin: 2rem 2rem 0 2rem">Add Staff</a>
         <%  }} %>
         
         <div class="row" style="margin-bottom: 2rem;">
@@ -51,7 +51,7 @@
                                 </ul>
                             </div>
                             <div class="col-5 text-center">
-                                <img src="/image/<%= user.getUsertype()%>/<%= user.getId()%>" alt="user-avatar" class="img-circle img-fluid" style="max-width: 120px; max-height: 120px;">
+                                <img src="/image/<%= e.getUsertype()%>/<%= e.getId()%>" alt="user-avatar" class="img-circle img-fluid" style="max-width: 120px; max-height: 120px;">
                             </div>
                         </div>
                     </div>
@@ -59,10 +59,10 @@
                         
                         <%  if (userRole != null){
                                 if (userRole.equals(User.MANAGER)){ %>
-                                    <a href="" style="text-decoration: none;">
+                                    <a href="/profile/edit/<%= e.getUsertype() %>/<%= e.getId() %>" style="text-decoration: none;">
                                         <i class="fa-regular fa-pen-to-square fa-2xl"></i>
                                     </a>
-                                    <a id="deleteItem" style="cursor: pointer;" class="deleteItem" data-target="#basic" data-toggle="modal">
+                                    <a href="/profile/delete/<%= e.getUsertype() %>/<%= e.getId() %>" class="deleteItem" style="text-decoration: none;">
                                         <i class="fa fa-trash fa-2xl"></i>
                                     </a>
                         <%  }} %>

@@ -72,6 +72,7 @@
             <a href="customerList" target="_blank">Customer List</a>
             <a href="staffList" target="_blank">Staff List</a>
             <a href="orderList" target="_blank">Order List</a>
+            <a href="salesReport" target="_blank">Sales Report</a>
             <a href="addVoucher.jsp" target="_blank">Add Voucher</a>
             <%  }
                 }%>
