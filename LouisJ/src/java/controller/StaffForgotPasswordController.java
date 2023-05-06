@@ -23,7 +23,7 @@ import util.hashUtil;
  *
  * @author CY
  */
-@WebServlet(name = "ForgotPasswordController", urlPatterns = {"/forgotStaff"})
+@WebServlet(name = "StaffForgotPasswordController", urlPatterns = {"/forgotStaff"})
 public class StaffForgotPasswordController extends HttpServlet {
 
     @PersistenceContext
@@ -31,9 +31,8 @@ public class StaffForgotPasswordController extends HttpServlet {
     @Resource
     UserTransaction utx;
     
-    private static final String FORGOTPASSWORDPAGE = "/forgotPassword.jsp";
-    private static final String RESETCONFIRMATIONPAGE = "/resetConfirmation.jsp";
-    private static final String LOGINPAGE = "/login";
+    private static final String FORGOTPASSWORDPAGE = "/staffForgotPassword.jsp";
+    private static final String HOMEPAGE = "/home";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -63,7 +62,7 @@ public class StaffForgotPasswordController extends HttpServlet {
                 employeeService.updateEmployee(employee);
                 utx.commit();
 
-                response.sendRedirect(RESETCONFIRMATIONPAGE);
+                response.sendRedirect(HOMEPAGE);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

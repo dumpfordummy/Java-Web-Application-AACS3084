@@ -32,8 +32,7 @@ public class ForgotPasswordController extends HttpServlet {
     UserTransaction utx;
 
     private static final String FORGOTPASSWORDPAGE = "/forgotPassword.jsp";
-    private static final String RESETCONFIRMATIONPAGE = "/resetConfirmation.jsp";
-    private static final String LOGINPAGE = "/login";
+    private static final String HOMEPAGE = "/home";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -63,7 +62,7 @@ public class ForgotPasswordController extends HttpServlet {
                 customerService.updateCustomer(customer);
                 utx.commit();
                 
-                response.sendRedirect(RESETCONFIRMATIONPAGE);
+                response.sendRedirect(HOMEPAGE);
             }
         } catch (Exception ex) {
             ex.printStackTrace();
