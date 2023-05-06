@@ -38,8 +38,12 @@
                         <div class="col-sm-6 col-md-3 item">
                             <h3>Contact Us!</h3>
                             <ul>
-                                <li><a href = "mailto: louisj@gmail.com"><div class="footerLink">Email Us</div></a></li>
-                                <li><a href="tel:+60133630908"><div class="footerLink">Call Us</div></a></li>
+                                <%
+                                    String emailParam = getServletContext().getInitParameter("companyEmail");
+                                    String phoneNumParam = getServletContext().getInitParameter("companyPhoneNum");
+                                %>
+                                <li><a href = "mailto: <%= emailParam%>"><div class="footerLink">Email Us</div></a></li>
+                                <li><a href="tel:+<%= phoneNumParam%>"><div class="footerLink">Call Us</div></a></li>
                             </ul>
                         </div>
                         <div class="col-md-5 item textFooter">
@@ -47,7 +51,10 @@
                             <p>Whether you're a fashionista looking for the latest trends, a busy professional in need of a functional bag, or simply someone who appreciates great design and craftsmanship, LouisJ is the ultimate destination for all your bag needs.</p>
                         </div>
                     </div>
-                    <p class="copyright">&copy;LouisJ 2023</p>
+                    <%
+                        String copyrightParam = getServletContext().getInitParameter("copyright");
+                    %>
+                    <p class="copyright">&copy; <%= copyrightParam%></p>
                 </div>
             </footer>
         </div>
