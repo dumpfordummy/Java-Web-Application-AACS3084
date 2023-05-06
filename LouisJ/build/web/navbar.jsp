@@ -68,12 +68,11 @@
                 if (users
                         != null) {
                     if (users.getUsertype().equals(User.MANAGER) || users.getUsertype().equals(User.STAFF)) { %>
-            <a href="addProduct.jsp">Add Product</a>
-            <a href="customerList">Customer List</a>
-            <a href="staffList">Staff List</a>
-            <a href="orderList">Order List</a>
-            <a href="salesReport">Sales Report</a>
-            <a href="addVoucher.jsp">Add Voucher</a>
+            <a href="customerList" target="_blank">Customer List</a>
+            <a href="staffList" target="_blank">Staff List</a>
+            <a href="orderList" target="_blank">Order List</a>
+            <a href="salesReport" target="_blank">Sales Report</a>
+            <a href="addVoucher.jsp" target="_blank">Add Voucher</a>
             <%  }
                 }%>
         </div>
