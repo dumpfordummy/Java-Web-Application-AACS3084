@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login</title>
+        <title>Forgot Password</title>
         <%@include file="components/common_css_js.jsp" %>
         <script src="https://kit.fontawesome.com/2592c49560.js" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="styling/login.css"/>
@@ -21,9 +21,8 @@
                 <div class="con">
                     <!--     Start  header Content  -->
                     <header class="head-form">
-                        <h2>Log In</h2>
-                        <!--     A welcome message or an explanation of the login form -->
-                        <p>login here using your username and password</p>
+                        <h2>Forgot password</h2>
+                        <p>Reset your password by username</p>
                     </header>
                     <!--     End  header Content  -->
                     <br>
@@ -34,7 +33,7 @@
                             <i class="fa fa-user-circle"></i>
                         </span>
                         <!--   user name Input-->
-                        <input class="form-input" id="txt-input" name="uname" type="text" placeholder="@UserName" required>
+                        <input class="form-input" id="txt-input" name="uname" type="text" placeholder="UserName" required>
 
                         <br>
 

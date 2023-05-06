@@ -96,7 +96,7 @@ header p {letter-spacing: 0.05em;}
 
 
 /* Show/hide password Font Icon */
-#eye {
+#eye, #eyepw, #eyecpw {
     background: #fff;
     color: #333;
   

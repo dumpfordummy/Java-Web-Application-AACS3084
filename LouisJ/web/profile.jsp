@@ -25,7 +25,7 @@
     <body>
         <%
             userSession = new UserSessionUtil(request.getSession());
-            User user = userSession.getCurrentLoginUser(request.getCookies());
+            User currentUser = userSession.getCurrentLoginUser(request.getCookies());
 
         %>
         <div class="container emp-profile">
@@ -33,16 +33,16 @@
             <div class="row">
                 <div class="col-md-4">
                     <div class="profile-img">
-                        <img src="/image/<%= user.getUsertype()%>/<%= user.getId()%>"/>
+                        <img src="/image/<%= currentUser.getUsertype()%>/<%= currentUser.getId()%>"/>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="profile-head">
                         <h5>
-                            <%= user.getUsername()%>
+                            <%= currentUser.getUsername()%>
                         </h5>
                         <h6>
-                            <%= user.getUsertype()%>
+                            <%= currentUser.getUsertype()%>
                         </h6>
                         <br>
                         <br>
@@ -52,7 +52,7 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <button class="profile-edit-btn" onclick="location.href='/profile/edit'" >Edit Profile</button>
+                    <button class="profile-edit-btn" onclick="location.href='/profileEdit'" >Edit Profile</button>
                 </div>
             </div>
             <div class="row">
@@ -67,7 +67,7 @@
                                     <label>User Id</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><%= user.getId()%></p>
+                                    <p><%= currentUser.getId()%></p>
                                 </div>
                             </div>
                             <div class="row">
@@ -75,7 +75,7 @@
                                     <label>Username</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><%= user.getUsername()%></p>
+                                    <p><%= currentUser.getUsername()%></p>
                                 </div>
                             </div>
                             <div class="row">
@@ -83,7 +83,7 @@
                                     <label>Fullname</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><%= user.getFullname()%></p>
+                                    <p><%= currentUser.getFullname()%></p>
                                 </div>
                             </div>
                             <div class="row">
@@ -91,7 +91,7 @@
                                     <label>Email</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><%= user.getEmail()%></p>
+                                    <p><%= currentUser.getEmail()%></p>
                                 </div>
                             </div>
                             <div class="row">
@@ -99,7 +99,7 @@
                                     <label>Contact</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><%= user.getContact()%></p>
+                                    <p><%= currentUser.getContact()%></p>
                                 </div>
                             </div>
                             <div class="row">
@@ -107,7 +107,7 @@
                                     <label>Address</label>
                                 </div>
                                 <div class="col-md-6">
-                                    <p><%= user.getAddress()%></p>
+                                    <p><%= currentUser.getAddress()%></p>
                                 </div>
                             </div>
                         </div>
