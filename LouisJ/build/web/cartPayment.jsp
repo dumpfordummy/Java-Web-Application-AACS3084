@@ -52,9 +52,9 @@
                                     <p class="pl-1 mb-0 price">RM<%=String.format("%.2f", cartPK.getProduct().getPrice())%></p>
                                     <p class="pl-1 mb-0"><%=cartPK.getProduct().getCategory()%></p>
                                 </div>
-                                <form id="myForm" method="GET" action="editCartPayment" class="col-2">
+                                <form method="GET" action="editCartPayment" class="col-2">
                                     <input type="hidden" name="cartid" value="<%=cartPK.getCartid()%>">
-                                    <input min="1" class="form-control productQtyInput" type="number" name="cartQty" onchange="submitForm()" value="<%=cartPK.getQty()%>">
+                                    <input min="1" class="form-control productQtyInput" type="number" name="cartQty" onchange="this.parentNode.submit()" value="<%=cartPK.getQty()%>">
                                 </form>
                                 <div class="col-2">
                                     <p class="cartItemPrice">RM<%=String.format("%.2f", totalProductPrice)%></p>
@@ -83,7 +83,7 @@
                             </div>
                             <div class="row m-0">
                                 <div class="col-sm-12 p-0">
-                                    <input class="form-control" type="text" name="shippingAddress" value="<%=cartPKList.get(0).getCustomer().getAddress()%>">
+                                    <input class="form-control" type="text" name="shippingAddress" value="<%=cartPKList.get(0).getCustomer().getAddress()%>" required>
                                 </div>
                             </div>
                             <div class="row m-0">
@@ -171,7 +171,7 @@
                                 </div>
                                 <div class="row mx-0 mb-2">
                                     <div class="col-sm-12 p-0 d-inline">
-                                        <input class="form-control" type="text" name="cardNumber" id="cardNumber">
+                                        <input class="form-control" type="text" name="cardNumber" id="cardNumber" pattern="\d{12}" title="Please enter a 12-digit card number" required>
                                     </div>
                                 </div>
                                 <div class="row mx-0 mb-2">
@@ -181,7 +181,7 @@
                                 </div>
                                 <div class="row mx-0 mb-2">
                                     <div class="col-sm-12 p-0 d-inline">
-                                        <input class="form-control" type="date" name="expDate" id="expDate">
+                                        <input class="form-control" id="myDate" min="{{todayDate}}" type="date" name="expDate" id="expDate" required>
                                     </div>
                                 </div>
                                 <div class="row mx-0 mb-2">
@@ -191,7 +191,7 @@
                                 </div>
                                 <div class="row mx-0 mb-2">
                                     <div class="col-sm-12 p-0 d-inline">
-                                        <input class="form-control" type="text" name="CVV" id="CVV">
+                                        <input class="form-control" type="text" name="CVV" id="CVV" pattern="\d{3}" title="Please enter a 3-digit CVV number" required> 
                                     </div>
                                 </div>
                             </div>
@@ -222,62 +222,6 @@
                     cardMethod.style.visibility = 'visible';
                 }
 
-            }
-            
-            function updateCartItemPrice(input) {
-                var itemRow = input.closest('.cartItem');
-                var priceElem = itemRow.querySelector('.price');
-                var qty = parseInt(input.value);
-                var price = parseFloat(priceElem.innerText.replace('RM', '').trim());
-                var totalProductPrice = qty * price;
-                var cartItemPriceElem = itemRow.querySelector('.cartItemPrice');
-                cartItemPriceElem.innerText = 'RM' + totalProductPrice.toFixed(2);
-
-                // Get all the totalPriceElement elements
-                const totalPriceElements = document.querySelectorAll('.cartItemPrice');
-
-                // Initialize the subtotal variable
-                let subtotal = 0;
-
-                // Loop through all the totalPriceElement elements and add up their values
-                totalPriceElements.forEach(element => {
-                    subtotal += parseFloat(element.textContent.substring(2));
-                });
-
-                var subTotalElement = document.getElementById("subtotal");
-                subTotalElement.innerHTML = "RM" + subtotal.toFixed(2);
-
-                var tax = parseFloat(subtotal) * 0.06;
-                var taxElement = document.getElementById("tax");
-                taxElement.innerHTML = "RM" + tax.toFixed(2);
-
-                var deliveryChargeElement = document.getElementById("deliveryCharge");
-                var deliveryCharge;
-                if(parseFloat(subtotal) > 200){
-                    deliveryCharge = 0;
-                    deliveryChargeElement.innerHTML = "RM0.00";
-                } else {
-                    deliveryCharge = 25;
-                    deliveryChargeElement.innerHTML = "RM25.00";
-                }
-                
-                var totalElement = document.getElementById("total");
-                var voucher = document.getElementById("voucher").value;
-                var total = parseFloat(subtotal) + parseFloat(tax) + parseFloat(deliveryCharge) - parseFloat(voucher);
-                totalElement.innerHTML = "RM" + total.toFixed(2);
-                
-                var subTotalPost = document.getElementById("subTotalPost");
-                var taxPost = document.getElementById("taxPost");
-                var deliveryChargePost = document.getElementById("deliveryChargePost");
-                var discountAmountPost = document.getElementById("discountAmountPost");
-                var totalPaymentPost = document.getElementById("totalPaymentPost");
-                subTotalPost.value = subtotal;
-                taxPost.value = tax;
-                deliveryChargePost.value = deliveryCharge;
-                discountAmountPost.value = document.getElementById("voucher").value;
-                totalPaymentPost.value = total;
-                
-                this.submit();
             }
             
             function voucherOnchange(){
@@ -322,13 +266,27 @@
             }
 
             function submitForm() {
-                document.getElementById("myForm").submit();
+                document.getElementById("myForm");
             }
             
             var error = "<%=request.getAttribute("error")%>";
             if (error !== "null") {
                 window.alert("Please fill in the payment information!");
             }
+            
+            var today = new Date();
+            var dd = today.getDate();
+            var mm = today.getMonth() + 1; //January is 0!
+            var yyyy = today.getFullYear();
+            if (dd < 10) {
+                dd = '0' + dd
+            }
+            if (mm < 10) {
+                mm = '0' + mm
+            }
+            today = yyyy + '-' + mm + '-' + dd;
+            document.getElementById("myDate").setAttribute("min", today);
+        
         </script>
     </body>
     <footer>

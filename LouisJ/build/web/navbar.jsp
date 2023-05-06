@@ -62,14 +62,13 @@
         </nav>  
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="home" target="_blank">Home</a>
-            <a href="product" target="_blank">Products</a>
-            <a href="voucher" target="_blank">Vouchers</a>
+            <a href="home" >Home</a>
+            <a href="product" >Products</a>
+            <a href="voucher" >Vouchers</a>
             <%
                 if (users
                         != null) {
                     if (users.getUsertype().equals(User.MANAGER) || users.getUsertype().equals(User.STAFF)) { %>
-            <a href="addProduct.jsp" target="_blank">Add Product</a>
             <a href="customerList" target="_blank">Customer List</a>
             <a href="staffList" target="_blank">Staff List</a>
             <a href="orderList" target="_blank">Order List</a>

@@ -45,13 +45,17 @@
                             <p class="product-description"><%=product.getDescription()%>.</p>
                             <h4 class="price">RM<span> <%=product.getPrice()%></span></h4>
                             <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
+                            <%
+                                User userCurrent = userSession.getCurrentLoginUser(request.getCookies());
+                                if (userCurrent.getUsertype().equals(User.CUSTOMER)) {
+                            %>
                             <form method="POST" action="addToCart">
                                 <input type="hidden" name="productid" value="<%=product.getProductid()%>">
                                 <input type="submit" class="add-to-cart btn btn-default" value="Add To Cart">
                             </form>
+                            <% }%>
                             <br/>
                             <%
-                                User userCurrent = userSession.getCurrentLoginUser(request.getCookies());
                                 if (userCurrent.getUsertype().equals(User.MANAGER)) {
                             %>
                             <form method="GET" action="editProduct">
