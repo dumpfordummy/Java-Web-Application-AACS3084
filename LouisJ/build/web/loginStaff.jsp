@@ -58,10 +58,23 @@
                         <button class="log-in"> Log In </button>
                     </div>
 
+                    <%
+                        String loginErrorMsg = (String) request.getAttribute("loginErrorMsg");
+                        if (loginErrorMsg != null) {
+
+                    %>
+                    <p style="color:red"><%= loginErrorMsg%></p> <br>
+                    <%
+                        }
+                    %>
+
                     <!--   other buttons -->
                     <div class="other">
                         <!--      Forgot Password button-->
-                        <button class="btn submits frgt-pass" onclick="location.pathname='forgot'">Forgot Password</button>
+                        <button class="btn submits frgt-pass" onclick="location.pathname = 'forgotStaff'">Forgot Password</button>
+                        <!--         Sign Up font icon -->
+                        <button class="btn submits sign-up" onclick="location.pathname = 'register'" style="visibility:hidden">Sign Up 
+                            <i class="fa fa-user-plus" aria-hidden="true"></i>
                         </button>
                         <!--      End Other the Division -->
                     </div>

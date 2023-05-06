@@ -58,7 +58,11 @@ public class StaffLoginController extends HttpServlet {
                 Cookie userCookie = userSession.setUserSession(employee);
                 response.addCookie(userCookie);
                 response.sendRedirect(HOMEPAGE);
+                return;
             }
         }
+        
+        request.setAttribute("loginErrorMsg", "Invalid username or password");
+        request.getRequestDispatcher(STAFFLOGINPAGE).forward(request, response);
     }
 }

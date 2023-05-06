@@ -4,6 +4,7 @@
  */
 package controller;
 
+import interfaces.User;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,6 +26,7 @@ import javax.transaction.UserTransaction;
 import model.Customer;
 import model.CustomerService;
 import util.ImageUtil;
+import util.UserSessionUtil;
 import util.hashUtil;
 
 /**
@@ -40,6 +42,8 @@ public class RegisterController extends HttpServlet {
     UserTransaction utx;
 
     private static final String REGISTERPAGE = "/register.jsp";
+    private static final String HOMEPAGE = "/home";
+    private static final String LOGINPAGE = "/login";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -48,9 +52,8 @@ public class RegisterController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-
-        PrintWriter out = response.getWriter();
+        UserSessionUtil userSession = new UserSessionUtil(request.getSession());
+        User user = userSession.getCurrentLoginUser(request.getCookies());
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String name = request.getParameter("name");
@@ -84,9 +87,8 @@ public class RegisterController extends HttpServlet {
                 utx.begin();
                 boolean isRegisterSuccess = customerService.addCustomer(customer);
                 utx.commit();
-                if (isRegisterSuccess) {
-                    out.print("Register Successfully");
-                    response.sendRedirect("login.jsp");
+                if (isRegisterSuccess && user != null && !user.getUsertype().equals(User.MANAGER)) {
+                    response.sendRedirect(LOGINPAGE);
                     return;
                 }
             } catch (NotSupportedException | SystemException | javax.transaction.RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
@@ -94,7 +96,6 @@ public class RegisterController extends HttpServlet {
             }
         }
 
-        out.print("Failed to register");
-        response.sendRedirect("homePage.jsp");
+        response.sendRedirect(HOMEPAGE);
     }
 }

@@ -37,4 +37,9 @@ public class UserSessionUtil {
         //Whenever user logged in, session and cookie will be set, null indicates that it is not logged in.
         return null;
     }
+    
+    public void logoutUser() {
+        session.removeAttribute(session.getId());
+    }
+    
 }
