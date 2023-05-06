@@ -83,7 +83,7 @@
                             </div>
                             <div class="row m-0">
                                 <div class="col-sm-12 p-0">
-                                    <input class="form-control" type="text" name="shippingAddress" value="<%=cartPKList.get(0).getCustomer().getAddress()%>">
+                                    <input class="form-control" type="text" name="shippingAddress" value="<%=cartPKList.get(0).getCustomer().getAddress()%>" required>
                                 </div>
                             </div>
                             <div class="row m-0">
@@ -171,7 +171,7 @@
                                 </div>
                                 <div class="row mx-0 mb-2">
                                     <div class="col-sm-12 p-0 d-inline">
-                                        <input class="form-control" type="text" name="cardNumber" id="cardNumber" pattern="\d{12}" title="Please enter a 12-digit card number">
+                                        <input class="form-control" type="text" name="cardNumber" id="cardNumber" pattern="\d{12}" title="Please enter a 12-digit card number" required>
                                     </div>
                                 </div>
                                 <div class="row mx-0 mb-2">
@@ -191,7 +191,7 @@
                                 </div>
                                 <div class="row mx-0 mb-2">
                                     <div class="col-sm-12 p-0 d-inline">
-                                        <input class="form-control" type="text" name="CVV" id="CVV" pattern="\d{3}" title="Please enter a 3-digit CVV number">
+                                        <input class="form-control" type="text" name="CVV" id="CVV" pattern="\d{3}" title="Please enter a 3-digit CVV number" required> 
                                     </div>
                                 </div>
                             </div>
