@@ -88,6 +88,10 @@
         <servlet-name>EditProductController</servlet-name>
         <servlet-class>controller.EditProductController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditCartPaymentController</servlet-name>
+        <servlet-class>controller.EditCartPaymentController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -175,6 +179,10 @@
     <servlet-mapping>
         <servlet-name>EditProductController</servlet-name>
         <url-pattern>/editProduct</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditCartPaymentController</servlet-name>
+        <url-pattern>/editCartPayment</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
