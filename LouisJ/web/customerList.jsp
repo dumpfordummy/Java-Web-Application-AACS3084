@@ -4,6 +4,7 @@
     Author     : Wai Loc
 --%>
 
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="interfaces.*"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="java.util.List" %>
@@ -21,19 +22,16 @@
     </head>
     <body>
         <%
-            util.UserSessionUtil userSession = new util.UserSessionUtil(request.getSession());
-            //Customer customer = new Customer("1001", "test", "056823974923", "test@cust.com", "", "Test Customer", "0137416287", "123, Jln Bunga, 50300 KL");
-            //Cookie userCookie = userSession.setUserSession(customer);
-            //response.addCookie(userCookie);
-            User user = userSession.getCurrentLoginUser(request.getCookies());
-            if (user != null){
-                if (user.getUsertype().equals(User.MANAGER)){ %>
-                    <a class="btn btn-primary" href="" style="width: 120px; margin: 2rem 2rem 0 2rem">Add Customer</a>
-        <%  }} %>
+            String userRole = (String) request.getAttribute("UserRole");
+            if (userRole != null){
+                if (userRole.equals(User.MANAGER)){ %>
+                    <a class="btn btn-primary" href="" style="width: 160px; margin: 2rem 2rem 0 2rem">Add Customer</a>
+                <%  }} %>
         
         <div class="row" style="margin-bottom: 2rem;">
             <% 
                 List<Customer> customerList = (List<Customer>)request.getAttribute("customerList");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
                 for (Customer c : customerList ){
             %>
             <div class="col-12 col-sm-6 col-md-4 d-flex align-items-stretch flex-column m-3">
@@ -48,7 +46,7 @@
                                     <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-phone" style="font-size: 15px; color: gray; padding-right: 5px;"></i></span> <%= c.getContact()%></li>
                                     <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-envelope" style="font-size: 15px; color: gray; padding-right: 5px;"></i></span> <%= c.getEmail()%></li>
                                     <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa fa-address-book-o" style="font-size: 20px; color: gray; padding-right: 5px;"></i></span> <%= c.getAddress()%></li>
-                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa-solid fa-calendar-days" style="font-size: 20px; color: gray; padding-right: 5px;"></i></span> Joined <%= c.getDatejoin() %></li>
+                                    <li style="margin: 10px 0 10px 0;"><span class="fa-li"><i class="fa-solid fa-calendar-days" style="font-size: 20px; color: gray; padding-right: 5px;"></i></span> Joined <%= dateFormat.format(c.getDatejoin()) %></li>
                                 </ul>
                             </div>
                             <div class="col-5 text-center">
@@ -57,8 +55,8 @@
                         </div>
                     </div>
                     <div class="card-footer p-3">
-                        <%  if (user != null){
-                                if (user.getUsertype().equals(User.MANAGER)){  %>
+                        <%  if (userRole != null){
+                                if (userRole.equals(User.MANAGER)){  %>
                             <a href="" style="text-decoration: none;">
                                 <i class="fa-regular fa-pen-to-square fa-2xl"></i>
                             </a>

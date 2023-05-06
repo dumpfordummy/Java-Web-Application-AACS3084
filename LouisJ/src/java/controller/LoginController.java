@@ -23,7 +23,7 @@ public class LoginController extends HttpServlet {
     UserTransaction utx;
 
     private static final String LOGINPAGE = "/login.jsp";
-    private static final String HOMEPAGE = "/homePage.jsp";
+    private static final String HOMEPAGE = "/home";
 
     public LoginController() {
     }

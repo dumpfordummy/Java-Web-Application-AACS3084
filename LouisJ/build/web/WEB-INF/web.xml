@@ -84,6 +84,10 @@
         <servlet-name>DeleteVoucherController</servlet-name>
         <servlet-class>controller.DeleteVoucherController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>EditProductController</servlet-name>
+        <servlet-class>controller.EditProductController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -167,6 +171,10 @@
     <servlet-mapping>
         <servlet-name>DeleteVoucherController</servlet-name>
         <url-pattern>/deleteVoucher</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProductController</servlet-name>
+        <url-pattern>/editProduct</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

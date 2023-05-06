@@ -72,10 +72,11 @@ public class ProfileController extends HttpServlet {
             User user = userSession.getCurrentLoginUser(request.getCookies());
 
             String[] paths = request.getRequestURI().substring(1).split("/");
-            if (paths.length == 1) {
+            if (paths.length == 1 && paths[0].equals("profile")) {
                 request.getRequestDispatcher(PROFILEPAGE).forward(request, response);
                 return;
-            } else if (paths.length == 2) {
+            } else if (paths.length == 2 && paths[1].equals("edit")) {
+                // having issue where css is not loading
                 request.getRequestDispatcher(PROFILEEDITPAGE).forward(request, response);
                 return;
             }

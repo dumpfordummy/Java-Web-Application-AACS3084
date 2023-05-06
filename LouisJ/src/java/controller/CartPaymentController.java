@@ -6,6 +6,7 @@ package controller;
 
 import interfaces.User;
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -30,6 +31,8 @@ import model.Payment;
 import model.PaymentService;
 import model.Product;
 import model.ProductService;
+import model.Voucher;
+import model.VoucherService;
 import util.UserSessionUtil;
 
 /**
@@ -70,7 +73,22 @@ public class CartPaymentController extends HttpServlet {
                     cartPKList.add(new CartPK(cart.getCartid(), customer, product, cart.getQty()));
                 }
             }
-
+            
+            VoucherService voucherService = new VoucherService(em);
+            List<Voucher> voucherAllList = voucherService.findAllVoucher();
+            if(!voucherAllList.isEmpty()){
+                List<Voucher> voucherList = new ArrayList<>();
+                for(Voucher voucher : voucherAllList){
+                    if(voucher.getVoucherExpiryDate().isAfter(LocalDate.now())){
+                        voucherList.add(voucher);
+                    }
+                }
+                request.setAttribute("voucherList", voucherList);
+            } else {
+                request.setAttribute("voucherList", null);
+            }
+            
+            
             request.setAttribute("cartPKList", cartPKList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/cartPayment.jsp");
             dispatcher.forward(request, response);

@@ -4,6 +4,7 @@
     Author     : Asus
 --%>
 
+<%@page import="model.Voucher"%>
 <%@page import="java.awt.Image"%>
 <%@page import="java.io.File"%>
 <%@page import="model.CartPK"%>
@@ -36,7 +37,6 @@
                                 double subTotal = 0;
                                 double tax;
                                 double deliveryCharge = 5;
-                                double discountAmount = 5;
                                 double totalPayment;
                                 double totalProductPrice;
                                 for (CartPK cartPK : cartPKList) {
@@ -68,7 +68,7 @@
                                     subTotal += totalProductPrice;
                                 }
                                 tax = subTotal * 0.06;
-                                totalPayment = subTotal + tax + deliveryCharge - discountAmount;
+                                totalPayment = subTotal + tax + deliveryCharge;
                             %>
                         </div>
                         <form method="POST" action="checkout" class="col-12 col-sm-4 p-3 proceed form">
@@ -79,7 +79,7 @@
                             </div>
                             <div class="row m-0">
                                 <div class="col-sm-12 p-0">
-                                    <p><%=cartPKList.get(0).getCustomer().getAddress()%></p>
+                                    <input class="form-control" type="text" name="shippingAddress" value="<%=cartPKList.get(0).getCustomer().getAddress()%>">
                                 </div>
                             </div>
                             <div class="row m-0">
@@ -89,7 +89,7 @@
                             </div>
                             <div class="row m-0">
                                 <div class="col-sm-12 p-0">
-                                    <select class="form-control" id="paymentMethod" onchange="myFunction()" name="paymentMethod">
+                                    <select class="form-control" id="paymentMethod" onchange="paymentMethodOnchange()" name="paymentMethod">
                                         <option value="CASH">Cash On Delivery</option>
                                         <option value="CARD">Card</option>
                                     </select>
@@ -120,11 +120,34 @@
                                 </div>
                             </div>
                             <div class="row m-0">
+                                <div class="col-sm-12 p-0">
+                                    <h5>Voucher:</h5>
+                                </div>
+                            </div>
+                            <div class="row m-0">
+                                <div class="col-sm-12 p-0">
+                                    <select class="form-control" id="voucher" onchange="voucherOnchange()" name="voucher">
+                                        <option value="0" selected></option>
+                                        <%
+                                            
+                                            if(request.getAttribute("voucherList") != null){
+                                                List<Voucher> voucherList = (List<Voucher>) request.getAttribute("voucherList");
+                                                for(Voucher voucher : voucherList){
+                                        %>
+                                        <option value="<%=voucher.getVoucherOfferAmount()%>"><%=voucher.getVoucherCode()%></option>
+                                        <%
+                                                }
+                                            }
+                                        %>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row m-0">
                                 <div class="col-sm-8 p-0 ">
                                     <h5>(-)Discount Amount</h5>
                                 </div>
                                 <div class="col-sm-4 p-0">
-                                    <p id="discountAmount">RM<%=String.format("%.2f", discountAmount)%></p>
+                                    <p id="discountAmount">RM0.00</p>
                                 </div>
                             </div>
                             <hr>
@@ -177,9 +200,9 @@
                             <input type="hidden" name="subTotal" value="<%=subTotal%>">
                             <input type="hidden" name="tax" value="<%=tax%>">
                             <input type="hidden" name="deliveryCharge" value="<%=deliveryCharge%>">
-                            <input type="hidden" name="discountAmount" value="<%=discountAmount%>">
-                            <input type="hidden" name="totalPayment" value="<%=totalPayment%>">
-                            <input type="hidden" name="shippingAddress" value="<%=cartPKList.get(0).getCustomer().getAddress()%>">
+                            <input type="hidden" id="discountAmountPost" name="discountAmount" value="0">
+                            <input type="hidden" id="totalPaymentPost" name="totalPayment" value="<%=totalPayment%>">
+
 
                             <input type="submit" class="checkout btn btn-default" value="Checkout">
                         </form>
@@ -188,7 +211,7 @@
             </div>
         </div>
         <script>
-            function myFunction() {
+            function paymentMethodOnchange() {
                 var paymentMethod = document.getElementById("paymentMethod").value;
                 var cardMethod = document.getElementById("cardMethod");
 
@@ -198,6 +221,20 @@
                     cardMethod.style.visibility = 'visible';
                 }
 
+            }
+            
+            function voucherOnchange(){
+                var voucher = document.getElementById("voucher").value;
+                var discountAmount = document.getElementById("discountAmount");
+                var totalPaymentPost = document.getElementById("totalPaymentPost");
+                var fixedVoucher = parseFloat(voucher).toFixed(2);
+                var total = document.getElementById("total");
+                var totalPayment = parseFloat(<%=totalPayment%>) - fixedVoucher;
+                
+                discountAmount.innerHTML = "RM" + fixedVoucher;
+                total.innerHTML = "RM" + totalPayment;
+                discountAmountPost.value = fixedVoucher;
+                totalPaymentPost.value = totalPayment;
             }
             
             var error = "<%=request.getAttribute("error")%>";

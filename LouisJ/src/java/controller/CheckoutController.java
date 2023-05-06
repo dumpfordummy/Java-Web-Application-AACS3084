@@ -54,7 +54,8 @@ public class CheckoutController extends HttpServlet {
                 String expDateStr = request.getParameter("expDate");
                 String CVV = request.getParameter("CVV");
                 if(cardNumber.equals("") || expDateStr.equals("") || CVV.equals("")){
-                    response.sendRedirect("/cartPayment");
+                    
+                    response.sendRedirect("/cartPayment?error=empty");
                     return;
                 }
             }
