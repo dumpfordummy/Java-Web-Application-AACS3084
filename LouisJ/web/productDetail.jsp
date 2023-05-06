@@ -47,7 +47,8 @@
                             <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p>
                             <%
                                 User userCurrent = userSession.getCurrentLoginUser(request.getCookies());
-                                if (userCurrent.getUsertype().equals(User.CUSTOMER)) {
+                                if (userCurrent != null) {
+                                    if (userCurrent.getUsertype().equals(User.CUSTOMER)) {
                             %>
                             <form method="POST" action="addToCart">
                                 <input type="hidden" name="productid" value="<%=product.getProductid()%>">
@@ -62,7 +63,8 @@
                                 <input type="hidden" name="productid" value="<%=product.getProductid()%>">
                                 <input type="submit" class="add-to-cart btn btn-default green" value="Edit Product">
                             </form>
-                            <% }%>
+                            <% }
+                                }%>
                         </div>
                     </div>
                 </div>
