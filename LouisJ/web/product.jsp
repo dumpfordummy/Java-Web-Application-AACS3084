@@ -70,21 +70,32 @@
                                         <input type="submit" value="Learn More" class="cc1">
                                     </form>
                                     <br/>
+                                    <%
+                                        if (user != null) {
+                                            if (user.getUsertype().equals(User.MANAGER)) {%>
                                     <form class="text-center" method="POST" action="deleteProduct">
                                         <input type="hidden" name="productid" value="<%=product.getProductid()%>">
                                         <input type="submit" value="Delete Product" class="btnDelete">
                                     </form>
+                                    <%  }
+                                        }%>
                                 </div>
                             </div>
                         </div>
                         <%
                             }
                         %> 
+                        <%
+                             if (user != null) {
+                                 if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF)) {%>
                         <div class="col-md-4">
                             <div class="card">
+
                                 <div class="ccc">
                                     <p class="text-center"><a href="/addProduct"><img src="images/add.jpg" class="imw"/></a></p> 
                                 </div>
+                                <%  }
+                                    }%>
                             </div>
                         </div>
                     </div>
