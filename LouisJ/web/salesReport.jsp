@@ -80,7 +80,7 @@
                     <td><%= cart.getPaymentid() %></td>
                     <td><%= product.getName() %></td>
                     <td><%= cart.getQty() %></td>
-                    <td>RM <%= String.format("%.2f", payment.getTotalPayment()) %></td>
+                    <td><%= String.format("%.2f", payment.getTotalPayment()) %></td>
                 </tr>
                 <% } %>
             </table>
@@ -102,21 +102,25 @@
                         //start by saying: no switching is done:
                         switching = false;
                         rows = table.rows;
-                        /*Loop through all table rows (except the first, which contains table headers):*/
+                        /*Loop through all table rows (except the
+                        first, which contains table headers):*/
                         for (i = 1; i < (rows.length - 1); i++) {
-                            //start by saying there should be no switching: shouldSwitch = false;
-                            /*Get the two elements you want to compare, one from current row and one from the next:*/
+                            //start by saying there should be no switching:
+                            shouldSwitch = false;
+                            /*Get the two elements you want to compare,
+                            one from current row and one from the next:*/
                             x = rows[i].getElementsByTagName("TD")[4];
                             y = rows[i + 1].getElementsByTagName("TD")[4];
                             //check if the two rows should switch place:
-                            if (x.innerHTML < y.innerHTML) {
+                            if (Math.round(x.innerHTML) < Math.round(y.innerHTML)) {
                               //if so, mark as a switch and break the loop:
                               shouldSwitch = true;
                               break;
                             }
                         }
                         if (shouldSwitch) {
-                            /*If a switch has been marked, make the switch and mark that a switch has been done:*/
+                            /*If a switch has been marked, make the switch
+                            and mark that a switch has been done:*/
                             rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
                             switching = true;
                         }
@@ -139,7 +143,7 @@
                             x = rows[i].getElementsByTagName("TD")[4];
                             y = rows[i + 1].getElementsByTagName("TD")[4];
                             //check if the two rows should switch place:
-                            if (x.innerHTML > y.innerHTML) {
+                            if (Math.round(x.innerHTML) > Math.round(y.innerHTML)) {
                               //if so, mark as a switch and break the loop:
                               shouldSwitch = true;
                               break;
