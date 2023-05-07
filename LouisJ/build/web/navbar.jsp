@@ -66,9 +66,10 @@
             <a href="product" >Products</a>
             <a href="voucher" >Vouchers</a>
             <%
-                if (users
-                        != null) {
-                    if (users.getUsertype().equals(User.MANAGER)) { %>
+                if (users != null) { %>
+            <a href="orderHistory" >Order History</a>
+            <%
+                if (users.getUsertype().equals(User.MANAGER)) { %>
             <a href="customerList" >Customer List</a>
             <a href="staffList" >Staff List</a>
             <a href="orderList" >Order List</a>

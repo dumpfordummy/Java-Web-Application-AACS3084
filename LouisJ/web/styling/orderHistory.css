@@ -1,0 +1,115 @@
+/*
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/ClientSide/css.css to edit this template
+*/
+/* 
+    Created on : May 7, 2023, 10:59:15 PM
+    Author     : CY
+*/
+
+body{
+    overflow-x: hidden;
+}
+
+.voucherAmtTxt{
+    margin: 15px;
+    font-size: 20px;
+}
+
+.rounded-pill{
+    background-color: black;
+}
+
+.vouchersSelectionTab{
+    margin-top: 25px;
+    border-bottom: 1px solid gray;
+}
+
+.nav-item button{
+    color: black;
+}
+
+.nav-link:focus, .nav-link:hover {
+    color: gray;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link{
+    background-color: black;
+}
+
+.voucherHeader{
+    background: lightgray;
+}
+
+.btnDelete{
+    background: lightcoral;
+    color: #000;
+    padding: 4px 8px;
+    border: 1px solid #000;
+    height: 40px;
+    border-radius: 7px;
+
+    &:hover{
+        background: red;
+        border: 1px solid #000;
+    }
+}
+
+.orderBox {
+    display: flex;
+    background-color: #f6b26b;
+    margin: 1rem;
+    
+}
+
+.orderDetails {
+    margin-left: 0;
+    margin-right: auto;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+}
+
+.orderStatus {
+    margin-left: auto;
+    margin-right: 1rem;
+    padding: 10px;
+}
+
+body { background-color: #E8D4B2 !important;}
+
+.SuccessBox {
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #24CB69;
+    color: white;
+    border-radius: 5px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: block;
+    align-items: center;
+}
+
+.FailedBox {
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background-color: #FF1E1E;
+    color: white;
+    border-radius: 5px;
+    padding-top: 8px;
+    padding-bottom: 6px;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: block;
+    align-items: center;
+}
+
+.DivClose {
+    position: relative;
+    cursor: pointer;
+    float: right;
+    padding: 0px;
+    font-weight: 600;
+    font-size: 20px;
+}
