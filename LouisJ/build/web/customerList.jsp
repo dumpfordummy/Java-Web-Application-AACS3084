@@ -24,7 +24,7 @@
         <%
             String userRole = (String) request.getAttribute("UserRole");
             if (userRole != null){
-                if (userRole.equals(User.MANAGER)){ %>
+                if (userRole.equals(User.MANAGER) || userRole.equals(User.STAFF)){ %>
                     <a class="btn btn-primary" href="/register" style="width: 160px; margin: 2rem 2rem 0 2rem">Add Customer</a>
                 <%  }} %>
         
@@ -63,7 +63,12 @@
                                     <a href="/profile/delete/<%= c.getUsertype() %>/<%= c.getId() %>" class="deleteItem" style="text-decoration: none;">
                                         <i class="fa fa-trash fa-2xl"></i>
                                     </a>
-                        <%  }} %>
+                        <%  }
+                                else{ %>
+                                <a href="/profile/edit/<%= c.getUsertype() %>/<%= c.getId() %>" style="text-decoration: none;">
+                                    <i class="fa-regular fa-pen-to-square fa-2xl"></i>
+                                </a>
+                        <% }} %>
                     </div>
                 </div>
             </div>

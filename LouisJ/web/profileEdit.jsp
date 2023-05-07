@@ -176,11 +176,11 @@
                             User users = userSession.getCurrentLoginUser(request.getCookies());
                             if (users == null) {
                         %>
-                        <a href="loginStaff.jsp">Login Staff</a>
-                        <a href="login.jsp">Login Customer</a>
-                        <a href="register.jsp">Register Customer</a>
+                        <a href="/loginStaff.jsp">Login Staff</a>
+                        <a href="/login.jsp">Login Customer</a>
+                        <a href="/register.jsp">Register Customer</a>
                         <%} else {%>
-                        <a href="profile.jsp">Profile</a>
+                        <a href="/profile.jsp">Profile</a>
                         <% } %>
                     </div>
                 </div>
@@ -192,18 +192,18 @@
         </nav>
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="home" >Home</a>
-            <a href="product" >Products</a>
-            <a href="voucher" >Vouchers</a>
+            <a href="/home" >Home</a>
+            <a href="/product" >Products</a>
+            <a href="/voucher" >Vouchers</a>
             <%
                 if (users
                         != null) {
                     if (users.getUsertype().equals(User.MANAGER) || users.getUsertype().equals(User.STAFF)) { %>
-            <a href="customerList" target="_blank">Customer List</a>
-            <a href="staffList" target="_blank">Staff List</a>
-            <a href="orderList" target="_blank">Order List</a>
-            <a href="salesReport" target="_blank">Sales Report</a>
-            <a href="addVoucher.jsp" target="_blank">Add Voucher</a>
+            <a href="/customerList" target="_blank">Customer List</a>
+            <a href="/staffList" target="_blank">Staff List</a>
+            <a href="/orderList" target="_blank">Order List</a>
+            <a href="/salesReport" target="_blank">Sales Report</a>
+            <a href="/addVoucher.jsp" target="_blank">Add Voucher</a>
             <%  }
                 }%>
         </div>

@@ -62,23 +62,26 @@
         </nav>  
         <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="home" >Home</a>
-            <a href="product" >Products</a>
-            <a href="voucher" >Vouchers</a>
+            <a href="/home" >Home</a>
+            <a href="/product" >Products</a>
+            <a href="/voucher" >Vouchers</a>
             <%
                 if (users != null) { %>
-            <a href="orderHistory" >Order History</a>
+            <a href="/orderHistory" >Order History</a>
             <%
                 if (users.getUsertype().equals(User.MANAGER)) { %>
-            <a href="customerList" >Customer List</a>
-            <a href="staffList" >Staff List</a>
-            <a href="orderList" >Order List</a>
-            <a href="salesRecords" >Sales Records</a>
-            <a href="addVoucher.jsp" >Add Voucher</a>
+            <a href="/customerList" >Customer List</a>
+            <a href="/staffList" >Staff List</a>
+            <a href="/orderList" >Order List</a>
+            <a href="/salesRecords" >Sales Records</a>
+            <a href="/addVoucher.jsp" >Add Voucher</a>
             <%  }
                 if (users.getUsertype().equals(User.STAFF)) {
             %>
-            <a href = "addVoucher.jsp" > Add Voucher</a >
+            <a href="/customerList" >Customer List</a>
+            <a href="/staffList" >Staff List</a>
+            <a href="/orderList" >Order List</a>
+            <a href = "/addVoucher.jsp" > Add Voucher</a >
             <% }
                 }%>
         </div>
