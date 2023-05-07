@@ -92,8 +92,8 @@
         <servlet-class>controller.VoucherController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>SalesReportController</servlet-name>
-        <servlet-class>controller.SalesReportController</servlet-class>
+        <servlet-name>SalesRecordsController</servlet-name>
+        <servlet-class>controller.SalesRecordsController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DeleteVoucherController</servlet-name>
@@ -106,6 +106,10 @@
     <servlet>
         <servlet-name>EditCartPaymentController</servlet-name>
         <servlet-class>controller.EditCartPaymentController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ReportController</servlet-name>
+        <servlet-class>controller.ReportController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
@@ -184,10 +188,6 @@
         <url-pattern>/voucher</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>SalesReportController</servlet-name>
-        <url-pattern>/SalesReportController</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>DeleteVoucherController</servlet-name>
         <url-pattern>/deleteVoucher</url-pattern>
     </servlet-mapping>
@@ -198,6 +198,14 @@
     <servlet-mapping>
         <servlet-name>EditCartPaymentController</servlet-name>
         <url-pattern>/editCartPayment</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SalesRecordsController</servlet-name>
+        <url-pattern>/SalesRecordsController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ReportController</servlet-name>
+        <url-pattern>/generateReport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

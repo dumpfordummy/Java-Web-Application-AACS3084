@@ -29,8 +29,8 @@ import util.UserSessionUtil;
  *
  * @author Wai Loc
  */
-@WebServlet(urlPatterns = {"/salesReport"})
-public class SalesReportController extends HttpServlet {
+@WebServlet(urlPatterns = {"/salesRecords"})
+public class SalesRecordsController extends HttpServlet {
     @PersistenceContext EntityManager em;
     
     
@@ -56,14 +56,14 @@ public class SalesReportController extends HttpServlet {
                 cartList.add(cart);
             }
         }
-        request.setAttribute("cartList", cartList);
-        request.setAttribute("productList", productList);
+        request.getSession().setAttribute("cartList", cartList);
+        request.getSession().setAttribute("productList", productList);
         
         UserSessionUtil userSession = new UserSessionUtil(request.getSession());
         User user = userSession.getCurrentLoginUser(request.getCookies());
         if (user != null){
             if (user.getUsertype().equals(User.MANAGER)){ 
-                RequestDispatcher dispatcher = request.getRequestDispatcher("/salesReport.jsp");
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/salesRecords.jsp");
                 dispatcher.forward(request, response);
             }
             else {
@@ -120,9 +120,9 @@ public class SalesReportController extends HttpServlet {
             }
         }
         
-        request.setAttribute("cartList", cartList);
-        request.setAttribute("productList", productList);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/salesReport.jsp");
+        request.getSession().setAttribute("cartList", cartList);
+        request.getSession().setAttribute("productList", productList);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/salesRecords.jsp");
         dispatcher.forward(request, response);
     }
 
