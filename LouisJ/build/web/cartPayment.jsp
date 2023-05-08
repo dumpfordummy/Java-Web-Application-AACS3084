@@ -171,7 +171,7 @@
                                 </div>
                                 <div class="row mx-0 mb-2">
                                     <div class="col-sm-12 p-0 d-inline">
-                                        <input class="form-control" type="text" name="cardNumber" id="cardNumber" pattern="\d{12}" title="Please enter a 12-digit card number" required disabled>
+                                        <input class="form-control" type="text" name="cardNumber" id="cardNumber" pattern="\d{16}" title="Please enter a 16-digit card number" required disabled>
                                     </div>
                                 </div>
                                 <div class="row mx-0 mb-2">

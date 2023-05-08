@@ -22,7 +22,7 @@
         <%@include file="navbar.jsp" %>
         <link rel="stylesheet" type="text/css" href="styling/orderHistory.css">
         <script src="https://kit.fontawesome.com/a293bfc92d.js" crossorigin="anonymous"></script>
-        <title>Louis J - Order History</title>
+        <title><%= getServletContext().getInitParameter("companyName") %> - Order History</title>
     </head>
     <body>
         <%
@@ -183,6 +183,11 @@
         </div>
 
         <%@include file="footer.jsp" %>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+            var success = "<%=request.getParameter("success")%>";
+            if (success !=== "null") {
+                window.alert("Thank You! Your Payment Placed Successfully!");
+            }
+        </script>
     </body>
 </html>

@@ -18,7 +18,7 @@
         <%@include file="components/common_css_js.jsp" %>
         <%@include file="navbar.jsp" %>
         <link rel="stylesheet" type="text/css" href="styling/voucher.css">
-        <title>Louis J - Voucher</title>
+        <title><%= getServletContext().getInitParameter("companyName") %> - Voucher</title>
     </head>
     <body>
         <div class="d-flex justify-content-center vouchersSelectionTab">
