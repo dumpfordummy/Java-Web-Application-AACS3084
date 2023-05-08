@@ -70,7 +70,7 @@
                         Date: <%= dateFormat.format(p.getOrderDate())%><br />
                         <br />
                         <br />
-                        Subtotal: RM <%= p.getSubTotal() + p.getDeliveryCharge() + p.getTax() - p.getDiscountAmount() %><br />
+                        Total Payment: RM <%= p.getTotalPayment() %><br />
                     </div>
                     <div class="col-2 p-3">
                         <p>
@@ -103,7 +103,7 @@
                         Date: <%= dateFormat.format(p.getOrderDate())%><br />
                         <br />
                         <br />
-                        Subtotal: RM <%= p.getSubTotal() + p.getDeliveryCharge() + p.getTax() - p.getDiscountAmount() %><br />
+                        Total Payment: RM <%= p.getTotalPayment() %><br />
                     </div>
                     <div class="col-2 p-3">
                         <p>
@@ -135,7 +135,7 @@
                         Date: <%= dateFormat.format(p.getOrderDate())%><br />
                         <br />
                         <br />
-                        Subtotal: RM <%= p.getSubTotal() + p.getDeliveryCharge() + p.getTax() - p.getDiscountAmount() %><br />
+                        Subtotal: RM <%= p.getTotalPayment() %><br />
                     </div>
                     <div class="col-2 p-3">
                         <p>
@@ -166,7 +166,7 @@
                         Date: <%= dateFormat.format(p.getOrderDate())%><br />
                         <br />
                         <br />
-                        Subtotal: RM <%= p.getSubTotal() + p.getDeliveryCharge() + p.getTax() - p.getDiscountAmount() %><br />
+                        Subtotal: RM <%= p.getTotalPayment() %><br />
                     </div>
                     <div class="col-2 p-3">
                         <p>
