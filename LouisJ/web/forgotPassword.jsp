@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login</title>
+        <title>Forgot Password</title>
         <%@include file="components/common_css_js.jsp" %>
         <script src="https://kit.fontawesome.com/2592c49560.js" crossorigin="anonymous"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
@@ -17,6 +17,8 @@
     </head>
     <body>
         <div class="overlay">
+            <a href="/home"><img src="images/logo.png" alt="alt" style="display: block; margin-left: auto;margin-right: auto;width: 20%;margin-top:2%;"/></a>
+            
             <form method="POST" action="forgot">
                 <!--   con = Container  for items in the form-->
                 <div class="con">
