@@ -113,3 +113,13 @@ body { background-color: #E8D4B2 !important;}
     font-weight: 600;
     font-size: 20px;
 }
+
+.detailsButton {
+    position: relative;
+    top: 0;
+    right: 0;
+}
+
+.detailsButton>a{
+    text-decoration: none;
+}

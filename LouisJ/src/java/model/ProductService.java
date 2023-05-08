@@ -54,6 +54,12 @@ public class ProductService {
         return productList;
     }
 
+    public Product findByProductid(Integer productid) {
+        TypedQuery<Product> query = mgr.createNamedQuery("Product.findByProductid", Product.class);
+        query.setParameter("productid", productid);
+        return query.getSingleResult();
+    }
+    
     public List<Product> findByName(String name) {
         TypedQuery<Product> query = mgr.createNamedQuery("Product.findByName", Product.class);
         query.setParameter("name", name);
