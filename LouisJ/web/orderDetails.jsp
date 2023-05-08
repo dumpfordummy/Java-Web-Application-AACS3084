@@ -29,6 +29,7 @@
                     <th style="width: 150px;">Product Description</th>
                     <th>Product Image</th>
                     <th style="width: 10%;">Quantity</th>
+                    <th style="width: 10%;">Price</th>
                 </tr>
                 <%
                     List<Cart> carts = (List<Cart>) request.getAttribute("orderCarts");
@@ -47,8 +48,9 @@
                 <tr>
                     <td><%= product.getCategory()%></td>
                     <td><%= product.getDescription()%></td>
-                    <td><img src="images/<%=product.getImage()%>"/></td>
+                    <td><img src="images/<%=product.getImage()%>" style="width:10%" /></td>
                     <td><%= quantity%></td>
+                    <td><%= quantity * product.getPrice() %></td>
                 </tr>
                 <% }
                     }
