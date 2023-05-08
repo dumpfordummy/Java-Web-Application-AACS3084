@@ -54,10 +54,13 @@
                         <% } %>
                     </div>
                 </div>
+                <%
+                if (users != null && users.getUsertype().equals(User.CUSTOMER)) { %>
                 <a class="nav-item nav-link" href="cartPayment">
                     <img src="images/cart.png" height="30" class="d-inline-block align-top" alt="CART.PNG">
                     <span class="ml-2">CART</span>
                 </a>
+                <% }%>
             </div>
         </nav>  
         <div id="mySidenav" class="sidenav">
