@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title><%= getServletContext().getInitParameter("companyName") %> - Home</title>
+        <title><%= getServletContext().getInitParameter("companyName")%> - Home</title>
         <%@include file="components/common_css_js.jsp" %>
     </head>
     <body>
@@ -54,13 +54,10 @@
                         <% } %>
                     </div>
                 </div>
-                <%
-                if (users != null && users.getUsertype().equals(User.CUSTOMER)) { %>
                 <a class="nav-item nav-link" href="cartPayment">
                     <img src="images/cart.png" height="30" class="d-inline-block align-top" alt="CART.PNG">
                     <span class="ml-2">CART</span>
                 </a>
-                <% }%>
             </div>
         </nav>  
         <div id="mySidenav" class="sidenav">
@@ -87,7 +84,8 @@
             <a href="/customerList" >Customer List</a>
             <a href="/staffList" >Staff List</a>
             <a href="/orderList" >Order List</a>
-            <% }}%>
+            <% }
+                }%>
         </div>
 
         <script>
