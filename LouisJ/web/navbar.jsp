@@ -71,8 +71,7 @@
             <%
                 if (users != null && users.getUsertype().equals(User.CUSTOMER)) { %>
             <a href="/orderHistory" >Order History</a>
-            <% }%>
-            <%
+            <% }
                 if (users.getUsertype().equals(User.MANAGER)) { %>
             <a href="/addVoucher.jsp" >Add Voucher</a>
             <a href="/customerList" >Customer List</a>
@@ -86,7 +85,7 @@
             <a href="/customerList" >Customer List</a>
             <a href="/staffList" >Staff List</a>
             <a href="/orderList" >Order List</a>
-            <% }%>
+            <% }}%>
         </div>
 
         <script>
