@@ -68,7 +68,7 @@
                         Date: <%= dateFormat.format(p.getOrderDate())%><br />
                         <br />
                         <br />
-                        Subtotal: RM <%= p.getSubTotal()%><br />
+                        Subtotal: RM <%= p.getSubTotal() + p.getDeliveryCharge() + p.getTax() - p.getDiscountAmount() %><br />
                     </div>
                     <div class="col-2 p-3">
                         <p>
@@ -76,8 +76,11 @@
                             <span><b><%= p.getStatus()%></b></span>
                         </p>
                     </div>
+
+                    <button class="detailsButton">
+                        <a href="/orderHistoryDetails?paymentId=<%= p.getPaymentid()%>" target="_blank">View Details</a>
+                    </button>   
                 </div>
-                <br>
                 <% }
                         }
                     }%>
@@ -98,7 +101,7 @@
                         Date: <%= dateFormat.format(p.getOrderDate())%><br />
                         <br />
                         <br />
-                        Subtotal: RM <%= p.getSubTotal()%><br />
+                        Subtotal: RM <%= p.getSubTotal() + p.getDeliveryCharge() + p.getTax() - p.getDiscountAmount() %><br />
                     </div>
                     <div class="col-2 p-3">
                         <p>
@@ -106,8 +109,11 @@
                             <span><b><%= p.getStatus()%></b></span>
                         </p>
                     </div>
+
+                    <button class="detailsButton">
+                        <a href="/orderHistoryDetails?paymentId=<%= p.getPaymentid()%>" target="_blank">View Details</a>
+                    </button> 
                 </div>
-                <br>
                 <% }
                         }
                     }%>
@@ -127,7 +133,7 @@
                         Date: <%= dateFormat.format(p.getOrderDate())%><br />
                         <br />
                         <br />
-                        Subtotal: RM <%= p.getSubTotal()%><br />
+                        Subtotal: RM <%= p.getSubTotal() + p.getDeliveryCharge() + p.getTax() - p.getDiscountAmount() %><br />
                     </div>
                     <div class="col-2 p-3">
                         <p>
@@ -135,8 +141,10 @@
                             <span><b><%= p.getStatus()%></b></span>
                         </p>
                     </div>
+                    <button class="detailsButton">
+                        <a href="/orderHistoryDetails?paymentId=<%= p.getPaymentid()%>" target="_blank">View Details</a>
+                    </button>    
                 </div>
-                <br>
                 <% }
                         }
                     }%>
@@ -156,7 +164,7 @@
                         Date: <%= dateFormat.format(p.getOrderDate())%><br />
                         <br />
                         <br />
-                        Subtotal: RM <%= p.getSubTotal()%><br />
+                        Subtotal: RM <%= p.getSubTotal() + p.getDeliveryCharge() + p.getTax() - p.getDiscountAmount() %><br />
                     </div>
                     <div class="col-2 p-3">
                         <p>
@@ -164,9 +172,12 @@
                             <span><b><%= p.getStatus()%></b></span>
                         </p>
                     </div>
+                    <button class="detailsButton">
+                        <a href="/orderHistoryDetails?paymentId=<%= p.getPaymentid()%>" target="_blank">View Details</a>
+                    </button>   
                 </div>
-                <br>
-                <% } }
+                <% }
+                        }
                     }%>
             </div>
         </div>

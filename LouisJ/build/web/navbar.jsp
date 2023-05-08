@@ -66,7 +66,7 @@
             <a href="/product" >Products</a>
             <a href="/voucher" >Vouchers</a>
             <%
-                if (users != null) { %>
+                if (users != null && users.getUsertype().equals(User.CUSTOMER)) { %>
             <a href="/orderHistory" >Order History</a>
             <%
                 if (users.getUsertype().equals(User.MANAGER)) { %>

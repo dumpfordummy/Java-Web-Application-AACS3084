@@ -124,18 +124,14 @@ public class ProfileController extends HttpServlet {
             utx.begin();
             customerService.deleteCustomer(targetUserId);
             utx.commit();
+            response.sendRedirect("/customerList");
         } else {
             EmployeeService employeeService = new EmployeeService(em);
             utx.begin();
             employeeService.deleteEmployee(targetUserId);
             utx.commit();
+            response.sendRedirect("/staffList");
         }
-        Enumeration<String> headerNames = request.getHeaderNames();
-        while (headerNames.hasMoreElements()) {
-            System.out.println(request.getHeader(headerNames.nextElement()));
-        }
-
-        response.sendRedirect("/home");
     }
 
     @Override
@@ -185,6 +181,8 @@ public class ProfileController extends HttpServlet {
                 if (currentUser.getId().equals(customer.getId())) {
                     UserSessionUtil userSessions = new UserSessionUtil(request.getSession());
                     Cookie userCookie = userSessions.setUserSession(customer);
+                } else {
+                    response.sendRedirect("/customerList");
                 }
 
                 utx.begin();
@@ -217,6 +215,8 @@ public class ProfileController extends HttpServlet {
                 if (currentUser.getId().equals(employee.getId())) {
                     UserSessionUtil userSessions = new UserSessionUtil(request.getSession());
                     Cookie userCookie = userSessions.setUserSession(employee);
+                } else {
+                    response.sendRedirect("/staffList");
                 }
 
                 utx.begin();
