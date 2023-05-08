@@ -104,14 +104,10 @@ public class StaffRegisterController extends HttpServlet {
                 utx.begin();
                 boolean isRegisterSuccess = employeeService.addEmployee(employee);
                 utx.commit();
-//                if (isRegisterSuccess) {
-//                    
-//                    return;
-//                }
             } catch (Exception ex) {
                 Logger.getLogger(RegisterController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-        response.sendRedirect(HOMEPAGE);
+        response.sendRedirect("/staffList");
     }
 }

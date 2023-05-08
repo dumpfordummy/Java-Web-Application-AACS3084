@@ -173,7 +173,6 @@ public class ProfileController extends HttpServlet {
                     customer.setAddress(address);
                 }
                 if (!Paths.get(imagePart.getSubmittedFileName()).getFileName().toString().equals("")) {
-                    System.out.println("Setting image");
                     String base64Image = ImageUtil.getImageBase64(imagePart);
                     customer.setProfileimg(base64Image);
                 }
@@ -188,6 +187,7 @@ public class ProfileController extends HttpServlet {
                 utx.begin();
                 customerService.updateCustomer(customer);
                 utx.commit();
+
             } else {
                 EmployeeService employeeService = new EmployeeService(em);
                 Employee employee = employeeService.findEmployeeById(userId);
@@ -208,7 +208,6 @@ public class ProfileController extends HttpServlet {
                     employee.setAddress(address);
                 }
                 if (!Paths.get(imagePart.getSubmittedFileName()).getFileName().toString().equals("")) {
-                    System.out.println("Setting image");
                     String base64Image = ImageUtil.getImageBase64(imagePart);
                     employee.setProfileimg(base64Image);
                 }
@@ -222,8 +221,8 @@ public class ProfileController extends HttpServlet {
                 utx.begin();
                 employeeService.updateEmployee(employee);
                 utx.commit();
+
             }
-            response.sendRedirect("/home");
         } catch (Exception ex) {
             request.setAttribute("errorTitle", "Error!");
             request.setAttribute("errorTitle", ex.getMessage());

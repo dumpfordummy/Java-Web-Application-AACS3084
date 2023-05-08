@@ -18,7 +18,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.transaction.UserTransaction;
+import model.Customer;
 import model.CustomerService;
+import model.Employee;
 import model.EmployeeService;
 
 /**
@@ -40,24 +42,46 @@ public class ImageController extends HttpServlet {
         }
         String userRole = paths[1];
         String userId = paths[2];
-        User user;
-        
 
         if (userRole.equals(User.CUSTOMER)) {
             CustomerService customerService = new CustomerService(em);
-            user = customerService.findCustomerById(userId);
+            Customer user = customerService.findCustomerById(userId);
+
+            if(user == null) {
+                System.out.println("user on image controller is null");
+            }
+            if(user.getProfileimg() == null) {
+                System.out.println("user image on image controller is null");
+            }
+            
+            response.setContentType(user.getProfileimgtype());
+
+            String profileImage = user.getProfileimg();
+
+            byte[] profileImageByteArray = Base64.getDecoder().decode(profileImage);
+
+            response.getOutputStream().write(profileImageByteArray);
         } else {
             EmployeeService employeeService = new EmployeeService(em);
-            user = employeeService.findEmployeeById(userId);
+            Employee user = employeeService.findEmployeeById(userId);
+            if(user == null) {
+                System.out.println("user on image controller is null");
+                return;
+            }
+            if(user.getProfileimg() == null) {
+                System.out.println("user image on image controller is null");
+                return;
+            }
+            
+            response.setContentType(user.getProfileimgtype());
+
+            String profileImage = user.getProfileimg();
+
+            byte[] profileImageByteArray = Base64.getDecoder().decode(profileImage);
+
+            response.getOutputStream().write(profileImageByteArray);
         }
-        response.setContentType(user.getProfileimgtype());
 
-        String profileImage = user.getProfileimg();
-  
-        byte[] profileImageByteArray = Base64.getDecoder().decode(profileImage);
-
-        response.getOutputStream().write(profileImageByteArray);
-        
     }
 
     @Override
