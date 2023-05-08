@@ -22,6 +22,7 @@
         <%@include file="navbar.jsp" %>
     </head>
     <body> 
+        <h3 style="margin: 20px 10px 10px 20px;">Order List</h3>
         <% 
             String userRole = (String) request.getAttribute("UserRole");
             boolean success = Boolean.valueOf(String.valueOf(request.getAttribute("updateSuccess")));
@@ -47,7 +48,7 @@
                     Date: <%= dateFormat.format(p.getOrderDate()) %><br />
                     <br />
                     <br />
-                    Subtotal: RM <%= p.getSubTotal() %><br />
+                    <b>Total: RM <%= String.format("%.2f", p.getTotalPayment()) %></b><br />
                 </div>
                 <div class="col-2 p-3">
                     <p>
@@ -73,7 +74,7 @@
                         Date: <%= dateFormat.format(p.getOrderDate()) %><br />
                         <br />
                         <br />
-                        Subtotal: RM <%= p.getSubTotal() %><br />
+                        <b>Total: RM <%= String.format("%.2f", p.getTotalPayment()) %></b><br />
                     </div>
                     <div class="col-2 p-3">
                         <p>
