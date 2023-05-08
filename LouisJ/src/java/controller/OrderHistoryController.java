@@ -39,12 +39,12 @@ public class OrderHistoryController extends HttpServlet {
         UserSessionUtil userSession = new UserSessionUtil(request.getSession());
         User user = userSession.getCurrentLoginUser(request.getCookies());
 
-        if (user != null) {
+        if (user != null && user.getUsertype().equals(User.CUSTOMER)) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/orderHistory.jsp");
             dispatcher.forward(request, response);
         } else {
             request.setAttribute("errorTitle", "Forbidden Access");
-            request.setAttribute("errorMessage", "You are not logged in, hence you do not have access to this page.");
+            request.setAttribute("errorMessage", "You do not have access to this page.");
             request.getRequestDispatcher("/error.jsp").forward(request, response);
         }
 

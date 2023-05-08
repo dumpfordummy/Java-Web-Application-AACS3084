@@ -13,7 +13,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Louis J - Customer List</title> 
+        <title><%= getServletContext().getInitParameter("companyName") %> - Customer List</title> 
         <link rel="stylesheet" href="styling/index.css" type="text/css">
         <link rel="stylesheet" href="styling/listPages.css" text="text/css">
         <script src="https://kit.fontawesome.com/a293bfc92d.js" crossorigin="anonymous"></script>

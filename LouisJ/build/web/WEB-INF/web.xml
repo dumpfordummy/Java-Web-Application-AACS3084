@@ -15,6 +15,11 @@
         <param-name>companyPhoneNum</param-name>
         <param-value>0133630908</param-value>
     </context-param>
+    <context-param>
+        <description>company name</description>
+        <param-name>companyName</param-name>
+        <param-value>Louis J</param-value>
+    </context-param>
     <servlet>
         <servlet-name>LoginController</servlet-name>
         <servlet-class>controller.LoginController</servlet-class>

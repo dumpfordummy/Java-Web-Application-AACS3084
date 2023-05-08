@@ -24,6 +24,7 @@
         <script src="https://kit.fontawesome.com/a293bfc92d.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <title>Louis J - Order History</title>
+        <title><%= getServletContext().getInitParameter("companyName") %> - Order History</title>
     </head>
     <body>
         <%
@@ -69,7 +70,7 @@
                         Date: <%= dateFormat.format(p.getOrderDate())%><br />
                         <br />
                         <br />
-                        Subtotal: RM <%= p.getSubTotal()%><br />
+                        Subtotal: RM <%= p.getSubTotal() + p.getDeliveryCharge() + p.getTax() - p.getDiscountAmount() %><br />
                     </div>
                     <div class="col-2 p-3">
                         <p>
@@ -77,8 +78,11 @@
                             <span><b><%= p.getStatus()%></b></span>
                         </p>
                     </div>
+
+                    <button class="detailsButton">
+                        <a href="/orderHistoryDetails?paymentId=<%= p.getPaymentid()%>" target="_blank">View Details</a>
+                    </button>   
                 </div>
-                <br>
                 <% }
                         }
                     }%>
@@ -99,7 +103,7 @@
                         Date: <%= dateFormat.format(p.getOrderDate())%><br />
                         <br />
                         <br />
-                        Subtotal: RM <%= p.getSubTotal()%><br />
+                        Subtotal: RM <%= p.getSubTotal() + p.getDeliveryCharge() + p.getTax() - p.getDiscountAmount() %><br />
                     </div>
                     <div class="col-2 p-3">
                         <p>
@@ -107,8 +111,11 @@
                             <span><b><%= p.getStatus()%></b></span>
                         </p>
                     </div>
+
+                    <button class="detailsButton">
+                        <a href="/orderHistoryDetails?paymentId=<%= p.getPaymentid()%>" target="_blank">View Details</a>
+                    </button> 
                 </div>
-                <br>
                 <% }
                         }
                     }%>
@@ -128,7 +135,7 @@
                         Date: <%= dateFormat.format(p.getOrderDate())%><br />
                         <br />
                         <br />
-                        Subtotal: RM <%= p.getSubTotal()%><br />
+                        Subtotal: RM <%= p.getSubTotal() + p.getDeliveryCharge() + p.getTax() - p.getDiscountAmount() %><br />
                     </div>
                     <div class="col-2 p-3">
                         <p>
@@ -136,8 +143,10 @@
                             <span><b><%= p.getStatus()%></b></span>
                         </p>
                     </div>
+                    <button class="detailsButton">
+                        <a href="/orderHistoryDetails?paymentId=<%= p.getPaymentid()%>" target="_blank">View Details</a>
+                    </button>    
                 </div>
-                <br>
                 <% }
                         }
                     }%>
@@ -157,7 +166,7 @@
                         Date: <%= dateFormat.format(p.getOrderDate())%><br />
                         <br />
                         <br />
-                        Subtotal: RM <%= p.getSubTotal()%><br />
+                        Subtotal: RM <%= p.getSubTotal() + p.getDeliveryCharge() + p.getTax() - p.getDiscountAmount() %><br />
                     </div>
                     <div class="col-2 p-3">
                         <p>
@@ -165,9 +174,12 @@
                             <span><b><%= p.getStatus()%></b></span>
                         </p>
                     </div>
+                    <button class="detailsButton">
+                        <a href="/orderHistoryDetails?paymentId=<%= p.getPaymentid()%>" target="_blank">View Details</a>
+                    </button>   
                 </div>
-                <br>
-                <% } }
+                <% }
+                        }
                     }%>
             </div>
         </div>

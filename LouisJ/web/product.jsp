@@ -15,7 +15,7 @@
         <%@include file="components/common_css_js.jsp" %>
         <%@include file="navbar.jsp" %>
         <link rel="stylesheet" type="text/css" href="styling/product.css">
-        <title>Louis J - Product</title>
+        <title><%= getServletContext().getInitParameter("companyName") %> - Product</title>
     </head>
     <body>
 

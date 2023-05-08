@@ -13,7 +13,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Louis J - Home</title>
+        <title><%= getServletContext().getInitParameter("companyName") %> - Home</title>
         <%@include file="components/common_css_js.jsp" %>
         <%@include file="navbar.jsp" %>        
         <link rel="stylesheet" type="text/css" href="styling/homePage.css">

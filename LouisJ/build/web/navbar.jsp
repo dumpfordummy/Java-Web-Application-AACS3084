@@ -11,7 +11,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Louis J - Home</title>
+        <title><%= getServletContext().getInitParameter("companyName") %> - Home</title>
         <%@include file="components/common_css_js.jsp" %>
     </head>
     <body>
@@ -54,10 +54,13 @@
                         <% } %>
                     </div>
                 </div>
+                <%
+                if (users != null && users.getUsertype().equals(User.CUSTOMER)) { %>
                 <a class="nav-item nav-link" href="cartPayment">
                     <img src="images/cart.png" height="30" class="d-inline-block align-top" alt="CART.PNG">
                     <span class="ml-2">CART</span>
                 </a>
+                <% }%>
             </div>
         </nav>  
         <div id="mySidenav" class="sidenav">
@@ -73,20 +76,19 @@
             <% } %>
             <%
                 if (users.getUsertype().equals(User.MANAGER)) { %>
+            <a href="/addVoucher.jsp" >Add Voucher</a>
             <a href="/customerList" >Customer List</a>
             <a href="/staffList" >Staff List</a>
             <a href="/orderList" >Order List</a>
             <a href="/salesRecords" >Sales Records</a>
-            <a href="/addVoucher.jsp" >Add Voucher</a>
             <%  }
                 if (users.getUsertype().equals(User.STAFF)) {
             %>
+            <a href = "/addVoucher.jsp" > Add Voucher</a >
             <a href="/customerList" >Customer List</a>
             <a href="/staffList" >Staff List</a>
             <a href="/orderList" >Order List</a>
-            <a href = "/addVoucher.jsp" > Add Voucher</a >
-            <% }
-                }%>
+            <% }%>
         </div>
 
         <script>
