@@ -11,7 +11,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" type="text/css" href="styling/welcomeCSS.css">
         <%@include file="components/common_css_js.jsp" %>
-        <title>Louis J - Welcome</title>
+        <title><%= getServletContext().getInitParameter("companyName") %> - Welcome</title>
     </head>
     <body>
         <div class="overlay">

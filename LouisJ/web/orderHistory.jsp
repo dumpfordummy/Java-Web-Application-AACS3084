@@ -22,7 +22,7 @@
         <%@include file="navbar.jsp" %>
         <link rel="stylesheet" type="text/css" href="styling/orderHistory.css">
         <script src="https://kit.fontawesome.com/a293bfc92d.js" crossorigin="anonymous"></script>
-        <title>Louis J - Order History</title>
+        <title><%= getServletContext().getInitParameter("companyName") %> - Order History</title>
     </head>
     <body>
         <%
