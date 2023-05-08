@@ -32,7 +32,7 @@
                     Date: <%= dateFormat.format(p.getOrderDate()) %><br />
                     <br />
                     <br />
-                    Subtotal: RM <%= p.getSubTotal() %><br />
+                    <b>Total: RM <%= String.format("%.2f", p.getTotalPayment()) %></b><br />
                 </div>
                 <div class="col-2 p-3">
                     <p>
