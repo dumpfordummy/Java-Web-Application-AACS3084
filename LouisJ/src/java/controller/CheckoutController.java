@@ -115,7 +115,7 @@ public class CheckoutController extends HttpServlet {
             boolean success = paymentService.addPayment(payment);
             utx.commit();
 
-            response.sendRedirect("/product");
+            response.sendRedirect("/orderHistory?success=true");
         } catch (Exception ex) {
             Logger.getLogger(AddProductController.class.getName()).log(Level.SEVERE, null, ex);
             response.sendRedirect("/cartPayment");
