@@ -32,7 +32,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Payment.findByPaymentid", query = "SELECT p FROM Payment p WHERE p.paymentid = :paymentid"),
     @NamedQuery(name = "Payment.findByCustomerid", query = "SELECT p FROM Payment p WHERE p.customerid = :customerid"),
     @NamedQuery(name = "Payment.findByEmployeeid", query = "SELECT p FROM Payment p WHERE p.employeeid = :employeeid"),
-    @NamedQuery(name = "Payment.findByStatus", query = "SELECT p FROM Payment p WHERE p.status = :status")})
+    @NamedQuery(name = "Payment.findByStatus", query = "SELECT p FROM Payment p WHERE p.status = :status"),
+    @NamedQuery(name = "Payment.findAllDate", query = "SELECT DISTINCT p.orderDate FROM Payment p")})
 public class Payment implements Serializable {
 
     @Size(max = 36)
@@ -87,7 +88,6 @@ public class Payment implements Serializable {
         this.paymentid = paymentid;
     }
 
-
     public Double getSubTotal() {
         return subTotal;
     }
@@ -127,7 +127,6 @@ public class Payment implements Serializable {
     public void setTotalPayment(Double totalPayment) {
         this.totalPayment = totalPayment;
     }
-
 
     public Date getOrderDate() {
         return orderDate;
@@ -201,5 +200,5 @@ public class Payment implements Serializable {
     public void setStatus(String status) {
         this.status = status;
     }
-    
+
 }

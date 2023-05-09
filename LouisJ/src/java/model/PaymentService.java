@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -83,6 +84,10 @@ public class PaymentService {
         return paymentList;
     }
 
+    public List<Date> findAllDate() {
+        return (List<Date>) mgr.createNamedQuery("Payment.findAllDate").getResultList();
+    }
+    
     public boolean updatePayment(Payment payment) {
         mgr.merge(payment);
         return true;

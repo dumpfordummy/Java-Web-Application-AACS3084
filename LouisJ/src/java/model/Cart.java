@@ -34,7 +34,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Cart.findAllOrderByProductid", query = "SELECT c FROM Cart c ORDER BY c.productid ASC"),
     @NamedQuery(name = "Cart.findAllPaid", query = "SELECT c FROM Cart c WHERE c.paymentid IS NOT NULL"),
     @NamedQuery(name = "Cart.findCountByProductCategory", query = "SELECT COUNT(c) FROM Cart c, Product p WHERE c.productid = p.productid AND p.category = :category"),
-    @NamedQuery(name = "Cart.findAllByProductCategory", query = "SELECT c FROM Cart c, Product p WHERE c.productid = p.productid AND p.category = :category")})
+    @NamedQuery(name = "Cart.findAllByProductCategory", query = "SELECT c FROM Cart c, Product p WHERE c.productid = p.productid AND p.category = :category"),
+    @NamedQuery(name = "Cart.findCountByDate", query = "SELECT COUNT(c) FROM Cart c, Payment p WHERE c.paymentid = p.paymentid AND p.orderDate = :orderdate")})
 public class Cart implements Serializable {
 
     private static final long serialVersionUID = 1L;

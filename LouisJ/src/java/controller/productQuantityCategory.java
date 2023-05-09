@@ -43,7 +43,6 @@ public class productQuantityCategory extends HttpServlet {
                 Integer count = cartService.findCountByProductCategory(category);
                 productCount.put(category, count);
             }
-            System.out.println(productCount);
 
             request.setAttribute("productCount", productCount);
 

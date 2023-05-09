@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -112,6 +113,10 @@ public class CartService {
 
     public List<Cart> findAllByProductCategory(String category) {
         return (List<Cart>) mgr.createNamedQuery("Cart.findAllByProductCategory").setParameter("category", category).getResultList();
+    }
+    
+    public Integer findCountByDate(Date orderdate) {
+        return ((Number) mgr.createNamedQuery("Cart.findCountByDate").setParameter("orderdate", orderdate).getSingleResult()).intValue();
     }
     
     public boolean updateCart(Cart cart) {
