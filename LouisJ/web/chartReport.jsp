@@ -33,6 +33,7 @@
                     <option value="/productQuantity/pie">Total Quantity Sold sorted by Product Category (Pie)</option>
                     <option value="/productSale/bar">Total Sales Made sorted by Product (Bar)</option>
                     <option value="/productSale/pie">Total Sales Made sorted by Product (Pie)</option>
+                    <option value="/salesOverTime">Total Sales Made Over Time (Line)</option>
                 </select>
             </div>
         </form>
@@ -44,7 +45,7 @@
                 <iframe src="<%= path %>" frameborder="0" scrolling="no" onload="resizeIframe(this)" ></iframe>
             <% } %>
         </div>
-        
+        <br />
         <%@include file="footer.jsp" %>
     </body>
 </html>
