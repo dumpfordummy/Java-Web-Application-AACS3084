@@ -17,6 +17,7 @@ import javax.persistence.TransactionRequiredException;
  * @author Asus
  */
 public class CartService {
+
     @PersistenceContext
     EntityManager mgr;
 
@@ -66,18 +67,18 @@ public class CartService {
         List cartList = mgr.createNamedQuery("Cart.findAll").getResultList();
         return cartList;
     }
-    
+
     public List<Cart> findAllPaid() {
         List cartList = mgr.createNamedQuery("Cart.findAllPaid").getResultList();
         return cartList;
     }
-    
+
     public List<Cart> findAllDesc() {
         List cartList = mgr.createNamedQuery("Cart.findAllDesc").getResultList();
         return cartList;
     }
-    
-    public List<Cart> findByProductid(String productid) {
+
+    public List<Cart> findByProductid(Integer productid) {
         try {
             return (List<Cart>) mgr.createNamedQuery("Cart.findByProductid").setParameter("productid", productid).getResultList();
         } catch (EntityExistsException ex) {
@@ -88,11 +89,11 @@ public class CartService {
         return null;
     }
 
-    public List<Cart> findAllOrderByProductid(){
+    public List<Cart> findAllOrderByProductid() {
         List cartList = mgr.createNamedQuery("Cart.findAllOrderByProductid").getResultList();
         return cartList;
     }
-    
+
     public List<Cart> findByPaymentid(Integer paymentid) {
         try {
             return (List<Cart>) mgr.createNamedQuery("Cart.findByPaymentid").setParameter("paymentid", paymentid).getResultList();
@@ -102,6 +103,15 @@ public class CartService {
             Logger.getLogger(CartService.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
+    }
+
+    public Integer findCountByProductCategory(String category) {
+        Integer count = ((Number) mgr.createNamedQuery("Cart.findCountByProductCategory").setParameter("category", category).getSingleResult()).intValue();
+        return count;
+    }
+
+    public List<Cart> findAllByProductCategory(String category) {
+        return (List<Cart>) mgr.createNamedQuery("Cart.findAllByProductCategory").setParameter("category", category).getResultList();
     }
     
     public boolean updateCart(Cart cart) {
