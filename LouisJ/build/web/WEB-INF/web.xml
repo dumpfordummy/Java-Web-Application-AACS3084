@@ -116,6 +116,10 @@
         <servlet-name>ReportController</servlet-name>
         <servlet-class>controller.ReportController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChartsController</servlet-name>
+        <servlet-class>controller.ChartsController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>RegisterController</servlet-name>
         <url-pattern>/register</url-pattern>
@@ -211,6 +215,10 @@
     <servlet-mapping>
         <servlet-name>ReportController</servlet-name>
         <url-pattern>/generateReport</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChartsController</servlet-name>
+        <url-pattern>/chartReport</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -24,6 +24,7 @@
         </style>
     </head>
     <body>
+        <h4 style="text-align: center">Total Quantity of Products Sold By Category</h4>
         <div id="chartdiv"></div>
 
         <script>

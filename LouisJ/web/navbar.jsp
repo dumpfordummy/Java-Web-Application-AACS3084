@@ -77,6 +77,7 @@
             <a href="/staffList" >Staff List</a>
             <a href="/orderList" >Order List</a>
             <a href="/salesRecords" >Sales Records</a>
+            <a href="/chartReport" >Charts</a>
             <%  }
                 if (users.getUsertype().equals(User.STAFF)) {
             %>

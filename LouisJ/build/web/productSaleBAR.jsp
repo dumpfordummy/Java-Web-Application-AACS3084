@@ -24,6 +24,7 @@
         </style>
     </head>
     <body>
+        <h4 style="text-align: center">Total Sales Made by Each Products</h4>
         <div id="chartdiv"></div>
 
         <script>
