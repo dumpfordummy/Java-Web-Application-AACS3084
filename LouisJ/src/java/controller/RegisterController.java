@@ -87,7 +87,7 @@ public class RegisterController extends HttpServlet {
                 utx.begin();
                 boolean isRegisterSuccess = customerService.addCustomer(customer);
                 utx.commit();
-                if (isRegisterSuccess && user != null && !user.getUsertype().equals(User.MANAGER)) {
+                if (isRegisterSuccess && user != null && !user.getUsertype().equals(User.MANAGER) && !user.getUsertype().equals(User.STAFF)) {
                     response.sendRedirect(LOGINPAGE);
                     return;
                 }

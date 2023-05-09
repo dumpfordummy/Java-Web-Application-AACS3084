@@ -82,7 +82,7 @@ public class ProfileController extends HttpServlet {
                 return;
             }
 
-            if (user.getUsertype().equals(User.MANAGER) && paths.length == 4) {
+            if (user.getUsertype().equals(User.MANAGER) || user.getUsertype().equals(User.STAFF) && paths.length == 4) {
                 String action = paths[1];
                 String targetUserType = paths[2];
                 String targetUserId = paths[3];
@@ -180,6 +180,7 @@ public class ProfileController extends HttpServlet {
                 if (currentUser.getId().equals(customer.getId())) {
                     UserSessionUtil userSessions = new UserSessionUtil(request.getSession());
                     Cookie userCookie = userSessions.setUserSession(customer);
+                    response.sendRedirect("/profile");
                 } else {
                     response.sendRedirect("/customerList");
                 }
@@ -214,6 +215,7 @@ public class ProfileController extends HttpServlet {
                 if (currentUser.getId().equals(employee.getId())) {
                     UserSessionUtil userSessions = new UserSessionUtil(request.getSession());
                     Cookie userCookie = userSessions.setUserSession(employee);
+                    response.sendRedirect("/profile");
                 } else {
                     response.sendRedirect("/staffList");
                 }
