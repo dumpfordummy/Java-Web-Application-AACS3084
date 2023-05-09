@@ -26,14 +26,16 @@ import model.ProductService;
  *
  * @author CY
  */
-@WebServlet(name = "ProductSale", urlPatterns = {"/productSale"})
-public class ProductSaleByProductName extends HttpServlet {
+@WebServlet(name = "productSaleBAR", urlPatterns = {"/productSale/*"})
+public class productSale extends HttpServlet {
 
     @PersistenceContext
     EntityManager em;
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            String[] paths = request.getRequestURI().substring(1).split("/");
+
             ProductService productService = new ProductService(em);
             CartService cartService = new CartService(em);
             List<Product> productList = productService.findAll();
@@ -48,10 +50,13 @@ public class ProductSaleByProductName extends HttpServlet {
                 productSale.put(product.getName(), saleAmount);
             }
             System.out.println(productSale);
-            
+
             request.setAttribute("productSale", productSale);
-            
-            request.getRequestDispatcher("/productSale.jsp").forward(request, response);
+            if (paths[1].equals("bar")) {
+                request.getRequestDispatcher("/productSaleBAR.jsp").forward(request, response);
+            } else if (paths[1].equals("pie")) {
+                request.getRequestDispatcher("/productSalePIE.jsp").forward(request, response);
+            }
         } catch (Exception ex) {
             ex.printStackTrace();
         }
