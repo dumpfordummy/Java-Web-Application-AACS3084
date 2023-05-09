@@ -38,10 +38,38 @@
                     <p>
                         <span>STATUS: 
                             <select name="orderStatus" id="orderStatus" class="form-control" >
-                                <option value="PACKAGING">PACKAGING</option>
-                                <option value="SHIPPING">SHIPPING</option>
-                                <option value="DELIVERING">DELIVERING</option>
-                                <option value="COMPLETED">COMPLETED</option>
+                                <% 
+                                    if (p.getStatus().equals("PACKAGING")){
+                                %>
+                                    <option value="PACKAGING" selected>PACKAGING</option>
+                                    <option value="SHIPPING">SHIPPING</option>
+                                    <option value="DELIVERING">DELIVERING</option>
+                                    <option value="COMPLETED">COMPLETED</option>
+                                <% } %>
+                                <% 
+                                    if (p.getStatus().equals("SHIPPING")){
+                                %>
+                                    <option value="PACKAGING">PACKAGING</option>
+                                    <option value="SHIPPING" selected>SHIPPING</option>
+                                    <option value="DELIVERING">DELIVERING</option>
+                                    <option value="COMPLETED">COMPLETED</option>
+                                <% } %>
+                                <% 
+                                    if (p.getStatus().equals("DELIVERING")){
+                                %>
+                                    <option value="PACKAGING">PACKAGING</option>
+                                    <option value="SHIPPING">SHIPPING</option>
+                                    <option value="DELIVERING" selected>DELIVERING</option>
+                                    <option value="COMPLETED">COMPLETED</option>
+                                <% } %>
+                                <% 
+                                    if (p.getStatus().equals("COMPLETED")){
+                                %>
+                                    <option value="PACKAGING">PACKAGING</option>
+                                    <option value="SHIPPING">SHIPPING</option>
+                                    <option value="DELIVERING">DELIVERING</option>
+                                    <option value="COMPLETED" selected>COMPLETED</option>
+                                <% } %>
                             </select>
                         </span>
                     </p>

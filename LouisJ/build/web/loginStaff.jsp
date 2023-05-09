@@ -16,6 +16,8 @@
     </head>
     <body>
         <div class="overlay">
+            <a href="/home"><img src="images/logo.png" alt="alt" style="display: block; margin-left: auto;margin-right: auto;width: 20%;margin-top:2%;"/></a>
+            
             <form method="POST" action="loginStaff">
                 <!--   con = Container  for items in the form-->
                 <div class="con">

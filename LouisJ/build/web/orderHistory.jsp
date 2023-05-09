@@ -4,6 +4,8 @@
     Author     : Pua
 --%>
 
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
 <%@page import="util.UserSessionUtil"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="model.Payment"%>
@@ -24,7 +26,7 @@
         <script src="https://kit.fontawesome.com/a293bfc92d.js" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
         <title>Louis J - Order History</title>
-        <title><%= getServletContext().getInitParameter("companyName") %> - Order History</title>
+        <title><%= getServletContext().getInitParameter("companyName")%> - Order History</title>
     </head>
     <body>
         <%
@@ -62,15 +64,21 @@
                     for (Payment p : paymentList) {
                         if (p.getCustomerid().equals(user.getId())) {
                             if (p.getStatus().toUpperCase().equals("PACKAGING")) {
+                                Date orderDate = p.getOrderDate();
+                                Calendar cal = Calendar.getInstance();
+                                cal.setTime(orderDate);
+                                cal.add(Calendar.DAY_OF_MONTH, 5);
+                                Date arrivalDate = cal.getTime();
                 %>
 
                 <div class="row m-3 justify-content-between rounded" style="background-color: #f7c188;">
                     <div class="col-10 p-3">
                         Order number: <%= p.getPaymentid()%><br />
-                        Date: <%= dateFormat.format(p.getOrderDate())%><br />
+                        Order Date: <%= dateFormat.format(orderDate)%><br />
+                        Estimated Arrival Date: <%= dateFormat.format(arrivalDate)%><br />
                         <br />
                         <br />
-                        Subtotal: RM <%= p.getSubTotal() + p.getDeliveryCharge() + p.getTax() - p.getDiscountAmount() %><br />
+                        Total Payment: RM <%= p.getTotalPayment()%><br />
                     </div>
                     <div class="col-2 p-3">
                         <p>
@@ -95,15 +103,21 @@
                     for (Payment p : paymentList) {
                         if (p.getCustomerid().equals(user.getId())) {
                             if (p.getStatus().toUpperCase().equals("SHIPPING")) {
+                                Date orderDate = p.getOrderDate();
+                                Calendar cal = Calendar.getInstance();
+                                cal.setTime(orderDate);
+                                cal.add(Calendar.DAY_OF_MONTH, 5);
+                                Date arrivalDate = cal.getTime();
                 %>
 
                 <div class="row m-3 justify-content-between rounded" style="background-color: #f7c188;">
                     <div class="col-10 p-3">
                         Order number: <%= p.getPaymentid()%><br />
                         Date: <%= dateFormat.format(p.getOrderDate())%><br />
+                        Estimated Arrival Date: <%= dateFormat.format(arrivalDate)%><br />
                         <br />
                         <br />
-                        Subtotal: RM <%= p.getSubTotal() + p.getDeliveryCharge() + p.getTax() - p.getDiscountAmount() %><br />
+                        Total Payment: RM <%= p.getTotalPayment()%><br />
                     </div>
                     <div class="col-2 p-3">
                         <p>
@@ -127,15 +141,21 @@
                     for (Payment p : paymentList) {
                         if (p.getCustomerid().equals(user.getId())) {
                             if (p.getStatus().toUpperCase().equals("DELIVERING")) {
+                                Date orderDate = p.getOrderDate();
+                                Calendar cal = Calendar.getInstance();
+                                cal.setTime(orderDate);
+                                cal.add(Calendar.DAY_OF_MONTH, 5);
+                                Date arrivalDate = cal.getTime();
                 %>
 
                 <div class="row m-3 justify-content-between rounded" style="background-color: #f7c188;">
                     <div class="col-10 p-3">
                         Order number: <%= p.getPaymentid()%><br />
                         Date: <%= dateFormat.format(p.getOrderDate())%><br />
+                        Estimated Arrival Date: <%= dateFormat.format(arrivalDate)%><br />
                         <br />
                         <br />
-                        Subtotal: RM <%= p.getSubTotal() + p.getDeliveryCharge() + p.getTax() - p.getDiscountAmount() %><br />
+                        Subtotal: RM <%= p.getTotalPayment()%><br />
                     </div>
                     <div class="col-2 p-3">
                         <p>
@@ -158,15 +178,21 @@
                     for (Payment p : paymentList) {
                         if (p.getCustomerid().equals(user.getId())) {
                             if (p.getStatus().toUpperCase().equals("COMPLETED")) {
+                                Date orderDate = p.getOrderDate();
+                                Calendar cal = Calendar.getInstance();
+                                cal.setTime(orderDate);
+                                cal.add(Calendar.DAY_OF_MONTH, 5);
+                                Date arrivalDate = cal.getTime();
                 %>
 
                 <div class="row m-3 justify-content-between rounded" style="background-color: #29E275;">
                     <div class="col-10 p-3">
                         Order number: <%= p.getPaymentid()%><br />
                         Date: <%= dateFormat.format(p.getOrderDate())%><br />
+                        Estimated Arrival Date: <%= dateFormat.format(arrivalDate)%><br />
                         <br />
                         <br />
-                        Subtotal: RM <%= p.getSubTotal() + p.getDeliveryCharge() + p.getTax() - p.getDiscountAmount() %><br />
+                        Subtotal: RM <%= p.getTotalPayment()%><br />
                     </div>
                     <div class="col-2 p-3">
                         <p>
