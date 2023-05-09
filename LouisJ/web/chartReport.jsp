@@ -27,7 +27,7 @@
     </head>
     <body>
         <h3 style="margin: 20px 10px 10px 20px;">Charts</h3>
-        <div class="row">
+        <div class="row chartRow" style="margin-left: 10px;">
             <label style="width: auto;">Select Charts: </label>
             <select class="form-control" name="chartSelect" style="width: auto;" onchange="setIframe(this);">
                 <option value="/productQuantity/bar" selected>Total Quantity Sold sorted by Product Category (Bar)</option>

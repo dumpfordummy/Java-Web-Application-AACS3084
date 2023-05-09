@@ -19,31 +19,29 @@
             function resizeIframe(obj) {
                 obj.style.height = obj.contentWindow.document.documentElement.scrollHeight + 'px';
             }
+            
+            function setIframe(obj) {
+                document.getElementById("chartFrame").src = obj.value;
+            }
         </script>
     </head>
     <body>
-        <% String path = (String) request.getAttribute("iframePath"); %>
         <h3 style="margin: 20px 10px 10px 20px;">Charts</h3>
-        <form method="POST" class="col-3 m-3">
-            <div class="row">
-                <label style="width: auto;">Select Charts: </label>
-                <select class="form-control" name="chartSelect" style="width: 16.7%;" onchange="this.form.submit();">
-                    <option disabled selected>None</option>
-                    <option value="/productQuantity/bar">Total Quantity Sold sorted by Product Category (Bar)</option>
-                    <option value="/productQuantity/pie">Total Quantity Sold sorted by Product Category (Pie)</option>
-                    <option value="/productSale/bar">Total Sales Made sorted by Product (Bar)</option>
-                    <option value="/productSale/pie">Total Sales Made sorted by Product (Pie)</option>
-                    <option value="/salesOverTime">Total Sales Made Over Time (Line)</option>
-                </select>
-            </div>
-        </form>
+        <div class="row chartRow" style="margin-left: 10px;">
+            <label style="width: auto;">Select Charts: </label>
+            <select class="form-control" name="chartSelect" style="width: auto;" onchange="setIframe(this);">
+                <option value="/productQuantity/bar" selected>Total Quantity Sold sorted by Product Category (Bar)</option>
+                <option value="/productQuantity/pie">Total Quantity Sold sorted by Product Category (Pie)</option>
+                <option value="/productSale/bar">Total Sales Made sorted by Product (Bar)</option>
+                <option value="/productSale/pie">Total Sales Made sorted by Product (Pie)</option>
+                <option value="/salesOverTime">Total Sales Made Over Time (Line)</option>
+            </select>
+        </div>
 
         <div class="row m-3" style="background: white;">
-            <% 
-                if(!path.isEmpty() || path == null) {
-            %>
-                <iframe src="<%= path %>" frameborder="0" scrolling="no" onload="resizeIframe(this)" ></iframe>
-            <% } %>
+
+            <iframe id="chartFrame" src="/productQuantity/bar" frameborder="0" scrolling="no" onload="resizeIframe(this)" ></iframe>
+
         </div>
         <br />
         <%@include file="footer.jsp" %>
